@@ -1,3 +1,7 @@
+import { direccionLocal } from "./constantes.js";
+
+console.log(direccionLocal);
+
 /** registroUsuarios recibe los datos del formulario para hacer guardar un nuevo usuario */
 let registroUsuarios = document.getElementById("registrar");
 /** msj muestra los msj de advertencia al intentar hacer login */
@@ -18,7 +22,7 @@ async function registrar(e) {
   const claveUno = e.target.claveUno.value;
   const claveDos = e.target.claveDos.value;
 
-  const respuesta = await fetch('http://localhost:2525/api/registro', {
+  const respuesta = await fetch(`${direccionLocal}/api/registro`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
