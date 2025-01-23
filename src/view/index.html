@@ -23,7 +23,8 @@
   </head>
   <body>
     <!--Barra-->
-    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+
+    <!-- <nav class="navbar navbar-expand-sm bg-body-tertiary">
       <div class="container-fluid py-3 d-flex flex-column flex-sm-row">
 
         <ul class="navbar-nav flex-row flex-md-row justify-content-between align-items-center">
@@ -41,7 +42,7 @@
       
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link "
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -70,7 +71,7 @@
           </li>
         </ul>
       
-        <form class="d-flex mt-3 mt-md-0" role="search">
+        <form class="d-flex " role="search">
           <input
             class="form-control me-2"
             type="search"
@@ -81,9 +82,55 @@
             Buscar
           </button>
         </form>
+      </div>      
+    </nav> -->
+
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+      <div class="container-fluid py-3 d-flex flex-row">
+        <a class="navbar-brand text-xl-center" href="#">Gori-Shop</a>
+        
+        <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav flex-column flex-md-row justify-content-between align-items-center w-100">
+            
+            <li class="nav-item d-none d-md-flex">
+              <a class="dropdown-item" href="#">Inicio</a>
+            </li>
+            <li class="nav-item d-none d-md-flex">
+              <a class="dropdown-item" href="#">Productos</a>
+            </li>
+            <li class="nav-item d-none d-md-flex">
+              <a class="dropdown-item" href="#">Perfil</a>
+            </li>
+            <li class="nav-item d-md-none">
+              <a class="dropdown-item" href="#">Inicio</a>
+            </li>
+            <li class="nav-item d-md-none">
+              <a class="dropdown-item" href="#">Productos</a>
+            </li>
+            <li class="nav-item d-md-none">
+              <a class="dropdown-item" href="#">Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/login">Iniciar sesión</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/registro-cliente">Registrar</a>
+            </li>
+          </ul>
+    
+          <form class="d-flex ms-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar equipos" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
       </div>
-      
     </nav>
+    
+    
 
 
 
