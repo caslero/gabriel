@@ -1,6 +1,6 @@
 /** La clase body es para formatear los estilos por defecto y darle color de fondo */
 body {
-  background-color: #fffafd;
+  background-color: #afa9ad;
   margin: 0px;
   padding: 0px;
   border: 0px;
@@ -39,4 +39,21 @@ img {
   height: 40px;
   transition: all;
   transition-duration: 400ms;
+}
+/**botstrap**/
+
+.carousel-item {
+    max-height: 700px;
+}
+
+.container-fluid {
+    background-color: rgb(13, 253, 193);
+    max-height: 600px;
+    margin: 0 auto;
+ 
+}
+
+.img-logo {
+  width: 150px;
+  height: 150px;
 }
