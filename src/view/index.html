@@ -4,87 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="image/x-icon" href="/img/favicon.ico" rel="shortcut icon" />
-    <title>Gori-Shop</title>
+    <title>Sion</title>
     <!--botstrap-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/index.css" />
     <!--
     <script src="https://cdn.tailwindcss.com"></script>-->
     <script src="/js/index.js" type="module"></script>
   </head>
   <body>
-    <!--Barra-->
-
-    <!-- <nav class="navbar navbar-expand-sm bg-body-tertiary">
-      <div class="container-fluid py-3 d-flex flex-column flex-sm-row">
-
-        <ul class="navbar-nav flex-row flex-md-row justify-content-between align-items-center">
-          <li>
-            <a class="navbar-brand text-xl-center" href="#">Gori-Shop</a>
-          </li>
-      
-          <li class="nav-item d-none d-sm-block">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          </li>          
-      
-          <li class="nav-item d-none d-sm-block">
-            <a class="nav-link" href="#">Productos</a>
-          </li>
-      
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link "
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Perfil
-            </a>
-
-            <ul class="dropdown-menu position-absolute">
-              
-              <li class="nav-item d-sm-none">
-                <a class="dropdown-item" href="#">Inicio</a>
-              </li>          
-          
-              <li class="nav-item d-sm-none">
-                <a class="dropdown-item" href="#">Productos</a>
-              </li>
-
-              <li>
-                <a class="dropdown-item" href="/login">Iniciar sesión</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/registro-cliente">Registrar</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      
-        <form class="d-flex " role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Buscar equipos"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">
-            Buscar
-          </button>
-        </form>
-      </div>      
-    </nav> -->
-
+<!--Barra-->
     <nav class="navbar navbar-expand-md bg-body-tertiary">
       <div class="container-fluid py-3 d-flex flex-row">
         <a class="navbar-brand text-xl-center" href="#">Gori-Shop</a>
@@ -100,19 +30,13 @@
               <a class="dropdown-item" href="#">Inicio</a>
             </li>
             <li class="nav-item d-none d-md-flex">
-              <a class="dropdown-item" href="#">Productos</a>
-            </li>
-            <li class="nav-item d-none d-md-flex">
-              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="/productos">Productos</a>
             </li>
             <li class="nav-item d-md-none">
               <a class="dropdown-item" href="#">Inicio</a>
             </li>
             <li class="nav-item d-md-none">
-              <a class="dropdown-item" href="#">Productos</a>
-            </li>
-            <li class="nav-item d-md-none">
-              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="/productos">Productos</a>
             </li>
             <li>
               <a class="dropdown-item" href="/login">Iniciar sesión</a>
@@ -129,289 +53,183 @@
         </div>
       </div>
     </nav>
-    
-    
+   
 
-
-
-
-
-
-
-
-
-
+   <!--Bienvenida-->
     <div class="container-fluid bg-light py-5">
       <h2 class="text-center">Bienvenido a <b>Gori-Shop</b></h2>
-      <h6 class="text-center">
+      <p class="text-center">
         El destino indicado para que encuentres tu equipo ideal
-      </h6>
+      </p>
     </div>
 
     <!--mi presentacion-->
     <div id="carouselExampleCaptions" class="carousel slide">
       <div class="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="0"
-          class="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
 
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img
-            src="../../img/equipos/14-pro.png"
-            class="d-block w-100"
-            alt="..."
-          />
+          <img src="../../img/equipos/14-pro.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>First slide label</h5>
             <p>Some representative placeholder content for the first slide.</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img
-            src="../../img/equipos/pro-5g.png"
-            class="d-block w-100"
-            alt="..."
-          />
+          <img src="../../img/equipos/pro-5g.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Second slide label</h5>
             <p>Some representative placeholder content for the second slide.</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../../img/equipos/12.png" class="d-block w-100" alt="..." />
+          <img src="../../img/equipos/12.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Third slide label</h5>
             <p>Some representative placeholder content for the third slide.</p>
           </div>
         </div>
       </div>
-
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev"
-      >
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next"
-      >
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
 
-    <!--logos-->
-    <div class="container-fluid bg-light py-2">
+     <!--logos-->
+     <div class="container-fluid bg-light py-2 ">
+       <div class="row">
+         <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+         <img src="../../img/logos/xiaomi.png" class="img-logo d-block w-100" alt="...">
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+            <img src="../../img/logos/samsung.png" class="img-logo d-block w-100"  alt="...">
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+            <img src="../../img/logos/redmagic.png" class="img-logo d-block w-100" alt="...">
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+            <img src="../../img/logos/apple.png" class="img-logo d-block w-100" alt="...">
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+            <img src="../../img/logos/infinix.png" class="img-logo d-block w-100" alt="...">
+        </div>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+            <img src="../../img/logos/ten-mo.png" class="img-logo d-block w-100" alt="...">
+        </div>
+      </div>
+    </div>
+
+   <!--tablas de presentacion-->
+   <div class="container">
+         <div class="card md-6 border-0 mt-5" >
+           <div class="row g-0">
+             <div class="col-md-6">
+               <img src="../../img/equipos/iph16pro.png" class="img-fluid rounded-start" alt="...">
+             </div>
+             <div class="col-md-6">
+               <div class="card-body">
+                 <h5 class="card-title">IPHONE 16 PRO max</h5>
+                 <span><b>Dimensiones y peso</b> 15,99 cm x 7,67 cm x 0,83 cm 227 g</span>
+                 <span><b>Pantalla</b> Super Retina XDR 6,9 pulgadas ProMotion 120 Hz 2.622 x 1.206px 460 pp 2.000 nits Contraste 2.000.000:1</span>
+                 <span><b>Procesador</b> Apple A18 Bionic</span>
+                 <span><b>Almacenamiento</b> 256/512 GB/1 TB</span>
+               </div>
+             </div>
+            </div>
+         </div>
+
+         <div class="card md-6 border-0 mt-5" >
+           <div class="row g-0">
+             <div class="col-md-6">
+               <img src="../../img/equipos/r-m9pro.jpg" class="img-fluid rounded-start" alt="...">
+             </div>
+             <div class="col-md-6">
+               <div class="card-body">
+                 <h5 class="card-title">Red Magic 9 pro+</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+               </div>
+             </div>
+           </div>
+          </div>
+          <div class="card mb-6 border-0 mt-5" >
+            <div class="row g-0">
+              <div class="col-md-6">
+                <img src="../../img/equipos/i-note40p.jpeg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                   <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="card mb-6 border-0 mt-5 mb-5" >
+            <div class="row g-0">
+              <div class="col-md-6">
+                <img src="../../img/equipos/sam24.jpeg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                   <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+           </div>
+   </div>
+
+
+<!--pie-->
+<footer>
+  <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
-          <img
-            src="../../img/logos/xiaomi.png"
-            class="img-logo d-block w-100"
-            alt="..."
-          />
+       <div class="text-center ">
+         <h2>Gori-Shop</h2>
+         <p>Contactanos y visita nuestras redes sociales</p>
+       </div>
+
+       <!--columnas pie-->
+        <div class="col-md-6 text-center">
+          <div><h4>Contactos</h4></div>
+          <div>
+            <i class="bi bi-whatsapp"></i><a class="text-decoration-none" href=""> +58 000-000.00.00</a>
+         </div>
+         <div>
+          <i class="bi bi-telegram"></i><a class="text-decoration-none" href=""> +58 000-000.00.00</a>
+         </div> 
+
         </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
-          <img
-            src="../../img/logos/samsung.png"
-            class="img-logo d-block w-100"
-            alt="..."
-          />
+
+        <div class="col-md-6 text-center">
+          <div><h4>Redes Sociales</h4></div>
+          <div>
+            <i class="bi bi-facebook"></i><a class="text-decoration-none" href=""> Gori-Shop</a>
+          </div> 
+          <div>
+            <i class="bi bi-instagram"></i><a class="text-decoration-none" href=""> @Gori-Shop</a>
+          </div>
         </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
-          <img
-            src="../../img/logos/redmagic.png"
-            class="img-logo d-block w-100"
-            alt="..."
-          />
+
         </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
-          <img
-            src="../../img/logos/apple.png"
-            class="img-logo d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
-          <img
-            src="../../img/logos/infinix.png"
-            class="img-logo d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-2">
-          <img
-            src="../../img/logos/ten-mo.png"
-            class="img-logo d-block w-100"
-            alt="..."
-          />
-        </div>
-      </div>
+        <p class="text-center">©2025 Gori-Shop</p>
+       </div>
+     
     </div>
-
-    <!--tablas de presentacion-->
-    <div class="container">
-      <div class="card md-6 border-0 mt-5">
-        <div class="row g-0">
-          <div class="col-md-6">
-            <img
-              src="../../img/equipos/iph16pro.png"
-              class="img-fluid rounded-start"
-              alt="..."
-            />
-          </div>
-          <div class="col-md-6">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p class="card-text">
-                <small class="text-body-secondary"
-                  >Last updated 3 mins ago</small
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card md-6 border-0 mt-5">
-        <div class="row g-0">
-          <div class="col-md-6">
-            <img
-              src="../../img/equipos/r-m9pro.jpg"
-              class="img-fluid rounded-start"
-              alt="..."
-            />
-          </div>
-          <div class="col-md-6">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p class="card-text">
-                <small class="text-body-secondary"
-                  >Last updated 3 mins ago</small
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card mb-6 border-0 mt-5">
-        <div class="row g-0">
-          <div class="col-md-6">
-            <img
-              src="../../img/equipos/i-note40p.jpeg"
-              class="img-fluid rounded-start"
-              alt="..."
-            />
-          </div>
-          <div class="col-md-6">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p class="card-text">
-                <small class="text-body-secondary"
-                  >Last updated 3 mins ago</small
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card mb-6 border-0 mt-5 mb-5">
-        <div class="row g-0">
-          <div class="col-md-6">
-            <img
-              src="../../img/equipos/sam24.jpeg"
-              class="img-fluid rounded-start"
-              alt="..."
-            />
-          </div>
-          <div class="col-md-6">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p class="card-text">
-                <small class="text-body-secondary"
-                  >Last updated 3 mins ago</small
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--pie-->
-    <footer>
-      <div class="container-fluid py-4">
-        <div class="row">
-          <div class="text-center">
-            <h2>Gori-Shop</h2>
-            <p>Contactanos y visita nuestras redes sociales</p>
-          </div>
-          <!--columnas-->
-          <div class="col-none col-sm-6">
-            <div>
-              <i class="bi bi-facebook"></i
-              ><a class="text-decoration-none" href=""> Gori-Shop</a>
-            </div>
-            <div>
-              <i class="bi bi-whatsapp"></i
-              ><a class="text-decoration-none" href=""> 00-000.00.00</a>
-            </div>
-          </div>
-
-          <div class="col-none col-sm-6">1</div>
-        </div>
-      </div>
-    </footer>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
-</html>
+</html> 

@@ -31,7 +31,15 @@ rutas.get('/login', (req, res) => {
   res.sendFile(__dirname + '/view/login.html'); 
 });
 
+/** /logiproductos se encarga de mostrar la vista para ver la lista y categoria de los productos */
+rutas.get('/productos', (req, res) => {
+  res.sendFile(__dirname + '/view/productos.html'); 
+});
 
+/** /index se encarga de volver al inicio */
+rutas.get('/index', (req, res) => {
+  res.sendFile(__dirname + '/view/index.html'); 
+});
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
 

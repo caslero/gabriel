@@ -1,0 +1,22 @@
+body {
+    background-color: #afa9ad;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
+
+.container-fluid {
+    background-color: rgb(13, 253, 193);
+    max-height: 600px;
+    margin: 0 auto;
+ 
+}
+
+.card-img-top {
+    max-width: 300px;
+    max-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
