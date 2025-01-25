@@ -8,6 +8,7 @@ body {
 .container-fluid {
     background-color: rgb(13, 253, 193);
     max-height: 600px;
+    max-width: auto;
     margin: 0 auto;
  
 }
