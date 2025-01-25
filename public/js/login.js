@@ -1,3 +1,5 @@
+import { direccionLocal } from "./constantes.js";
+
 /** entrarAlSistema recibe los datos del formulario para hacer login */
 let entrarAlSistema = document.getElementById('login');
 //let msjUsuario = document.getElementById("registroExitosoUsuario");
@@ -14,7 +16,7 @@ async function login(e) {
   const correo = e.target.correo.value;
   const clave = e.target.clave.value;
   
-  const respuesta = await fetch('http://localhost:3000/api/login', {
+  const respuesta = await fetch(`${direccionLocal}/api/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -40,27 +42,9 @@ async function login(e) {
 
 /** mensajesValidacion recibe los mensajes al iniciar sesion y muestra la respuesta */
 async function mensajesValidacion(mensaje) {
-  if (mensaje == 'Clave invalida') {
-    toggleCuadroMensajes()
-    divMsj.innerHTML = `<div class="text-[20px]">Clave Invalida</div>`;
-    toggleMensajes();
-  } else if (mensaje == 'Correo no existe') {
-    toggleCuadroMensajes()
-    divMsj.innerHTML = `<div class="text-[20px]">Correo Invalido</div>`;
-    toggleMensajes();
-  } else if (mensaje == 'Minimo 5 caracteres') {
-    toggleCuadroMensajes()
-    divMsj.innerHTML = `<div class="text-[20px]">Minimo 5 caractres en la clave</div>`;
-    toggleMensajes();
-  } else if (mensaje == 'Usuario no verificado') {
-    toggleCuadroMensajes()
-    divMsj.innerHTML = `<div class="text-[20px]">Validar Usuario, revise su correo</div>`;
-    toggleMensajes();
-  } else if (mensaje == 'Usuario no registrado') {
-    toggleCuadroMensajes()
-    divMsj.innerHTML = `<div class="text-[20px]">No existe el usuario</div>`;
-    toggleMensajes();
-  }  
+  toggleCuadroMensajes()
+  divMsj.innerHTML = `<div class="text-[20px]">${mensaje}</div>`;
+  toggleMensajes();
 }
 
 /** toggleMensajes se encarga de ocultar el msj de la respuesta */

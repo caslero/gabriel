@@ -2,6 +2,7 @@ import { Router } from "express";
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { UsuarioControlador } from "../controller/UsuarioController.js";
+import { LoginControlador } from "../controller/LoginController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const rootDir  = dirname(__filename);
@@ -11,10 +12,7 @@ const __dirname = resolve(rootDir, '../');
 export const rutas = Router();
 
 /** Esta ruta /cerrar_sesion se encarga del cierre de la session */
-rutas.get('/cerrar-sesion', (req, res) => {  
-  res.clearCookie('programaciontres');
-  res.redirect('/');     
-});
+rutas.get('/cerrar-sesion',  LoginControlador.cerrarSesion);
 
 /** Esta es la ruta raiz del proyecto */
 rutas.get('/', (req, res) => {
@@ -40,8 +38,23 @@ rutas.get('/productos', (req, res) => {
 rutas.get('/index', (req, res) => {
   res.sendFile(__dirname + '/view/index.html'); 
 });
+
+rutas.get('/validar/:url', (req, res) => {  
+  res.sendFile(__dirname + '/view/validarNuevoUsuario.html'); 
+});
+
+
+
+
+
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
+rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValodarlo);
+
+
+
+
+rutas.post('/api/login', LoginControlador.iniciarSesion);
 
 
 // /** /validar/:url se encarga de recibir la url para validar el usuario */
