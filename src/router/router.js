@@ -31,9 +31,14 @@ rutas.get('/login', (req, res) => {
   res.sendFile(__dirname + '/view/login.html'); 
 });
 
-/** /logiproductos se encarga de mostrar la vista para ver la lista y categoria de los productos */
+/** /productos se encarga de mostrar la vista para ver la lista y categoria de los productos */
 rutas.get('/productos', (req, res) => {
   res.sendFile(__dirname + '/view/productos.html'); 
+});
+
+/** /shop se encarga de realizar la compra */
+rutas.get('/shop', (req, res) => {
+  res.sendFile(__dirname + '/view/shop.html'); 
 });
 
 /** /index se encarga de volver al inicio */
