@@ -2,9 +2,6 @@
 import jsonwebtoken from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import { validarCampos } from "../utils/validarCamposUsuarios.js";
-import { Tokens } from "../services/tokens.js";
-import { ModeloUsuarios } from "../model/ModeloUsuarios.js";
-import { EnviarCorreo } from "../services/sendMailValEmpleado.js";
 //import { sendMail, sendMailCambiarClave } from "../config/emailer.js";
 //import { tokenValidarUsuario } from "../config/emailer.js";
 
@@ -15,10 +12,13 @@ import { EnviarCorreo } from "../services/sendMailValEmpleado.js";
 
 /** La clase UsuarioControlador se encarga de los procesos que hace el usuario */
 export class UsuarioControlador {
+  /** postGuardarUsuarios se encarga de guardar un nuevo usuario en caso de
+    cumplirse todas las condiciones */
   static async guardarNuevoUsuario(req, res) {
     try {
       const { cedula, nombre, apellido, correo, claveUno, claveDos } = req.body;
-
+      console.log(cedula);
+      
       const camposValidados = validarCampos(req);
 
       if (camposValidados.status === "error") {
@@ -26,56 +26,70 @@ export class UsuarioControlador {
           status: camposValidados.status,
           numero: camposValidados.numero,
           message: camposValidados.message,
-        });
+        })
       }
 
-      const encriptado = await bcryptjs.genSalt(5);
-      const claveEncriptada = await bcryptjs.hash(claveUno, encriptado);
-      const tokenUnicoValidarEmpleado = Tokens.tokenValidarUsuario(10);
-
-      const usuarioCreado = await ModeloUsuarios.registrarEmpleado(
-        cedula, nombre, apellido, correo, claveEncriptada, tokenUnicoValidarEmpleado
-      );
-
-      if (!usuarioCreado) {
-        return res.status(400).json({
-          status: "error",
-          numero: 0,
-          message: "Error, al crear usuario...",
-        });
-      } else {
-        EnviarCorreo.sendMailCrearClave(
-          correo,
-          nombre,
-          tokenUnicoValidarEmpleado
-        );
-        return res.status(201).json({
-          status: "ok",
-          numero: 1,
-          message: "Usuario creado con exito...",
-          redirect: "/login",
-        });
-      }
+      return res.status(201).json({
+        status: "ok",
+        numero: 1,
+        message: "Usuario registrado con exito...",
+        redirect: "/login",
+      })
     } catch (error) {
-      console.log("Error, al registar cliente: " + error);
+      console.log('Error, al registar cliente: ' + error);
       return res.status(500).json({
         status: "error",
         numero: 0,
-        message: "Error, no se guardo el usuario...",
+        message: "Error, no se guardo el usuario..."
+      })
+    }
+    
+    //const encriptado = await bcryptjs.genSalt(5);
+    //const claveEncriptada = await bcryptjs.hash(clave, encriptado);
+
+    /** 
+    if (clave != clave2) {
+      return res.status(400).send({
+        status: "Error",
+        message: "Claves diferentes",
       });
     }
+
+    if (clave.length < 5 || clave.length > 16) {
+      return res.status(400).send({
+        status: "Error",
+        message: "Entre 5 y 16 caracteres",
+      });
+    }
+
+    let resultado = await UsuarioModelo.registrarNuevoUsuario(
+      nombre,
+      correo,
+      claveEncriptada,
+      validarUsuario
+    );
+
+    if (resultado) {
+      sendMail(correo, nombre, validarUsuario);
+      return res.status(201).send({
+        status: "ok",
+        message: `Usuario ${nombre} registrado `,
+        redirect: "/login",
+      });
+    } else {
+      return res.status(400).send({
+        status: "Error",
+        message: "Registro Fallido",
+      });
+    }
+    */
+
   }
 
-  static async comprobarTokenParaValodarlo(req, res) {
-    try {
-      
-    } catch (error) {
-      
-    }
-  }
+  
 }
 
-/** 
+  /** 
     // cambiarClaveUsuario cambia la clave desde una clave existente, esto lo hace
     //  al estar logueado
     static async cambiarClaveUsuario(req, res) {

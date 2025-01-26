@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { rutas } from "./src/router/router.js";
-import { conectar } from "./src/db/database.js";
 
 dotenv.config();
 
@@ -28,7 +27,6 @@ app.use((err, req, res, next) => {
   res.status(500).send('Algo salió mal!');
 });
 
-conectar();
 // Corriendo el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
