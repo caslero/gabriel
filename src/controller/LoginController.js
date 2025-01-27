@@ -1,7 +1,6 @@
-import { ModeloUsuarios } from "../model/ModeloUsuarios.js";
 import bcryptjs from "bcryptjs";
 import { Tokens } from "../services/tokens.js";
-import { EnviarCorreo } from "../services/sendMailValEmpleado.js";
+import { ModeloUsuarios } from "../model/ModeloUsuarios.js";
 
 /** La clase LoginController se encarga de analizar las diferentes peticiones que
   deben cumplirse para que un usuario pueda iniciar sesion correctamente */
@@ -52,7 +51,7 @@ export class LoginControlador {
           .json({
             status: "ok",
             message: "usuario logueado",
-            redirect: "/comprar-producto",
+            redirect: "/comprar-productos",
           });
       } else {
         return res.status(400).json({

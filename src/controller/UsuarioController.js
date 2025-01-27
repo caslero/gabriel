@@ -1,17 +1,8 @@
-//import { UsuarioModelo } from "../modelo/UsuarioModelo.js";
-import jsonwebtoken from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import { validarCampos } from "../utils/validarCamposUsuarios.js";
 import { Tokens } from "../services/tokens.js";
 import { ModeloUsuarios } from "../model/ModeloUsuarios.js";
 import { EnviarCorreo } from "../services/sendMailValEmpleado.js";
-//import { sendMail, sendMailCambiarClave } from "../config/emailer.js";
-//import { tokenValidarUsuario } from "../config/emailer.js";
-
-/** validarUsuario recibe el resultado de la funcion tokenValidarUsuario que en
-  este caso lo que hace es generar un token que se guarda en la BD con la finalidad
-  de validar el usuario recien registrado */
-//export const validarUsuario = tokenValidarUsuario(10);
 
 /** La clase UsuarioControlador se encarga de los procesos que hace el usuario */
 export class UsuarioControlador {

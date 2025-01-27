@@ -1,12 +1,15 @@
 import { direccionLocal } from "./constantes.js";
 
+console.log(direccionLocal);
+
+
 /** entrarAlSistema recibe los datos del formulario para hacer login */
-let entrarAlSistema = document.getElementById('login');
-//let msjUsuario = document.getElementById("registroExitosoUsuario");
+const entrarAlSistema = document.getElementById('login');
+//const msjUsuario = document.getElementById("registroExitosoUsuario");
 /** msj muestra los msj de advertencia al intentar hacer login */
-let msj = document.getElementById("validar");
+const msj = document.getElementById("validar");
 /** divMsj imprime los msj */
-let divMsj = document.getElementById("validar");
+const divMsj = document.getElementById("validar");
 
 entrarAlSistema.addEventListener('submit', login);
 
@@ -42,9 +45,10 @@ async function login(e) {
 
 /** mensajesValidacion recibe los mensajes al iniciar sesion y muestra la respuesta */
 async function mensajesValidacion(mensaje) {
-  toggleCuadroMensajes()
-  divMsj.innerHTML = `<div class="text-[20px]">${mensaje}</div>`;
-  toggleMensajes();
+  
+    toggleCuadroMensajes()
+    divMsj.innerHTML = `<div class="text-[20px]">${mensaje}</div>`;
+    toggleMensajes();
 }
 
 /** toggleMensajes se encarga de ocultar el msj de la respuesta */

@@ -70,3 +70,11 @@ img {
 .btn {
   margin-left: 20px;
 }
+
+.card-img-top {
+  max-width: 300px;
+  max-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}

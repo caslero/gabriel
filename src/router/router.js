@@ -12,7 +12,10 @@ const __dirname = resolve(rootDir, '../');
 export const rutas = Router();
 
 /** Esta ruta /cerrar_sesion se encarga del cierre de la session */
-rutas.get('/cerrar-sesion',  LoginControlador.cerrarSesion);
+rutas.get('/cerrar-sesion', (req, res) => {  
+  res.clearCookie('programaciontres');
+  res.redirect('/');     
+});
 
 /** Esta es la ruta raiz del proyecto */
 rutas.get('/', (req, res) => {
@@ -34,9 +37,13 @@ rutas.get('/productos', (req, res) => {
   res.sendFile(__dirname + '/view/productos.html'); 
 });
 
+rutas.get('/comprar-productos', (req, res) => {
+  res.sendFile(__dirname + '/view/comprarProductos.html'); 
+});
+
 /** /shop se encarga de realizar la compra */
-rutas.get('/shop', (req, res) => {
-  res.sendFile(__dirname + '/view/shop.html'); 
+rutas.get('/comprar', (req, res) => {
+  res.sendFile(__dirname + '/view/comprar.html'); 
 });
 
 /** /index se encarga de volver al inicio */
@@ -44,20 +51,16 @@ rutas.get('/index', (req, res) => {
   res.sendFile(__dirname + '/view/index.html'); 
 });
 
-rutas.get('/validar/:url', (req, res) => {  
+
+rutas.get('/validar/:url', (req, res) => {
   res.sendFile(__dirname + '/view/validarNuevoUsuario.html'); 
 });
-
-
 
 
 
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
 rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValidarlo);
-
-
-
 
 rutas.post('/api/login', LoginControlador.iniciarSesion);
 
