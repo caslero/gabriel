@@ -2,7 +2,6 @@ import { Router } from "express";
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { UsuarioControlador } from "../controller/UsuarioController.js";
-import { LoginControlador } from "../controller/LoginController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const rootDir  = dirname(__filename);
@@ -12,7 +11,10 @@ const __dirname = resolve(rootDir, '../');
 export const rutas = Router();
 
 /** Esta ruta /cerrar_sesion se encarga del cierre de la session */
-rutas.get('/cerrar-sesion',  LoginControlador.cerrarSesion);
+rutas.get('/cerrar-sesion', (req, res) => {  
+  res.clearCookie('programaciontres');
+  res.redirect('/');     
+});
 
 /** Esta es la ruta raiz del proyecto */
 rutas.get('/', (req, res) => {
@@ -35,31 +37,25 @@ rutas.get('/productos', (req, res) => {
 });
 
 /** /shop se encarga de realizar la compra */
-rutas.get('/shop', (req, res) => {
-  res.sendFile(__dirname + '/view/shop.html'); 
+rutas.get('/comprar', (req, res) => {
+  res.sendFile(__dirname + '/view/comprar.html'); 
 });
 
 /** /index se encarga de volver al inicio */
 rutas.get('/index', (req, res) => {
   res.sendFile(__dirname + '/view/index.html'); 
 });
-
-rutas.get('/validar/:url', (req, res) => {  
-  res.sendFile(__dirname + '/view/validarNuevoUsuario.html'); 
-});
-
-
-
-
-
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
+<<<<<<< HEAD
 rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValidarlo);
 
 
 
 
 rutas.post('/api/login', LoginControlador.iniciarSesion);
+=======
+>>>>>>> 493a914e436002e9850a04576e214e27250ee338
 
 
 // /** /validar/:url se encarga de recibir la url para validar el usuario */
