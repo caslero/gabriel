@@ -54,7 +54,7 @@ rutas.get('/validar/:url', (req, res) => {
 
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
-rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValodarlo);
+rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValidarlo);
 
 
 

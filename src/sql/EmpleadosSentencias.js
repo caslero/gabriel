@@ -14,6 +14,17 @@ export function tokenValidar(correo) {
   return validarToken;
 }
 
+export function tokenValidando(token) {
+  const validandoToken = `SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END AS token_valido FROM usuarios WHERE token = '${token}'`;
+  return validandoToken;
+}
+
+
+export function autenticoUsuario(token) {
+  const usuarioSeAutentico = `UPDATE usuarios SET validar = true WHERE token = '${token}'`;
+  return usuarioSeAutentico;
+}
+
 
 
 

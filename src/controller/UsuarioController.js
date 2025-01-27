@@ -66,11 +66,47 @@ export class UsuarioControlador {
     }
   }
 
-  static async comprobarTokenParaValodarlo(req, res) {
+  static async comprobarTokenParaValidarlo(req, res) {
     try {
+      const url = req.body.url;
+      const parts = url.split("/");
+      const token = parts[parts.length - 1];
+
+      const autenticandoUsuario = await ModeloUsuarios.autenticandoUsuario(token);
+
+      if (autenticandoUsuario.token_valido === 0) {
+        return res.status(400).json({
+          status: "error",
+          numero: 0,
+          message: "Error, token no existe...",
+        });
+      }
+
+      const usuarioAutenticado = await ModeloUsuarios.usuarioYaAutenticado(token);
+      
+
+      if (!usuarioAutenticado) {
+        return res.status(400).json({
+          status: "error",
+          numero: 0,
+          message: "Error, token invalido...",
+        });
+      } else {
+        return res.status(201).json({
+          status: "ok",
+          numero: 1,
+          message: "Usuario autenticado con exito...",
+        });
+      }
+      
       
     } catch (error) {
-      
+      console.log("Error, al comprobar token de validar: " + error);
+      return res.status(500).json({
+        status: "error",
+        numero: 0,
+        message: "Error, al comprobar token de validar...",
+      });
     }
   }
 }

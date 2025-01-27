@@ -6,7 +6,7 @@ import {
   existeEmpleado,
   tokenComprobar,
   obtenerClaveParaCambiarla, claveCambiadaUsuarioLogueado, userAutorizado,
-  tokenValidar
+  tokenValidar, tokenValidando, autenticoUsuario
 } from "../sql/EmpleadosSentencias.js";
 
 export class ModeloUsuarios {
@@ -38,8 +38,6 @@ export class ModeloUsuarios {
     });
   }
 
-
-
   static async tokenValidarUsuario(correo) {
     return new Promise((resolve) => {
       conexion.query(tokenValidar(correo), function (error, resultado) {
@@ -51,6 +49,35 @@ export class ModeloUsuarios {
       });
     });
   }
+
+  static async autenticandoUsuario(token) {
+    return new Promise((resolve) => {
+      conexion.query(tokenValidando(token), function (error, resultado) {
+        if (!error) {
+          resolve(resultado[0]);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+
+
+
+
+  static async usuarioYaAutenticado(token) {
+    return new Promise((resolve) => {
+      conexion.query(autenticoUsuario(token), function (error, resultado) {
+        if (!error) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+
+  
 
 
 
