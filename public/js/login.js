@@ -33,14 +33,16 @@ async function login(e) {
   const respuestaJson = await respuesta.json();
   const statusError = respuestaJson.status;
   const mensaje = respuestaJson.message;  
- 
-  if (statusError == 'Error') {    
-    mensajesValidacion(mensaje)
-  }
 
-  if (respuestaJson.redirect) {
+  console.log(respuestaJson);
+  
+ 
+  if (statusError == 'error') {    
+    mensajesValidacion(mensaje)
+  } else {
     window.location.href = respuestaJson.redirect;
   }
+
 }
 
 /** mensajesValidacion recibe los mensajes al iniciar sesion y muestra la respuesta */

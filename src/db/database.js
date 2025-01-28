@@ -1,14 +1,9 @@
 import { createConnection } from "mysql";
-//import pg from "pg";
 import dotenv from "dotenv";
 import { crearTablaUsuariosLocal } from "../db_tablas/tablaUsuarios.js";
 
-/** config se encarga de traernos las variables de entorno generadas en un archivo
-    .env */
 dotenv.config();
-//const { Pool } = pg;
 
-/** conexion es la ercargada de hacer la conexion a la BD */
 export const conexion = createConnection({
   host: process.env.SERVIDOR,
   user: "root" || process.env.USUARIO,

@@ -5,7 +5,8 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { rutas } from "./src/router/router.js";
-import { conectar } from "./src/db/database.js";
+//import { conectar } from "./src/db/database.js";
+import { conectar } from "./src/db/databaseSqlite.js";
 
 dotenv.config();
 

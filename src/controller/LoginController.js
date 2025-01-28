@@ -1,32 +1,34 @@
 import bcryptjs from "bcryptjs";
 import { Tokens } from "../services/tokens.js";
 import { ModeloUsuarios } from "../model/ModeloUsuarios.js";
+import { EnviarCorreo } from "../services/sendMailValEmpleado.js";
 
-/** La clase LoginController se encarga de analizar las diferentes peticiones que
-  deben cumplirse para que un usuario pueda iniciar sesion correctamente */
+
 export class LoginControlador {
-  /** postLogin sen encarga de responder la petision para iniciar sesion en caso
-    de cumplirse todas las condiciones */
   static async iniciarSesion(req, res) {
     try {
       const correo = req.body.correo;
       const clave = req.body.clave;
 
-      let authUsuario = await ModeloUsuarios.usuarioAutorizado(correo);
+      const existeUsuario = await ModeloUsuarios.usuarioExiste(correo);
 
-      if (!authUsuario[0]) {
+      if (existeUsuario.count === 0) {
         return res.status(400).json({
-          status: "Error",
-          message: "Usuario no verificado",
+          status: "error",
+          numero: 0,
+          message: "Credenciales invalidas...",
         });
       }
 
-      if (!authUsuario[0].validar) {
+      const authUsuario = await ModeloUsuarios.usuarioAutorizado(correo);
+
+      if (!authUsuario) {
         const tokenValidarUsuario = await ModeloUsuarios.tokenValidarUsuario(
           correo
         );
-        const tokenUnicoValidarEmpleado = tokenValidarUsuario[0].token;
-        const nombre = tokenValidarUsuario[0].nombre;
+
+        const tokenUnicoValidarEmpleado = tokenValidarUsuario.token;
+        const nombre = tokenValidarUsuario.nombre;
 
         EnviarCorreo.sendMailCrearClave(
           correo,
@@ -35,12 +37,12 @@ export class LoginControlador {
         );
 
         return res.status(400).json({
-          status: "Error",
+          status: "error",
           message: "Valide su correo...",
         });
       }
 
-      const resultado = authUsuario[0] && authUsuario[0].clave;
+      const resultado = authUsuario && authUsuario.clave;
       const comparada = await bcryptjs.compare(clave, resultado);
 
       if (comparada) {
@@ -55,7 +57,7 @@ export class LoginControlador {
           });
       } else {
         return res.status(400).json({
-          status: "Error",
+          status: "error",
           message: "Credenciales invalidas...",
         });
       }
@@ -71,13 +73,13 @@ export class LoginControlador {
 
   static async cerrarSesion(req, res) {
     try {
-      res.clearCookie('programacioniii');
+      res.clearCookie("programacioniii");
 
       return res.status(201).json({
         status: "ok",
         numero: 1,
         message: "Cerrando sesion...",
-        redirect: '/'
+        redirect: "/",
       });
     } catch (error) {
       console.log("Error, al cerrar sesion: " + error);

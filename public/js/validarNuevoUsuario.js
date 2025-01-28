@@ -28,7 +28,7 @@ const enviarPeticionAlBackend = async () => {
     });
 
     const resultado = await response.json();
-    console.log("Petición exitosa:", resultado.message);
+    console.log("Su peticion:", resultado.message);
     autenticandoUsuario.innerHTML = `${resultado.message}`;
 
     if (resultado.status === 'ok') {

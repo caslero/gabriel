@@ -1,16 +1,117 @@
 import { conexion } from "../db/database.js";
+import { conexionSqlite } from "../db/databaseSqlite.js";
 import {
   guardarUsuario,
   datosUsuarioActivo,
   inicioSesionDatos,
-  existeEmpleado,
+  existeUsuario,
   tokenComprobar,
   obtenerClaveParaCambiarla, claveCambiadaUsuarioLogueado, userAutorizado,
   tokenValidar, tokenValidando, autenticoUsuario
 } from "../sql/EmpleadosSentencias.js";
 
+
 export class ModeloUsuarios {
   /** La funcion registrarEmpleado de encarga de guardar el nuevo empleado */
+static async registrarUsuario(cedula, nombre, apellido, correo, clave, token) {
+    return new Promise((resolve) => {
+        const guardarNuevoUsuario = conexionSqlite.run(guardarUsuario(cedula, nombre, apellido, correo, clave, token));
+        guardarNuevoUsuario.then((data) => {
+          resolve(data)
+        }).catch((error) => {
+          console.log(error);          
+          resolve(false)
+        });
+    });
+}
+
+static async usuarioExiste(campo) {
+  return new Promise((resolve) => {
+    const consultadoDisponibilidadUsuario = conexionSqlite.all(existeUsuario(campo)); 
+    consultadoDisponibilidadUsuario.then((data) => {
+      resolve(data[0])
+    }).catch((error) => {
+      resolve(false)
+    });
+    
+  });
+}
+
+static async usuarioAutorizado(correo) {
+  return new Promise((resolve) => {
+    const tienePermisoIniciarSesion = conexionSqlite.all(userAutorizado(correo));
+    tienePermisoIniciarSesion.then((data) => {
+      if (data[0].validar === 'false') {
+        resolve(false);
+      } else {
+        resolve(data[0]);
+      }
+      
+    }).catch((error) => {
+      resolve(false)
+    });
+  });
+}
+
+static async tokenValidarUsuario(correo) {
+  return new Promise((resolve) => {
+    const tokenValidarUsuario = conexionSqlite.all(tokenValidar(correo));
+    tokenValidarUsuario.then((data) => {
+        resolve(data[0]);      
+    }).catch((error) => {
+      resolve(false)
+    });
+  });
+}
+
+static async autenticandoUsuario(token) {
+  return new Promise((resolve) => {
+    const tokenValidarUsuario = conexionSqlite.all(tokenValidando(token));
+    tokenValidarUsuario.then((data) => {
+        resolve(data[0]);      
+    }).catch((error) => {
+      resolve(false)
+    });
+  });
+}
+
+static async usuarioYaAutenticado(token) {
+  return new Promise((resolve) => {
+    const authUsuario = conexionSqlite.run(autenticoUsuario(token));
+    authUsuario.then((data) => {
+        resolve(data);      
+    }).catch((error) => {
+      resolve(false)
+    });
+  });
+}
+
+
+
+
+
+
+
+static async datosInicioSesion(correo) {
+  return new Promise((resolve) => {
+    const datosUsuarioActivo = conexionSqlite.all(inicioSesionDatos(correo));
+    datosUsuarioActivo.then((data) => {
+      resolve(data[0]);
+    }).catch((error) => {
+      resolve(false)
+    });
+  });
+}
+
+  
+
+
+
+
+
+
+  
+  /** 
   static async registrarEmpleado(cedula, nombre, apellido, correo, clave, token) {
     return new Promise((resolve) => {
       conexion.query(
@@ -25,10 +126,15 @@ export class ModeloUsuarios {
       );
     });
   }
+*/
 
+
+
+
+/** 
   static async usuarioAutorizado(correo) {
     return new Promise((resolve) => {
-      conexion.query(userAutorizado(correo), function (error, resultado) {
+      conexionSqlite.run(userAutorizado(correo), function (error, resultado) {
         if (!error) {
           resolve(resultado);
         } else {
@@ -36,8 +142,9 @@ export class ModeloUsuarios {
         }
       });
     });
-  }
+  }*/
 
+  /** 
   static async tokenValidarUsuario(correo) {
     return new Promise((resolve) => {
       conexion.query(tokenValidar(correo), function (error, resultado) {
@@ -49,7 +156,10 @@ export class ModeloUsuarios {
       });
     });
   }
+*/
 
+
+/**
   static async autenticandoUsuario(token) {
     return new Promise((resolve) => {
       conexion.query(tokenValidando(token), function (error, resultado) {
@@ -61,10 +171,10 @@ export class ModeloUsuarios {
       });
     });
   }
+*/
 
 
-
-
+/** 
   static async usuarioYaAutenticado(token) {
     return new Promise((resolve) => {
       conexion.query(autenticoUsuario(token), function (error, resultado) {
@@ -76,7 +186,7 @@ export class ModeloUsuarios {
       });
     });
   }
-
+*/
   
 
 
@@ -101,10 +211,10 @@ export class ModeloUsuarios {
   }
 
   /** La funcion empleadoExiste se encargar de consultar si existe o no el
-    empleado a la hora de registrar uno nuevo */
+    empleado a la hora de registrar uno nuevo 
   static async empleadoExiste(cedula) {
     return new Promise((resolve) => {
-      conexion.query(existeEmpleado(cedula), function (error, resultado) {
+      conexion.query(existeUsuario(cedula), function (error, resultado) {
         if (!error) {
           const existe = resultado.rows[0].count > 0 ? 1 : 0;
           resolve(existe);
@@ -114,7 +224,7 @@ export class ModeloUsuarios {
         }
       });
     });
-  }
+  }*/
 
   /** La funcion comprobarToken se encarga de verificar si el token aun no se
     usado y si es valido o no */
@@ -131,7 +241,7 @@ export class ModeloUsuarios {
   }
 
   /** La funcion datosInicioSesion se encarga de traer los datos del usuario que
-    iniciara sesion */
+    iniciara sesion 
   static async datosInicioSesion(correo) {
     return new Promise((resolve) => {
       conexion.query(inicioSesionDatos(correo), function (error, resultado) {
@@ -142,7 +252,7 @@ export class ModeloUsuarios {
         }
       });
     });
-  }
+  }*/
 
 
 /** La funcion obtenerClaveActual se encarga de traer la clave de un usuario

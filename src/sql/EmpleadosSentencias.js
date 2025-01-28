@@ -1,6 +1,6 @@
 /** guardarUsuario es la sentencia sql para registrar un usuario */
 export function guardarUsuario(cedula, nombre, apellido, correo, clave, token) {
-  const registrarEmpleado = `INSERT INTO usuarios(cedula, nombre, apellido, correo, token, clave, validar, fecha_creado) VALUES ('${cedula}', '${nombre}', '${apellido}', '${correo}', '${token}', '${clave}', 'false', NOW())`;
+  const registrarEmpleado = `INSERT INTO usuarios(cedula, nombre, apellido, correo, token, clave, validar, fecha_creado) VALUES ('${cedula}', '${nombre}', '${apellido}', '${correo}', '${token}', '${clave}', 'false', CURRENT_TIMESTAMP)`;
   return registrarEmpleado;
 }
 
@@ -19,11 +19,39 @@ export function tokenValidando(token) {
   return validandoToken;
 }
 
-
 export function autenticoUsuario(token) {
   const usuarioSeAutentico = `UPDATE usuarios SET validar = true WHERE token = '${token}'`;
   return usuarioSeAutentico;
 }
+
+/** existeUsuario es la sentencia sql para consultar si existe o no un Usuario*/
+export function existeUsuario(campo) {
+  let usuarioExiste;
+  const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (regexCorreo.test(campo)) {
+    usuarioExiste = `SELECT COUNT(*) as count FROM usuarios WHERE correo = '${campo}'`;
+  } else {
+    usuarioExiste = `SELECT COUNT(*) as count FROM usuarios WHERE cedula = '${campo}'`;
+  }
+
+  return usuarioExiste;
+}
+
+
+/** inicioSesionDatos es la sentencia sql para traer los datos para el 
+  inicio de sesion */
+export function inicioSesionDatos(correo) {
+  const usuarioActivo = `SELECT id, correo, clave, tipo_usuario FROM usuarios WHERE correo = '${correo}'`;
+  return usuarioActivo;
+}
+
+
+
+
+
+
+
 
 
 
@@ -37,18 +65,7 @@ export function datosUsuarioActivo(correo) {
   return usuarioActivo;
 }
 
-/** inicioSesionDatos es la sentencia sql para traer los datos para el 
-  inicio de sesion */
-export function inicioSesionDatos(correo) {
-  const usuarioActivo = `SELECT id, correo, clave, tipo_usuario FROM empleados WHERE correo = '${correo}'`;
-  return usuarioActivo;
-}
 
-/** existeEmpleado es la sentencia sql para consultar si existe o no un empleado*/
-export function existeEmpleado(cedula) {
-  const empleadoExiste = `SELECT COUNT(*) as count FROM empleados WHERE cedula = '${cedula}'`;
-  return empleadoExiste;
-}
 
 /** existeEmpleado es la sentencia sql para consultar si existe o no un empleado*/
 export function tokenComprobar(token) {
@@ -74,8 +91,8 @@ export function claveEmpleadoCrear(clave, token) {
 /** obtenerClaveParaCambiarla es la sentencia sql para consultar una clave y
   compararla de manera que si es correcta se pueda hacer el cambio de clave */
 export function obtenerClaveParaCambiarla(correo) {
-    const claveCambiar = `SELECT clave FROM empleados WHERE correo = '${correo}'`;
-    return claveCambiar;
+  const claveCambiar = `SELECT clave FROM empleados WHERE correo = '${correo}'`;
+  return claveCambiar;
 }
 
 /** claveCambiadaUsuarioLogueado es la sentencia sql para cambiar la clave de
@@ -86,14 +103,10 @@ export function claveCambiadaUsuarioLogueado(clave, correo) {
 }
 
 /** empleadosTodos es la sentencia sql para consultar todos los empleados */
-  export function empleadosTodos(correo) {
-    const todosEmpleados = `SELECT id, cedula, correo, direccion, estado, fecha_ingreso, fecha_creado, municipio, parroquia, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, telefono, tipo_usuario FROM empleados ORDER BY cedula ASC`;
-    return todosEmpleados;
-  }
-
-
-
-
+export function empleadosTodos(correo) {
+  const todosEmpleados = `SELECT id, cedula, correo, direccion, estado, fecha_ingreso, fecha_creado, municipio, parroquia, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, telefono, tipo_usuario FROM empleados ORDER BY cedula ASC`;
+  return todosEmpleados;
+}
 
 /** La funcion usuarioAutenticado se encarga de autenticar el usuario para poder
     iniciar sesion y guardar la fecha en la que se autentico */

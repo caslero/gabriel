@@ -20,12 +20,27 @@ export class UsuarioControlador {
         });
       }
 
+      const existeUsuario = await ModeloUsuarios.usuarioExiste(cedula);
+
+      if (existeUsuario.count === 1) {
+        return res.status(400).json({
+          status: "error",
+          numero: 0,
+          message: "Error, usuario ya existe...",
+        });
+      }
+
       const encriptado = await bcryptjs.genSalt(5);
       const claveEncriptada = await bcryptjs.hash(claveUno, encriptado);
       const tokenUnicoValidarEmpleado = Tokens.tokenValidarUsuario(10);
 
-      const usuarioCreado = await ModeloUsuarios.registrarEmpleado(
-        cedula, nombre, apellido, correo, claveEncriptada, tokenUnicoValidarEmpleado
+      const usuarioCreado = await ModeloUsuarios.registrarUsuario(
+        cedula,
+        nombre,
+        apellido,
+        correo,
+        claveEncriptada,
+        tokenUnicoValidarEmpleado
       );
 
       if (!usuarioCreado) {
@@ -63,7 +78,9 @@ export class UsuarioControlador {
       const parts = url.split("/");
       const token = parts[parts.length - 1];
 
-      const autenticandoUsuario = await ModeloUsuarios.autenticandoUsuario(token);
+      const autenticandoUsuario = await ModeloUsuarios.autenticandoUsuario(
+        token
+      );
 
       if (autenticandoUsuario.token_valido === 0) {
         return res.status(400).json({
@@ -73,8 +90,9 @@ export class UsuarioControlador {
         });
       }
 
-      const usuarioAutenticado = await ModeloUsuarios.usuarioYaAutenticado(token);
-      
+      const usuarioAutenticado = await ModeloUsuarios.usuarioYaAutenticado(
+        token
+      );
 
       if (!usuarioAutenticado) {
         return res.status(400).json({
@@ -89,8 +107,6 @@ export class UsuarioControlador {
           message: "Usuario autenticado con exito...",
         });
       }
-      
-      
     } catch (error) {
       console.log("Error, al comprobar token de validar: " + error);
       return res.status(500).json({
