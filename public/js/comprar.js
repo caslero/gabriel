@@ -1,7 +1,7 @@
 import { direccionLocal } from "./constantes.js";
 
 
-async function consultarUsuarioActivo() {
+export async function consultarUsuarioActivo() {
   try {
     fetch(`${direccionLocal}/api/usuario-activo`, {
       method: 'GET',
@@ -16,34 +16,12 @@ async function consultarUsuarioActivo() {
       console.error('Error:', error);
   });
   
-    //const token = localStorage.getItem("programacioniii");
-    
-    
-
-    /** 
-    const respuesta = await fetch(`${direccionLocal}/api/usuario-activo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token,
-      }),
-    });
-
-    const respuestaJson = await respuesta.json();
-    const statusError = respuestaJson.status;
-    const mensaje = respuestaJson.message;
-    console.log(respuestaJson);
-    */
   } catch (error) {
     console.log("Error, al consultar usuario activo");
   }
 }
 
-setTimeout(() => {
-  consultarUsuarioActivo()
-}, 2000);
+consultarUsuarioActivo()
 
 const carrito = document.getElementById("carrito");
 const elementos = document.getElementById("lista");

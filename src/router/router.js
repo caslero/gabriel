@@ -57,6 +57,17 @@ rutas.get('/validar/:url', (req, res) => {
 });
 
 
+rutas.get('/registrar-productos', (req, res) => {
+  res.sendFile(__dirname + '/view/registrarProducto.html'); 
+});
+
+
+
+
+
+
+
+
 
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);

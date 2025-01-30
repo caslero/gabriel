@@ -1,0 +1,1 @@
+import { consultarUsuarioActivo } from "./comprar.js";
