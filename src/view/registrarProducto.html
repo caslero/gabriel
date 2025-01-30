@@ -25,7 +25,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"
+      defer
+    ></script>
     <script src="js/registrarProducto.js" type="module" defer></script>
   </head>
   <body>
@@ -62,7 +65,6 @@
           </form>
         </div>
 
-        
         <!-- De la linea 67-94 es tu codigo de carrito -->
         <!-- <div class="collapse navbar-collapse" id="navbarNav">
           <ul
@@ -92,16 +94,182 @@
             </li>
           </ul>
         </div> -->
-      
-
 
         <!-- La linea 99 muestra el nombre del usuario activo -->
-        <div id="nombre-usuario-activo" class="navbar-brand text-xl-center"></div>
+        <div
+          id="nombre-usuario-activo"
+          class="navbar-brand text-xl-center"
+        ></div>
       </div>
     </nav>
 
+    <main class="py-5 bg-light">
+      <section class="container mx-auto">
+        <form class="" method="post" id="form-registrar-nuevo-producto">
+          <div class="form-group mb-3">
+            <label for="nombre-producto">Nombre del producto</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre-producto"
+              placeholder="Ejemplo: telefono"
+            />
+          </div>
 
 
+          <div class="form-group mb-3 d-flex flex-column">
+            <label for="nombre-producto">Cuantas versiones tiene?</label>
+            <div class="d-flex flex-row">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="version-uno"
+                  value="option1"
+                />
+                <label class="form-check-label" for="version-uno">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="version-dos"
+                  value="option2"
+                />
+                <label class="form-check-label" for="version-dos">2</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="nombre-producto">Memoria Ram</label>
+              <input
+                id="ram-version-uno"
+                type="text"
+                class="form-control"
+                placeholder="8gb"
+              />
+              <label for="nombre-producto">Memoria Rom</label>
+              <input
+                id="rom-version-uno"
+                type="text"
+                class="form-control"
+                placeholder="8gb"
+              />
+            </div>
+            <div class="col">
+              <label for="nombre-producto">Memoria Ram</label>
+              <input
+                id="ram-version-dos"
+                type="text"
+                class="form-control"
+                placeholder="8gb"
+              />
+              <label for="nombre-producto">Memoria Rom</label>
+              <input
+                id="rmm-version-dos"
+                type="text"
+                class="form-control"
+                placeholder="8gb"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="precio-producto-uno">Precio version uno ($)</label>
+              <input
+                id="precio-version-uno"
+                type="text"
+                class="form-control"
+                placeholder="0.00"
+              />
+            </div>
+            <div class="col">
+              <label for="precio-producto-uno">Precio version dos ($)</label>
+              <input
+                id="precio-version-dos"
+                type="text"
+                class="form-control"
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nombre-producto">Tamaño pantalla </label>
+            <input
+              type="text"
+              class="form-control"
+              id="size-pantalla"
+              placeholder="Pulgadas"
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nombre-producto">Resolucion</label>
+            <input
+              type="text"
+              class="form-control"
+              id="resolucion"
+              placeholder="Ejemplo: 16"
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nombre-producto">Procesador</label>
+            <input
+              type="text"
+              class="form-control"
+              id="procesador"
+              placeholder="Ejemplo: snapdragon"
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nombre-producto">Bateria</label>
+            <input
+              type="text"
+              class="form-control"
+              id="bateria"
+              placeholder="mhap"
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nombre-producto">Camara</label>
+            <input
+              type="text"
+              class="form-control"
+              id="camara"
+              placeholder="Ejemplo: 16"
+            />
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="categoria">Options</label>
+            </div>
+            <select class="custom-select" id="categoria">
+              <option selected>seleccionar</option>
+              <option value="1">Telefono</option>
+              <option value="2">Tablet</option>
+              <option value="3">Laptop</option>
+            </select>
+          </div>
+
+          <div class="my-3">
+            <div class="text-center mt-5 mb-5">
+              <button type="submit" class="btn btn-success btn-lg">
+                Agregar producto <i class="bi bi-cart4"></i>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </section>
+    </main>
 
     <!--pie-->
     <footer>
