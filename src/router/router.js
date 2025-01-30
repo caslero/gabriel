@@ -62,6 +62,9 @@ rutas.get('/validar/:url', (req, res) => {
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
 rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValidarlo);
 
+rutas.get('/api/usuario-activo', UsuarioControlador.usuarioActivo);
+
+
 rutas.post('/api/login', LoginControlador.iniciarSesion);
 
 

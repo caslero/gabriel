@@ -116,6 +116,45 @@ export class UsuarioControlador {
       });
     }
   }
+
+  static async usuarioActivo(req, res) {
+    try {
+      const token = req.cookies.programacioniii;
+      const descifrarToken = Tokens.descifrarToken(token);
+
+      if (descifrarToken.status === "error") {
+        return res.status(400).json({
+          status: descifrarToken.status,
+          numero: descifrarToken.numero,
+          message: descifrarToken.message,
+        });
+      }
+
+      const datosUsuarioActivo = await ModeloUsuarios.usuarioActivo(descifrarToken.correo);
+      
+      if (!datosUsuarioActivo) {
+        return res.status(400).json({
+          status: "error",
+          numero: 0,
+          message: "Error, no hay usuario activo...",
+        });
+      } else {
+        return res.status(201).json({
+          status: "ok",
+          numero: 1,
+          message: "Usuario activo...",
+          usuarioActivo: datosUsuarioActivo
+        });
+      }
+    } catch (error) {
+      console.log("Error, al consulta usuario activo: " + error);
+      return res.status(500).json({
+        status: "error",
+        numero: 0,
+        message: "Error, al consulta usuario activo...",
+      });
+    }
+  }
 }
 
 /** 

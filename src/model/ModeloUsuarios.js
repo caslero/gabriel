@@ -86,16 +86,24 @@ static async usuarioYaAutenticado(token) {
   });
 }
 
-
-
-
-
-
-
 static async datosInicioSesion(correo) {
   return new Promise((resolve) => {
-    const datosUsuarioActivo = conexionSqlite.all(inicioSesionDatos(correo));
-    datosUsuarioActivo.then((data) => {
+    const datosInicioSesion = conexionSqlite.all(inicioSesionDatos(correo));
+    datosInicioSesion.then((data) => {
+      resolve(data[0]);
+    }).catch((error) => {
+      resolve(false)
+    });
+  });
+}
+
+
+
+
+static async usuarioActivo(correo) {
+  return new Promise((resolve) => {
+    const datosUserActivo = conexionSqlite.all(datosUsuarioActivo(correo));
+    datosUserActivo.then((data) => {
       resolve(data[0]);
     }).catch((error) => {
       resolve(false)
@@ -197,7 +205,7 @@ static async datosInicioSesion(correo) {
 
   /** La funcion usuarioActivo se encarga de traernos el nombre de usuario,
     correo y otros datos que se necesiten en caso de que el usuario exista
-    para iniciar sesion */
+    para iniciar sesion 
   static async usuarioActivo(correo) {
     return new Promise((resolve) => {
       conexion.query(datosUsuarioActivo(correo), function (error, resultado) {
@@ -209,6 +217,7 @@ static async datosInicioSesion(correo) {
       });
     });
   }
+  */
 
   /** La funcion empleadoExiste se encargar de consultar si existe o no el
     empleado a la hora de registrar uno nuevo 
