@@ -1,3 +1,4 @@
+//usuario en linea
 import { direccionLocal } from "./constantes.js";
 
 
@@ -23,141 +24,75 @@ export async function consultarUsuarioActivo() {
 
 consultarUsuarioActivo()
 
-const carrito = document.getElementById("carrito");
-const elementos = document.getElementById("lista");
-const elementos2 = document.getElementById("lista-2");
-const lista = document.querySelector("#lista-carrito tbody");
-const vaciarCarritoBtn = document.getElementById("vaciar-carrito");
+// carrito de compras
 
-//Listeners
-//cargarEventListeners();
+document.addEventListener('DOMContentLoaded', () => {
+    const cartButton = document.getElementById('cart-button');
+    const cartDropdown = document.getElementById('cart');
+    const itemCount = document.getElementById('item-count');
+    const totalPriceElement = document.getElementById('total-price');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const checkoutButton = document.getElementById('checkout-button');
 
-function cargarEventListeners() {
-  elementos.addEventListener("click", comprarElemento);
-  elementos2.addEventListener("click", comprarElemento);
+    let cart = [];
+    let totalPrice = 0;
 
-  carrito.addEventListener("click", eliminarElemento);
+    // Mostrar/Ocultar el carrito
+    cartButton.addEventListener('click', () => {
+        cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
+    });
 
-  vaciarCarritoBtn.addEventListener("click", vaciarCarrito);
+    // Agregar productos al carrito
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const productElement = event.target.closest('.product');
+            const productName = productElement.getAttribute('data-name');
+            const versionSelect = productElement.querySelector('.version-select');
+            const selectedOption = versionSelect.options[versionSelect.selectedIndex];
+            const productPrice = parseFloat(selectedOption.getAttribute('data-price'));
+            const productImage = productElement.getAttribute('data-image');
 
-  document.addEventListener("DOMContentLoaded", leerLocalStorage);
-}
+            // Agregar producto al carrito
+            cart.push({ name: productName, price: productPrice, image: productImage });
+            totalPrice += productPrice;
 
-function comprarElemento(e) {
-  e.preventDefault();
+            // Actualizar contadores
+            itemCount.textContent = cart.length;
+            totalPriceElement.textContent = totalPrice.toFixed(2);
 
-  if (e.target.classList.contains("agregar-carrito")) {
-    const elemento = e.target.parentElement.parentElement;
-    leerDatosElemento(elemento);
-  }
-}
+            // Mostrar productos en el carrito
+            updateCartItems();
+        });
+    });
 
-function leerDatosElemento(elemento) {
-  const infoElemento = {
-    imagen: elemento.querySelector("img").src,
-    titulo: elemento.querySelector("h4").textContent,
-    precio: elemento.querySelector(".precio").textContent,
-    id: elemento.querySelector("a").getAttribute("data-id"),
-  };
+    // Actualizar la lista de productos en el carrito
+    function updateCartItems() {
+        cartItemsContainer.innerHTML = '';
+        cart.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;">
+                <span>${item.name} - $${item.price.toFixed(2)}</span>
+                <button class="remove-item" data-index="${index}">Eliminar</button>
+            `;
+            cartItemsContainer.appendChild(itemDiv);
+        });
 
-  insertarCarrito(infoElemento);
-}
-
-function insertarCarrito(elemento) {
-  const row = document.createElement("tr");
-  row.innerHTML = `
-        <td>
-            <img src="${elemento.imagen}" width=100>
-        </td>
-        <td>${elemento.titulo}</td>
-        <td>${elemento.precio}</td>
-        <td>
-            <a href="#" class="borrar-elemento" data-id="${elemento.id}">X</a>
-        </td>
-    `;
-  lista.appendChild(row);
-  guardarElementoLocalStorage(elemento);
-}
-
-function eliminarElemento(e) {
-  e.preventDefault;
-
-  let elemento, elementoId;
-
-  if (e.target.classList("borrar")) {
-    e.target.parentElement.parentElement.remove();
-    elemento = e.target.parentElement.parentElement;
-    elementoId = elemento.querySelector("a").getAttribute("data-id");
-  }
-
-  eliminarElementoLocalStorage(elementoId);
-}
-
-function vaciarCarrito() {
-  while (lista.firstChild) {
-    lista.removeChild(lista.firstChild);
-  }
-
-  vaciarLocalStorage();
-
-  return false;
-}
-
-function guardarElementoLocalStorage(elemento) {
-  let elementos;
-
-  elementos = obtenerElementosLocalStorage();
-
-  elementos.push(elemento);
-
-  localStorage.setItem("elementos", JSON.stringify(elementos));
-}
-
-function obtenerElementosLocalStorage() {
-  let elementosLS;
-
-  if (localStorage.getItem("elementos") === null) {
-    elementosLS = [];
-  } else {
-    elementosLS = JSON.parse(localStorage.getItem("elementos"));
-  }
-  return elementosLS;
-}
-
-function leerLocalStorage() {
-  let elementosLS;
-
-  elementosLS = obtenerElementosLocalStorage();
-
-  elementosLS.forEach(function (elemento) {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-            <td>
-                <img src="${elemento.imagen}" width=100>
-            </td>
-            <td>${elemento.titulo}</td>
-            <td>${elemento.precio}</td>
-            <td>
-                <a href="#" class="borrar-elemento" data-id="${elemento.id}">X</a>
-            </td>
-        `;
-    lista.appendChild(row);
-  });
-}
-
-function eliminarElementoLocalStorage(elemento) {
-  let elementosLS;
-
-  elementosLS = obtenerElementosLocalStorage();
-  elementosLS.forEach(function (elementoLS, comprarProductos) {
-    if (elementoLS.id === elemento) {
-      elementoLS.splice(comprarProductos, 1);
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const index = parseInt(event.target.getAttribute('data-index'), 10);
+                totalPrice -= cart[index].price;
+                cart.splice(index, 1);
+                itemCount.textContent = cart.length;
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+                updateCartItems();
+            });
+        });
     }
-  });
 
-  localStorage.setItem("elementos", JSON.stringify(elementosLS));
-}
-
-function vaciarLocalStorage() {
-  localStorage.clear();
-}
+    checkoutButton.addEventListener('click', () => {
+        if (cart.length > 0) {
+            window.location.href = 'shop.html';
+        }
+    });
+});

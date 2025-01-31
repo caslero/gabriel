@@ -35,7 +35,7 @@
         <a class="navbar-brand text-xl-center" href="/comprar-productos"
           ><b>Gori</b><i class="bi bi-cart-dash">Shop</i></a
         >
-
+      
         <button
           class="navbar-toggler d-md-none"
           type="button"
@@ -48,8 +48,41 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <form class="d-flex ms-3" role="search">
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul
+         class="navbar-nav flex-column flex-md-row justify-content-between align-items-center w-100"
+        >
+          <li class="nav-item d-none d-md-flex">
+            <a class="dropdown-item" href="#">Perfil</a>
+          </li>
+          
+          <li class="nav-item d-md-none">
+            <a class="dropdown-item" href="#">Perfil</a>
+          </li>
+         <!--codigo carrito-->
+          <li class="nav-item">
+            <div class="cart">
+                <div class="contenedor-carrito">
+                    <button class="logo" id="cart-button">
+                        <i class="bi bi-cart4" alt="Carrito"></i>
+                        <span id="item-count">0</span>
+                    </button>
+                </div>
+        
+                <div id="cart" class="cart-dropdown text-center">
+                    <h5>Carrito de Compras</h5>
+                    <div id="cart-items"></div>
+                    <div class="total">
+                        <strong>Total: $<span id="total-price">0.00</span></strong>
+                    </div>
+                    <button class="add-to-cart btn btn-success btn-lg" id="checkout-button">Finalizar Compra</button>
+                </div>
+            </div>
+        </li>
+        </ul> 
+
+       
+          <form class="d-flex ms-3 mt-2" role="search">
             <input
               class="form-control me-2"
               type="search"
@@ -61,41 +94,8 @@
             </button>
           </form>
         </div>
-
-        
-        <!-- De la linea 67-94 es tu codigo de carrito -->
-        <!-- <div class="collapse navbar-collapse" id="navbarNav">
-          <ul
-            class="navbar-nav flex-column flex-md-row justify-content-between align-items-center w-100"
-          >
-            <li class="nav-item d-none d-md-flex">
-              <img src="../../img/carrito.png" id="img-carrito" alt="" />
-              <div id="carrito">
-                <table id="lista-carrito" class="table">
-                  <thead>
-                    <tr>
-                      <th>Imagen</th>
-                      <th>Nombre</th>
-                      <th>Precio</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-                <a href="#" id="procesar-pedido" class="btn btn-success btn-lg"
-                  >Comprar</a
-                >
-                <a href="#" id="vaciar-carrito" class="btn btn-success btn-lg"
-                  >Vaciar Carrito</a
-                >
-              </div>
-            </li>
-          </ul>
-        </div> -->
-      
-
-
-        <!-- La linea 99 muestra el nombre del usuario activo -->
+     
+        <!--nombre del usuario activo -->
         <div id="nombre-usuario-activo" class="navbar-brand text-xl-center"></div>
       </div>
     </nav>
@@ -110,8 +110,9 @@
         aquiere tus equipos con nosotros.
       </p>
     </div>
-
+     
     <div id="contenedor">
+      
       <!--categoria G-Alta-->
       <div id="G-Alta" class="container mb-5 mt-5">
         <h4>Gama Alta</h4>
@@ -120,12 +121,19 @@
           tecnologia, caracteristicas y rendimientos.
         </p>
         <div class="card-group">
+     
           <!--producto 1-->
           <div class="card px-5">
+            <div 
+            class="product" 
+            data-name="Nubia Red Magic 9S Pro+" 
+            data-price="1020/1110" 
+            data-image="../../img/equipos/zte-nubia-red-magic-9s-pro-plus.png"
+            >
             <img
               src="../../img/equipos/zte-nubia-red-magic-9s-pro-plus.png"
               class="card-img-top mt-5"
-              alt="..."
+              alt="Nubia Red Magic 9S Pro+"
             />
             <div class="card-body">
               <h5 class="card-title">Nubia Red Magic 9S Pro+</h5>
@@ -154,22 +162,29 @@
                 <i class="bi bi-camera"> Triple, 50MP+50MP+2MP</i>
               </div>
             </div>
-            <div class="text-center">
-              <h4>680 $/700 $</h4>
-            </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg">
-                Agregar al <i class="bi bi-cart4"></i>
-              </a>
-            </div>
+              <div class="text-center">
+                <select class="version-select">
+                  <option value="version1" data-price="1020">Versión 1 - $1020</option>
+                  <option value="version2" data-price="1110">Versión 2 - $1110</option>
+              </select>
+                <button class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i></button>
+              </div>
+            
+           </div>
           </div>
 
           <!--producto 2-->
           <div class="card px-5">
+            <div 
+            class="product" 
+            data-name="Samsung Galaxy S25 Ultra" 
+            data-price="1299" 
+            data-image="../../img/equipos/samsung-galaxy-s25-ultra.png"
+            >
             <img
               src="../../img/equipos/samsung-galaxy-s25-ultra.png"
               class="card-img-top mt-5"
-              alt="..."
+              alt="alt="Samsung Galaxy S25 Ultra"
             />
             <div class="card-body">
               <h5 class="card-title">Samsung Galaxy S25 Ultra</h5>
@@ -179,7 +194,7 @@
               </div>
 
               <div>
-                <i class="bi bi-device-hdd"> 256/512GB/1TB</i>
+                <i class="bi bi-device-hdd"> 512GB/1TB</i>
               </div>
 
               <div>
@@ -199,21 +214,27 @@
               </div>
             </div>
             <div class="text-center">
-              <h4>1299 $</h4>
+              <select class="version-select">
+                <option value="version1" data-price="1199">Versión 1 - $1199</option>
+                <option value="version2" data-price="1299">Versión 2 - $1299</option>
+            </select>
+              <button class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i></button>
             </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg">
-                Agregar al <i class="bi bi-cart4"></i>
-              </a>
-            </div>
-          </div>
+          </div> 
+          </div> 
 
           <!--producto 3-->
           <div class="card px-5">
+            <div
+            class="product"
+            data-name="Apple iPhone 16 Pro Max"
+            data-price="1220/1399"
+            data-image="../../img/equipos/apple-iphone-16-pro-max.png"
+            >
             <img
               src="../../img/equipos/apple-iphone-16-pro-max.png"
               class="card-img-top mt-5"
-              alt="..."
+              alt="Apple iPhone 16 Pro Max"
             />
             <div class="card-body">
               <h5 class="card-title">Apple iPhone 16 Pro Max</h5>
@@ -223,7 +244,7 @@
               </div>
 
               <div>
-                <i class="bi bi-device-hdd"> 128/256/512GB/1TB</i>
+                <i class="bi bi-device-hdd"> 512GB/1TB</i>
               </div>
 
               <div>
@@ -243,16 +264,18 @@
               </div>
             </div>
             <div class="text-center">
-              <h4>1320 $</h4>
-            </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg"
-                >Agregar al <i class="bi bi-cart4"></i
-              ></a>
-            </div>
+              <select class="version-select">
+                <option value="version1" data-price="1220">Versión 1 - $1220</option>
+                <option value="version2" data-price="1399">Versión 2 - $1399</option>
+            </select>
+              <button class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i></button>
+            </div>  
           </div>
         </div>
+
+        </div>
       </div>
+      
 
       <!--categoria G-Media-->
       <div id="G-Media" class="container mb-5 mt-5">
@@ -262,12 +285,19 @@
           rendimiento, caracteristicas y precio.
         </p>
         <div class="card-group">
+
           <!--producto 1-->
           <div class="card px-5">
+            <div
+            class="product"
+            data-name="Infinix Hot 40i"
+            data-price="155/168"
+            data-image="../../img/equipos/infinix-hot-40i-big.png"
+            >
             <img
               src="../../img/equipos/infinix-hot-40i-big.png"
               class="card-img-top mt-5"
-              alt="..."
+              alt="Infinix Hot 40i"
             />
             <div class="card-body">
               <h5 class="card-title">Infinix Hot 40i</h5>
@@ -294,22 +324,32 @@
 
               <div>
                 <i class="bi bi-camera"> Dual, 50MP+0.08MP</i>
-              </div>
-            </div>
-            <div class="text-center">
-              <h4>140 $/160 $</h4>
-            </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg"
-                >Agregar al <i class="bi bi-cart4"></i
-              ></a>
-            </div>
+              </div>  
+            </div>  
+              <div class="text-center">
+                <select class="version-select">
+                  <option value="version1" data-price="155">Versión 1 - $155</option>
+                  <option value="version2" data-price="168">Versión 2 - $168</option>
+              </select>
+                <button 
+                class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i>
+              </button>
+              </div> 
+          </div>
           </div>
 
           <!--producto 2-->
           <div class="card px-5">
+            <div
+            class="product"
+            data-name="Samsung Galaxy A55"
+            data-price="270/299"
+            data-image="../../img/equipos/samsung_galaxy-a55-5g-big.png"
+            >
             <img src="../../img/equipos/samsung_galaxy-a55-5g-big.png"
-            class="card-img-top mt-5 alt="...">
+            class="card-img-top mt-5 
+            alt="Samsung Galaxy A55"
+            />
             <div class="card-body">
               <h5 class="card-title">Samsung Galaxy A55</h5>
               <!--Caracteristicas-->
@@ -338,17 +378,25 @@
               </div>
             </div>
             <div class="text-center">
-              <h4>240 $/260 $</h4>
+              <select class="version-select">
+                <option value="version1" data-price="270">Versión 1 - $270</option>
+                <option value="version2" data-price="299">Versión 2 - $299</option>
+              </select>
+              <button 
+              class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i>
+              </button>
             </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg"
-                >Agregar al <i class="bi bi-cart4"></i
-              ></a>
-            </div>
+         </div>
           </div>
 
           <!--producto 3-->
           <div class="card px-5">
+            <div
+            class="product"
+            data-name="Xiaomi Redmi note 13 pro"
+            data-price="200/230"
+            data-image="../../img/equipos/redmi-note-13-pro-big.png"
+            >
             <img src="../../img/equipos/redmi-note-13-pro-big.png"
             class="card-img-top mt-5 alt="...">
             <div class="card-body">
@@ -379,16 +427,20 @@
               </div>
             </div>
             <div class="text-center">
-              <h4>195 $/220 $</h4>
-            </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg"
-                >Agregar al <i class="bi bi-cart4"></i
-              ></a>
-            </div>
+              <select class="version-select">
+                <option value="version1" data-price="200">Versión 1 - $200</option>
+                <option value="version2" data-price="230">Versión 2 - $230</option>
+              </select>
+              <button 
+              class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i>
+              </button>
           </div>
         </div>
-      </div>
+          </div>
+
+       </div> 
+     </div>
+    
 
       <!--categoria G-Baja-->
       <div id="G-Baja" class="container mb-5 mt-5">
@@ -399,12 +451,19 @@
           accesible.
         </p>
         <div class="card-group">
+
           <!--producto 1-->
           <div class="card px-5">
+            <div
+            class="product"
+            data-name="Xiaomi Redmi 12"
+            data-price="115/130"
+            data-image="../../img/equipos/xiaomi-redmi-12.png"
+            >
             <img
               src="../../img/equipos/xiaomi-redmi-12.png"
               class="card-img-top mt-5"
-              alt="..."
+              alt="Xiaomi Redmi 12"
             />
             <div class="card-body">
               <h5 class="card-title">Xiaomi Redmi 12</h5>
@@ -434,21 +493,29 @@
               </div>
             </div>
             <div class="text-center">
-              <h4>110 $/125 $</h4>
+              <select class="version-select">
+                <option value="version1" data-price="115">Versión 1 - $115</option>
+                <option value="version2" data-price="130">Versión 2 - $130</option>
+            </select>
+              <button 
+              class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i>
+              </button>
             </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg"
-                >Agregar al <i class="bi bi-cart4"></i
-              ></a>
-            </div>
+          </div>
           </div>
 
           <!--producto 2-->
           <div class="card px-5">
+            <div
+            class="product"
+            data-name="Tecno Spark 20C"
+            data-price="100/115"
+            data-image="../../img/equipos/tecno-spark-20c.png"
+            >
             <img
               src="../../img/equipos/tecno-spark-20c.png"
               class="card-img-top mt-5"
-              alt="..."
+              alt="Tecno Spark 20C"
             />
             <div class="card-body">
               <h5 class="card-title">Tecno Spark 20C</h5>
@@ -479,21 +546,30 @@
               </div>
             </div>
             <div class="text-center">
-              <h4>100 $/115 $</h4>
-            </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg">
-                Agregar al <i class="bi bi-cart4"></i>
-              </a>
+              <select class="version-select">
+                <option value="version1" data-price="100">Versión 1 - $100</option>
+                <option value="version2" data-price="115">Versión 2 - $115</option>
+            </select>
+              <button 
+              class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i>
+              </button>
             </div>
           </div>
+          </div>
+
 
           <!--producto 3-->
           <div class="card px-5">
+            <div
+            class="product"
+            data-name="Samsung Galaxy A16"
+            data-price="160/175"
+            data-image="../../img/equipos/samsung a16gb.png"
+            >
             <img
               src="../../img/equipos/samsung a16gb.png"
               class="card-img-top mt-5"
-              alt="..."
+              alt="Samsung Galaxy A16"
             />
             <div class="card-body">
               <h5 class="card-title">Samsung Galaxy A16</h5>
@@ -523,17 +599,21 @@
               </div>
             </div>
             <div class="text-center">
-              <h4>160 $/175 $</h4>
-            </div>
-            <div class="text-center mt-5 mb-5">
-              <a href="#" class="btn btn-success btn-lg"
-                >Agregar al <i class="bi bi-cart4"></i
-              ></a>
+              <select class="version-select">
+                <option value="version1" data-price="160">Versión 1 - $160</option>
+                <option value="version2" data-price="175">Versión 2 - $175</option>
+            </select>
+              <button 
+              class="add-to-cart btn btn-success btn-lg">Agregar al <i class="bi bi-cart4"></i>
+              </button>
             </div>
           </div>
-        </div>
+          </div>
+
       </div>
     </div>
+   
+   
 
     <!--pie-->
     <footer>
