@@ -45,6 +45,7 @@ async function guardarProducto(e) {
     const versionSeleccionada = document.querySelector('.form-check-input:checked');
 
     if (versionSeleccionada.value === 'versionUno') {
+      
       const version = versionSeleccionada.value;
       console.log(`Nombre: ${nombre}, Versión: ${version}`);
       // Aquí puedes enviar los datos al servidor o manejarlos como necesites
