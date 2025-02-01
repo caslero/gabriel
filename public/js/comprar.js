@@ -96,3 +96,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+//Perfil usuario activo
+
+document.addEventListener('DOMContentLoaded', () => {
+    const profileButton = document.getElementById('profile-button');
+    const profileMenu = document.getElementById('profile-menu');
+
+    // Mostrar/Ocultar el menú del perfil
+    profileButton.addEventListener('click', () => {
+        profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Manejo de eventos para los botones del menú
+    document.getElementById('change-password-button').addEventListener('click', () => {
+        // Lógica para cambiar la clave
+        alert('Cambiar clave');
+    });
+
+    document.getElementById('logout-button').addEventListener('click', () => {
+        // Lógica para cerrar sesión
+        alert('Cerrar sesión');
+    });
+
+    // Cerrar el menú si se hace clic fuera de él
+    window.addEventListener('click', (event) => {
+        if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+            profileMenu.style.display = 'none';
+        }
+    });
+});

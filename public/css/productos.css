@@ -94,4 +94,40 @@ body {
     margin-bottom: 5px;
 }
 
+/*perfil*/
 
+.profile-dropdown {
+    display: none; 
+    border: 3px solid rgb(13, 253, 193);
+    padding: 10px;
+    position: absolute;
+    background-color: #e2e1e2;
+    z-index: 1000;
+    width: 125px; 
+    
+    border-radius: 10px; 
+}
+
+.profile-button {
+    background: none;
+    border: none; 
+    cursor: pointer;
+}
+.profile-menu-list {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0; 
+}
+
+.profile-menu-list li {
+    margin: 5px 0;
+}
+
+.profile-menu-list button {
+    max-width: 130px; 
+    width: 100%; 
+    padding: 10px;
+    border: none;
+    border-radius: 10px; 
+    cursor: pointer; 
+}
