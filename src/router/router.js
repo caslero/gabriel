@@ -41,9 +41,15 @@ rutas.get('/comprar-productos', (req, res) => {
   res.sendFile(__dirname + '/view/comprarProductos.html'); 
 });
 
-/** /shop se encarga de realizar la compra */
+/** shop se encarga de realizar la compra */
 rutas.get('/comprar', (req, res) => {
   res.sendFile(__dirname + '/view/comprar.html'); 
+});
+
+
+/** esta ruta se encarga de rfilalizar la compra de los articulos agg al carrito */
+rutas.get('/Fcompras', (req, res) => {
+  res.sendFile(__dirname + '/view/Fcompras.html'); 
 });
 
 /** /index se encarga de volver al inicio */
