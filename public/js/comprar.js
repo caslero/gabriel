@@ -92,9 +92,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkoutButton.addEventListener('click', () => {
         if (cart.length > 0) {
-            window.location.href = 'shop.html';
+            // Guardar el carrito en localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // Redirigir a la página de checkout
+            window.location.href = '/Fcompras';
         }
     });
+});
+
+  // finalizar compra de el carrito
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+
+    // Obtener el carrito del localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log('Carrito:', cart); // Verifica el contenido del carrito
+
+    let totalPrice = 0;
+
+    // Mostrar los artículos del carrito
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>No hay artículos en el carrito.</p>';
+    } else {
+        cart.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;"> <!-- Mostrar la imagen -->
+                <span>${item.name} - $${item.price.toFixed(2)}</span>
+            `;
+            cartItemsContainer.appendChild(itemDiv);
+            totalPrice += item.price;
+        });
+    }
+
+    // Mostrar el total
+    totalPriceElement.textContent = totalPrice.toFixed(2);
 });
 
 //Perfil usuario activo
