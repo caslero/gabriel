@@ -2,6 +2,7 @@ import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 import dotenv from "dotenv";
 import { crearTablaUsuariosSqlite } from "../db_tablas/tablaUsuarios.js";
+import { crearTablaProductosSqlite } from "../db_tablas/tablaProductos.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ async function conectarBaseDeDatos() {
     await conexionSqlite.exec("PRAGMA foreign_keys = ON;");
     //console.log('Base de datos seleccionada: ' + nombreDB);
     await crearTablaUsuariosSqlite(conexionSqlite); // Pasar la conexión a la función crearTablaUsuariosSqlite
+    await crearTablaProductosSqlite(conexionSqlite);
   } catch (error) {
     console.log("Error al seleccionar la base de datos:", error);
   }

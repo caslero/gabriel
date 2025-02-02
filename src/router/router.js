@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { UsuarioControlador } from "../controller/UsuarioController.js";
 import { LoginControlador } from "../controller/LoginController.js";
+import { ProductosControlador } from "../controller/ProductosController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const rootDir  = dirname(__filename);
@@ -83,6 +84,11 @@ rutas.get('/api/usuario-activo', UsuarioControlador.usuarioActivo);
 
 
 rutas.post('/api/login', LoginControlador.iniciarSesion);
+
+rutas.post('/api/registrar-productos', ProductosControlador.guardarProducto);
+
+
+
 
 
 // /** /validar/:url se encarga de recibir la url para validar el usuario */

@@ -52,8 +52,10 @@ export function datosUsuarioActivo(correo) {
   return usuarioActivo;
 }
 
-
-
+export function usuarioId(correo) {
+  const idUsuario = `SELECT id FROM usuarios WHERE correo = '${correo}'`;
+  return idUsuario;
+}
 
 
 

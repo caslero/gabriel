@@ -7,8 +7,8 @@ import {
   existeUsuario,
   tokenComprobar,
   obtenerClaveParaCambiarla, claveCambiadaUsuarioLogueado, userAutorizado,
-  tokenValidar, tokenValidando, autenticoUsuario
-} from "../sql/EmpleadosSentencias.js";
+  tokenValidar, tokenValidando, autenticoUsuario, usuarioId
+} from "../sql/UsuariosSentencias.js";
 
 
 export class ModeloUsuarios {
@@ -97,9 +97,6 @@ static async datosInicioSesion(correo) {
   });
 }
 
-
-
-
 static async usuarioActivo(correo) {
   return new Promise((resolve) => {
     const datosUserActivo = conexionSqlite.all(datosUsuarioActivo(correo));
@@ -111,6 +108,20 @@ static async usuarioActivo(correo) {
   });
 }
 
+
+
+
+
+static async idUsuarioRegistra(correo) {
+  return new Promise((resolve) => {
+    const idUsuario = conexionSqlite.all(usuarioId(correo));
+    idUsuario.then((data) => {
+      resolve(data[0]);
+    }).catch((error) => {
+      resolve(false)
+    });
+  });
+}
   
 
 

@@ -3,6 +3,38 @@ import { direccionLocal } from "./constantes.js";
 
 consultarUsuarioActivo();
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const profileButton = document.getElementById('profile-button');
+  const profileMenu = document.getElementById('profile-menu');
+
+  // Mostrar/Ocultar el menú del perfil
+  profileButton.addEventListener('click', () => {
+      profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Manejo de eventos para los botones del menú
+  document.getElementById('change-password-button').addEventListener('click', () => {
+      // Lógica para cambiar la clave
+      alert('Cambiar clave');
+  });
+
+  document.getElementById('logout-button').addEventListener('click', () => {
+      // Lógica para cerrar sesión
+      alert('Cerrar sesión');
+  });
+
+  // Cerrar el menú si se hace clic fuera de él
+  window.addEventListener('click', (event) => {
+      if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+          profileMenu.style.display = 'none';
+      }
+  });
+});
+
+
+
 document.addEventListener("DOMContentLoaded", (event) => {
   // Obtener todas las casillas
   const checkboxes = document.querySelectorAll(".form-check-input");
@@ -46,18 +78,19 @@ function imprimirLog(checkbox) {
     document.getElementById("bateriaDos").innerHTML = ``;
     document.getElementById("camaraDos").innerHTML = ``;
     document.getElementById("gammaDos").innerHTML = ``;
+    document.getElementById("cantidadDos").innerHTML = ``;
   } else if (checkbox.id === "versionDos" && checkbox.checked) {
     document.getElementById("segundaVersion").innerHTML = `
       <label for="ramVersionDos">Memoria Ram</label>
       <input
         id="ramVersionDos"
-        type="text"
+        type="number"
         class="form-control"
       />
       <label for="romVersionDos">Memoria Rom</label>
       <input
         id="romVersionDos"
-        type="text"
+        type="number"
         class="form-control"
       />`;
 
@@ -65,7 +98,7 @@ function imprimirLog(checkbox) {
       <label for="precioVersionDos">Precio version dos ($)</label>
       <input
         id="precioVersionDos"
-        type="text"
+        type="number"
         class="form-control"
       />`;
 
@@ -96,7 +129,7 @@ function imprimirLog(checkbox) {
     document.getElementById("bateriaDos").innerHTML = `
       <label for="bateriaVersionDos">Bateria</label>
       <input
-        type="text"
+        type="number"
         class="form-control"
         id="bateriaVersionDos"
       />`;
@@ -122,6 +155,15 @@ function imprimirLog(checkbox) {
           <option value="baja">Baja</option>
         </select>
       </div>`;
+
+    document.getElementById("cantidadDos").innerHTML = `
+      <label for="cantidadVersionDos">Cantidad version 2</label>
+      <input
+        type="number"
+        class="form-control"
+        id="cantidadVersionDos"
+      />`;
+
   }
 }
 
@@ -156,7 +198,8 @@ async function guardarProducto(e) {
     );
 
     const nombre = e.target.nombre.value;
-    const version = versionSeleccionada.value;
+    const imagenProducto = e.target.imagenProducto.value;
+    const version = versionSeleccionada.value === 'versionUno' ? 1 : 2;    
     const ramVersionUno = e.target.ramVersionUno.value;
     const romVersionUno = e.target.romVersionUno.value;
     const precioVersionUno = e.target.precioVersionUno.value;
@@ -166,6 +209,7 @@ async function guardarProducto(e) {
     const bateriaVersionUno = e.target.bateriaVersionUno.value;
     const camaraVersionUno = e.target.camaraVersionUno.value;
     const gammaVersionUno = e.target.gammaVersionUno.value;
+    const cantidadVersionUno = e.target.cantidadVersionUno.value;
 
     if (versionSeleccionada.value === "versionUno") {
       const respuesta = await fetch(
@@ -177,6 +221,18 @@ async function guardarProducto(e) {
           },
           body: JSON.stringify({
             nombre: nombre,
+            imagen: imagenProducto,
+            version: version,
+            ramVersionUno: ramVersionUno,
+            romVersionUno: romVersionUno,
+            precioVersionUno: precioVersionUno,
+            sizePantallaUno: sizePantallaUno,
+            resolucionVersionUno: resolucionVersionUno,
+            procesadorVersionUno: procesadorVersionUno,
+            bateriaVersionUno: bateriaVersionUno,
+            camaraVersionUno: camaraVersionUno,
+            gammaVersionUno: gammaVersionUno,
+            cantidadVersionUno: cantidadVersionUno
           }),
         }
       );
@@ -201,6 +257,8 @@ async function guardarProducto(e) {
       const bateriaVersionDos = e.target.bateriaVersionDos.value;
       const camaraVersionDos = e.target.camaraVersionDos.value;
       const gammaVersionDos = e.target.gammaVersionDos.value;
+      const cantidadVersionDos = e.target.cantidadVersionDos.value;
+
 
       const respuesta = await fetch(
         `${direccionLocal}/api/registrar-productos`,
@@ -211,6 +269,28 @@ async function guardarProducto(e) {
           },
           body: JSON.stringify({
             nombre: nombre,
+            imagen: imagenProducto,
+            version: version,
+            ramVersionUno: ramVersionUno,
+            romVersionUno: romVersionUno,
+            ramVersionDos: ramVersionDos,
+            romVersionDos: romVersionDos,
+            precioVersionUno: precioVersionUno,
+            precioVersionDos: precioVersionDos,
+            sizePantallaUno: sizePantallaUno,
+            sizePantallaDos: sizePantallaDos,
+            resolucionVersionUno: resolucionVersionUno,
+            resolucionVersionDos: resolucionVersionDos,
+            procesadorVersionUno: procesadorVersionUno,
+            procesadorVersionDos: procesadorVersionDos,
+            bateriaVersionUno: bateriaVersionUno,
+            bateriaVersionDos: bateriaVersionDos,
+            camaraVersionUno: camaraVersionUno,
+            camaraVersionDos: camaraVersionDos,
+            gammaVersionUno: gammaVersionUno,
+            gammaVersionDos: gammaVersionDos,
+            cantidadVersionUno: cantidadVersionUno,
+            cantidadVersionDos: cantidadVersionDos
           }),
         }
       );

@@ -112,7 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Obtener el carrito del localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    console.log('Carrito:', cart); // Verifica el contenido del carrito
+    
+
+
+
+    //console.log('Carrito:', cart); // Verifica el contenido del carrito
+
+
+
 
     let totalPrice = 0;
 
@@ -164,3 +171,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+

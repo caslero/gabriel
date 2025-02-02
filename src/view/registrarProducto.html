@@ -66,24 +66,46 @@
         </div>
 
         <!-- La linea 69 muestra el nombre del usuario activo -->
-        <div
-          id="nombre-usuario-activo"
-          class="navbar-brand text-xl-center"
-        ></div>
+        <div class="profile">
+          <button class="profile-button" id="profile-button">
+            <div
+              id="nombre-usuario-activo"
+              class="navbar-brand text-xl-center"
+            ></div>
+          </button>
+          <div id="profile-menu" class="profile-dropdown text-center">
+            <h5>Perfil</h5>
+            <ul class="profile-menu-list">
+              <li>
+                <button
+                  class="btn btn-success text-center"
+                  id="change-password-button"
+                >
+                  Cambiar Clave
+                </button>
+              </li>
+              <li>
+                <button class="btn btn-success text-center" id="logout-button">
+                  Cerrar Sesión
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
 
     <main class="py-5 bg-light">
       <section class="container mx-auto">
         <form class="" method="post" id="form-registrar-nuevo-producto">
-          
           <div class="form-group mb-3">
             <label for="nombre-producto">Nombre del producto</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nombre"
-            />
+            <input type="text" class="form-control" id="nombre" />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="imagenProducto">Imagen</label>
+            <input type="text" class="form-control" id="imagenProducto" />
           </div>
 
           <div class="form-group mb-3 d-flex flex-column">
@@ -113,31 +135,23 @@
           <div class="row mb-3">
             <div class="col">
               <label for="nombre-producto">Memoria Ram</label>
-              <input
-                id="ramVersionUno"
-                type="text"
-                class="form-control"
-              />
+              <input id="ramVersionUno" type="number" class="form-control" />
               <label for="nombre-producto">Memoria Rom</label>
-              <input
-                id="romVersionUno"
-                type="text"
-                class="form-control"
-              />
+              <input id="romVersionUno" type="number" class="form-control" />
             </div>
 
             <div id="segundaVersion" class="col">
               <!-- <label for="nombre-producto">Memoria Ram</label>
               <input
                 id="ram-version-dos"
-                type="text"
+                type="number"
                 class="form-control"
                 placeholder="8gb"
               />
               <label for="nombre-producto">Memoria Rom</label>
               <input
                 id="rmm-version-dos"
-                type="text"
+                type="number"
                 class="form-control"
                 placeholder="8gb"
               /> -->
@@ -147,17 +161,13 @@
           <div class="row mb-3">
             <div class="col">
               <label for="precioVersionUno">Precio version uno ($)</label>
-              <input
-                id="precioVersionUno"
-                type="text"
-                class="form-control"
-              />
+              <input id="precioVersionUno" type="number" class="form-control" />
             </div>
             <div id="precioDos" class="col">
               <!-- <label for="precio-producto-uno">Precio version dos ($)</label>
               <input
                 id="precio-version-dos"
-                type="text"
+                type="number"
                 class="form-control"
                 placeholder="0.00"
               /> -->
@@ -166,7 +176,9 @@
 
           <div class="row mb-3">
             <div class="col">
-              <label for="sizePantallaVersionUno">Tamaño pantalla version 1</label>
+              <label for="sizePantallaVersionUno"
+                >Tamaño pantalla version 1</label
+              >
               <input
                 type="text"
                 class="form-control"
@@ -224,16 +236,12 @@
           <div class="row mb-3">
             <div class="col">
               <label for="bateriaVersionUno">Bateria</label>
-              <input
-                type="text"
-                class="form-control"
-                id="bateriaVersionUno"
-              />
+              <input type="number" class="form-control" id="bateriaVersionUno" />
             </div>
             <div id="bateriaDos" class="col">
               <!-- <label for="bateriaVersionDos">Bateria</label>
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 id="bateriaVersionDos"
               /> -->
@@ -243,11 +251,7 @@
           <div class="row mb-3">
             <div class="col">
               <label for="camaraVersionUno">Camara</label>
-              <input
-                type="text"
-                class="form-control"
-                id="camaraVersionUno"
-              />
+              <input type="text" class="form-control" id="camaraVersionUno" />
             </div>
             <div id="camaraDos" class="col">
               <!-- <label for="camaraVersionDos">Camara</label>
@@ -256,7 +260,7 @@
                 class="form-control"
                 id="camaraVersionDos"
               /> -->
-            </div>            
+            </div>
           </div>
 
           <div class="row mb-3">
@@ -264,7 +268,9 @@
               <label class="" for="gammaVersion1">Gamma version 1</label>
               <div class="d-flex flex-row">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="gammaVersionUno">Options</label>
+                  <label class="input-group-text" for="gammaVersionUno"
+                    >Options</label
+                  >
                 </div>
                 <select class="custom-select" id="gammaVersionUno">
                   <option selected>seleccionar</option>
@@ -291,18 +297,30 @@
             </div>
           </div>
 
-
+          <div class="row mb-3">
+            <div class="col">
+              <label for="cantidadVersionUno">Cantidad version 1</label>
+              <input
+                type="number"
+                class="form-control"
+                id="cantidadVersionUno"
+              />
+            </div>
+            <div id="cantidadDos" class="col">
+              <!-- <label for="cantidadVersionDos">Cantidad version 2</label>
+              <input
+                type="number"
+                class="form-control"
+                id="cantidadVersionDos"
+              /> -->
+            </div>
+          </div>
 
           <!-- Inicio. Aqui se muestran los msj de error o advertencia al momento de iniciar sesion-->
           <div id="validar" class="d-none flex-column align-items-center mt-2 border p-2 rounded-2 bg-primary bg-opacity-25 text-danger">
-            
+          
           </div>
           <!-- Fin. Aqui se muestran los msj de error o advertencia al momento de iniciar sesion-->
-
-
-
-
-
 
           <div class="my-3">
             <div class="text-center mt-5 mb-5">
