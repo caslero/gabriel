@@ -1,7 +1,9 @@
 //usuario en linea
-import { direccionLocal } from "./constantes.js";
+//import { direccionLocal } from "./constantes.js";
+import { consultarUsuarioActivo } from "./usuarioActivo.js";
 
 
+/** 
 export async function consultarUsuarioActivo() {
   try {
     fetch(`${direccionLocal}/api/usuario-activo`, {
@@ -21,6 +23,8 @@ export async function consultarUsuarioActivo() {
     console.log("Error, al consultar usuario activo");
   }
 }
+*/
+
 
 consultarUsuarioActivo()
 
