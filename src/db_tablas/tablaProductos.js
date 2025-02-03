@@ -29,7 +29,7 @@ export async function crearTablaProductosSqlite(conectar) {
         `);
         console.log("Tabla de productos creada.");
       } else {
-        console.log("La tabla de productos ya existe.");
+        //console.log("La tabla de productos ya existe.");
       }
     } catch (error) {
       console.error("Error al crear la tabla de productos:", error);

@@ -85,8 +85,10 @@ rutas.get('/api/usuario-activo', UsuarioControlador.usuarioActivo);
 
 rutas.post('/api/login', LoginControlador.iniciarSesion);
 
+
 rutas.post('/api/registrar-productos', ProductosControlador.guardarProducto);
 
+rutas.get('/api/productos-disponibles', ProductosControlador.productosDisponibles);
 
 
 

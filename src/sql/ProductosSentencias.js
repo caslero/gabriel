@@ -46,6 +46,14 @@ export function registrarProductoVersionDos(req, id_usuario) {
   return guardarProducto2;
 }
 
+
+export function disponiblesProductos() {
+  const productosDisponibles = `SELECT * FROM productos `;
+  return productosDisponibles;
+}
+
+
+
 /** 
   export function registrarProductoVersionUno(req, id_usuario) {
     const {
@@ -95,3 +103,5 @@ export function registrarProductoVersionDos(req, id_usuario) {
     }
   }
 */
+
+

@@ -72,4 +72,45 @@ export class ProductosControlador {
       });
     }
   }
+
+  static async productosDisponibles(req, res) {
+    try {
+      const token = req.cookies.programacioniii;
+
+      const descifrarToken = Tokens.descifrarToken(token);
+
+      if (descifrarToken.status === "error") {
+        return res.status(400).json({
+          status: descifrarToken.status,
+          numero: descifrarToken.numero,
+          message: descifrarToken.message,
+        });  
+      }
+
+      const todosProductosDisponibles = await ModeloProductos.productosDisponibles();
+
+      if (!todosProductosDisponibles) {
+        return res.status(400).json({
+          status: "error",
+          numero: "0",
+          message: "Error, al consultar productos...",
+        });
+      } else {
+        return res.status(201).json({
+          status: "ok",
+          numero: 1,
+          message: "Productos disponibles...",
+          productosDisponibles: todosProductosDisponibles,
+        });
+      }
+
+    } catch (error) {
+      console.log("Error, al consultar productos disponibles: " + error);
+      return res.status(500).json({
+        status: "error",
+        numero: 0,
+        message: "Error, al consultar productos disponibles...",
+      });
+    }
+  }
 }

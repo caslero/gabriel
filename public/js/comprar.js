@@ -1,6 +1,7 @@
 //usuario en linea
 //import { direccionLocal } from "./constantes.js";
 import { consultarUsuarioActivo } from "./usuarioActivo.js";
+import { todosProductosDisponibles } from "./todosLosProductosComprar.js";
 
 
 /** 
@@ -26,7 +27,10 @@ export async function consultarUsuarioActivo() {
 */
 
 
-consultarUsuarioActivo()
+consultarUsuarioActivo();
+//todosProductosDisponibles();
+
+
 
 // carrito de compras
 

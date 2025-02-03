@@ -2,6 +2,7 @@ import { conexionSqlite } from "../db/databaseSqlite.js";
 import {
   registrarProductoVersionUno,
   registrarProductoVersionDos,
+  disponiblesProductos,
 } from "../sql/ProductosSentencias.js";
 
 export class ModeloProductos {
@@ -36,6 +37,17 @@ export class ModeloProductos {
           console.log(error);
           resolve(false);
         });
+    });
+  }
+
+  static async productosDisponibles() {
+    return new Promise((resolve) => {
+      const todosProductos = conexionSqlite.all(disponiblesProductos());
+      todosProductos.then((data) => {
+        resolve(data);
+      }).catch((error) => {
+        resolve(false)
+      });
     });
   }
 }
