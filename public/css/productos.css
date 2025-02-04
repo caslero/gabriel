@@ -81,6 +81,10 @@ body {
     justify-content: center; 
     cursor: pointer; 
 }
+#cart-button:hover {
+    background-color: rgb(13, 253, 193);
+
+}
 
 #cart-button i {
     width: 70%;

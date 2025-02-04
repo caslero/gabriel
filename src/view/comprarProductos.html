@@ -26,11 +26,15 @@
       defer
     ></script>
     <script src="js/comprar.js" type="module" defer></script>
+    <script src="js/producDispo.js" type="module" defer></script>
+    <script src="js/carritoCompras.js" type="module" defer></script>
   </head>
 
   <body>
-    <!--Barra-->
-    <nav class="navbar navbar-expand-md bg-body-tertiary">
+    <header>
+
+     <!--Barra-->
+      <nav class="navbar navbar-expand-md bg-body-tertiary">
       <div class="container-fluid py-3 d-flex flex-row">
         <a class="navbar-brand text-xl-center" href="/comprar-productos">
           <b>Gori</b>
@@ -126,20 +130,26 @@
           </div>
         </div>
       </div>
-    </nav>
+      </nav>
 
-    <!--Presentacion-->
-    <div class="container-fluid bg-light py-5">
-      <h2 class="text-center">
-        <b>Gori</b><i class="bi bi-cart-dash">Shop</i> Catalogo
-      </h2>
-      <p class="text-center">
-        Aqui te traemos desde lo mas basico hasta lo mas avanzado en tecnologia,
-        aquiere tus equipos con nosotros.
-      </p>
-    </div>
+    </header>
 
-    <div id="contenedor">
+    <main>
+
+      <!--Presentacion-->
+     <div class="container-fluid bg-light py-5">
+       <h2 class="text-center">
+          <b>Gori</b><i class="bi bi-cart-dash">Shop</i> Catalogo
+       </h2>
+       <p class="text-center">
+         Aqui te traemos desde lo mas basico hasta lo mas avanzado en tecnologia,
+          aquiere tus equipos con nosotros.
+       </p>
+     </div>
+
+     <!--Productos del tu catalogo-->
+      <div id="contenedor">
+        
       <!--categoria G-Alta-->
       <div id="G-Alta" class="container mb-5 mt-5">
         <h4>Gama Alta</h4>
@@ -147,194 +157,157 @@
           En esta categorias encotraras equipos que te ofrecen lo ultimo en
           tecnologia, caracteristicas y rendimientos.
         </p>
-        <div id="gamma-alta" class="card-group">
+        <div class="card-group">
+
           <!--producto 1-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Nubia Red Magic 9S Pro+"
-              data-price="1020/1110"
-              data-image="../../img/equipos/zte-nubia-red-magic-9s-pro-plus.png"
+            <div class="product" data-name="Nubia Red Magic 9S Pro+"
+            data-price="1020"
+            data-image="../../img/equipos/zte-nubia-red-magic-9s-pro-plus.png"
             >
-              <img
-                src="../../img/equipos/zte-nubia-red-magic-9s-pro-plus.png"
-                class="card-img-top mt-5"
-                alt="Nubia Red Magic 9S Pro+"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Nubia Red Magic 9S Pro+</h5>
-                
-                <div>
-                  <i class="bi bi-memory"> 16GB/24GB</i>
+                <img src="../../img/equipos/zte-nubia-red-magic-9s-pro-plus.png" class="card-img-top mt-5" alt="Nubia Red Magic 9S Pro+" />
+                <div class="card-body">
+                    <h5 class="card-title">Nubia Red Magic 9S Pro+</h5>
+                    <div>
+                        <i class="bi bi-memory"> 16GB</i>
+                    </div>
+                    <div>
+                        <i class="bi bi-device-hdd"> 512GB</i>
+                    </div>
+                    <div>
+                        <i class="bi bi-display"> 6.8", 1116 x 2480 pixels</i>
+                    </div>
+                    <div>
+                        <i class="bi bi-cpu"> Snapdragon 8 Gen 3 Leading 3.4GHz</i>
+                    </div>
+                    <div>
+                        <i class="bi bi-battery-full"> 5500 mAh</i>
+                    </div>
+                    <div>
+                        <i class="bi bi-camera"> Triple, 50MP+50MP+2MP</i>
+                    </div>
                 </div>
-
-                <div>
-                  <i class="bi bi-device-hdd"> 512GB/1TB</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-display"> 6.8", 1116 x 2480 pixels</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-cpu"> Snapdragon 8 Gen 3 Leading 3.4GHz</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-battery-full"> 5500 mAh</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-camera"> Triple, 50MP+50MP+2MP</i>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="1020">
-                    Versión 1 - $1020
-                  </option>
-                  <option value="version2" data-price="1110">
-                    Versión 2 - $1110
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
+          
+                <div class="text-center">
+                    <select class="version-select">
+                        <option value="version1" data-price="1020">Versión 1 - $1020</option>
+                        <option value="version2" data-price="1110">Versión 2 - $1110</option>
+                    </select>
+                    <button class="add-to-cart btn btn-success btn-lg">
+                      Agregar al <i class="bi bi-cart4"></i>
+                  </button>
             </div>
           </div>
-
+          </div>
+           
           <!--producto 2-->
           <div class="card px-5">
             <div
-              class="product"
-              data-name="Samsung Galaxy S25 Ultra"
-              data-price="1299"
-              data-image="../../img/equipos/samsung-galaxy-s25-ultra.png"
-            >
-              <img src="../../img/equipos/samsung-galaxy-s25-ultra.png"
-              class="card-img-top mt-5" alt="alt="Samsung Galaxy S25 Ultra" />
-              <div class="card-body">
-                <h5 class="card-title">Samsung Galaxy S25 Ultra</h5>
-                <!--Caracteristicas-->
-                <div>
-                  <i class="bi bi-memory"> 12GB</i>
+                class="product"
+                data-name="Samsung Galaxy S25 Ultra"
+                data-price="1299"
+                data-image="../../img/equipos/samsung-galaxy-s25-ultra.png"
+               >
+                <img src="../../img/equipos/samsung-galaxy-s25-ultra.png"
+                    class="card-img-top mt-5" alt="alt="Samsung Galaxy S25 Ultra" />
+                <div class="card-body">
+                    <h5 class="card-title">Samsung Galaxy S25 Ultra</h5>
+                    <!--Caracteristicas-->
+                    <div>
+                        <i class="bi bi-memory"> 12GB</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-device-hdd"> 512GB/1TB</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-display"> 6.9", 1440 x 3120 pixels</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-cpu">
+                            Snapdragon 8 Elite for Galaxy 4.47GHz</i
+                        >
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-battery-full"> 5000 mAh</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-camera"> Cuádruple, 50MP+50MP +50MP+50MP</i>
+                    </div>
                 </div>
-
-                <div>
-                  <i class="bi bi-device-hdd"> 512GB/1TB</i>
+          
+                <div class="text-center">
+                    <select class="version-select">
+                        <option value="version1" data-price="1199">
+                            Versión 1 - $1199
+                        </option>
+                        <option value="version2" data-price="1299">
+                            Versión 2 - $1299
+                        </option>
+                    </select>
+                    <button class="add-to-cart btn btn-success btn-lg">
+                        Agregar al <i class="bi bi-cart4"></i>
+                    </button>
                 </div>
-
-                <div>
-                  <i class="bi bi-display"> 6.9", 1440 x 3120 pixels</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-cpu">
-                    Snapdragon 8 Elite for Galaxy 4.47GHz</i
-                  >
-                </div>
-
-                <div>
-                  <i class="bi bi-battery-full"> 5000 mAh</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-camera"> Cuádruple, 50MP+50MP +50MP+50MP</i>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="1199">
-                    Versión 1 - $1199
-                  </option>
-                  <option value="version2" data-price="1299">
-                    Versión 2 - $1299
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
             </div>
-          </div>
+          </div>  
 
           <!--producto 3-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Apple iPhone 16 Pro Max"
-              data-price="1220/1399"
-              data-image="../../img/equipos/apple-iphone-16-pro-max.png"
-            >
-              <img
-                src="../../img/equipos/apple-iphone-16-pro-max.png"
-                class="card-img-top mt-5"
-                alt="Apple iPhone 16 Pro Max"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Apple iPhone 16 Pro Max</h5>
-                <!--Caracteristicas-->
-                <div>
-                  <i class="bi bi-memory"> 8GB</i>
+            <div class="product" 
+            data-name="Apple iPhone 16 Pro Max"
+            data-price="1220"
+            data-image="../../img/equipos/apple-iphone-16-pro-max.png"
+          >
+                <img src="../../img/equipos/apple-iphone-16-pro-max.png" class="card-img-top mt-5" alt="Apple iPhone 16 Pro Max" />
+                <div class="card-body">
+                    <h5 class="card-title">Apple iPhone 16 Pro Max</h5>
+                    <!--Características-->
+                    <div>
+                        <i class="bi bi-memory"> 8GB</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-device-hdd"> 512GB</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-display"> 6.9", 1320 x 2868 pixels</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-cpu"> Apple A18 Pro</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-battery-full"> 4685 mAh</i>
+                    </div>
+          
+                    <div>
+                        <i class="bi bi-camera"> Cuádruple, 48MP+48MP +12MP+ToF</i>
+                    </div>
                 </div>
-
-                <div>
-                  <i class="bi bi-device-hdd"> 512GB/1TB</i>
+      
+                <div class="text-center">
+                    <select class="version-select">
+                        <option value="version1" data-price="1220">Versión 1 - $1220</option>
+                        <option value="version2" data-price="1399">Versión 2 - $1399</option>
+                    </select>
+                    <button class="add-to-cart btn btn-success btn-lg">
+                      Agregar al <i class="bi bi-cart4"></i>
+                  </button>
                 </div>
-
-                <div>
-                  <i class="bi bi-display"> 6.9", 1320 x 2868 pixels</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-cpu"> Apple A18 Pro</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-battery-full"> 4685 mAh</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-camera"> Cuádruple, 48MP+48MP +12MP+ToF</i>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="1220">
-                    Versión 1 - $1220
-                  </option>
-                  <option value="version2" data-price="1399">
-                    Versión 2 - $1399
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
             </div>
           </div>
+
         </div>
       </div>
 
+          
       <!--categoria G-Media-->
       <div id="G-Media" class="container mb-5 mt-5">
         <h4>Gama Media</h4>
@@ -345,183 +318,128 @@
         <div class="card-group">
           <!--producto 1-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Infinix Hot 40i"
-              data-price="155/168"
-              data-image="../../img/equipos/infinix-hot-40i-big.png"
-            >
-              <img
-                src="../../img/equipos/infinix-hot-40i-big.png"
-                class="card-img-top mt-5"
-                alt="Infinix Hot 40i"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Infinix Hot 40i</h5>
-                <!--Caracteristicas-->
-                <div>
-                  <i class="bi bi-memory"> 4GB/8GB</i>
-                </div>
+  <div class="product" data-name="Infinix Hot 40i">
+      <img src="../../img/equipos/infinix-hot-40i-big.png" class="card-img-top mt-5" alt="Infinix Hot 40i" />
+      <div class="card-body">
+          <h5 class="card-title">Infinix Hot 40i</h5>
+          <!--Características-->
+          <div>
+              <i class="bi bi-memory"> 4GB</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-device-hdd"> 128GB/256GB</i>
-                </div>
+          <div>
+              <i class="bi bi-device-hdd"> 128GB</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-display"> 6.56", 720x1612 pixels</i>
-                </div>
+          <div>
+              <i class="bi bi-display"> 6.56", 720x1612 pixels</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-cpu"> Unisoc Tiger T606</i>
-                </div>
+          <div>
+              <i class="bi bi-cpu"> Unisoc Tiger T606</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-battery-full"> 5000 mAh</i>
-                </div>
+          <div>
+              <i class="bi bi-battery-full"> 5000 mAh</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-camera"> Dual, 50MP+0.08MP</i>
-                </div>
-              </div>
+          <div>
+              <i class="bi bi-camera"> Dual, 50MP+0.08MP</i>
+          </div>
+      </div>
 
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="155">
-                    Versión 1 - $155
-                  </option>
-                  <option value="version2" data-price="168">
-                    Versión 2 - $168
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
-            </div>
+      <div class="text-center">
+          <select class="version-select">
+              <option value="version1" data-price="155">Versión 1 - $155</option>
+              <option value="version2" data-price="168">Versión 2 - $168</option>
+          </select>
+          <button class="add-to-cart btn btn-success btn-lg">Agregar al - $155</button>
+      </div>
+  </div>
           </div>
 
           <!--producto 2-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Samsung Galaxy A55"
-              data-price="270/299"
-              data-image="../../img/equipos/samsung_galaxy-a55-5g-big.png"
-            >
-              <img src="../../img/equipos/samsung_galaxy-a55-5g-big.png"
-              class="card-img-top mt-5 alt="Samsung Galaxy A55" />
-              <div class="card-body">
-                <h5 class="card-title">Samsung Galaxy A55</h5>
-                <!--Caracteristicas-->
-                <div>
-                  <i class="bi bi-memory"> 8GB/12GB</i>
-                </div>
+  <div class="product" data-name="Samsung Galaxy A55">
+      <img src="../../img/equipos/samsung_galaxy-a55-5g-big.png" class="card-img-top mt-5" alt="Samsung Galaxy A55" />
+      <div class="card-body">
+          <h5 class="card-title">Samsung Galaxy A55</h5>
+          <!--Características-->
+          <div>
+              <i class="bi bi-memory"> 8GB</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-device-hdd"> 128GB/256GB</i>
-                </div>
+          <div>
+              <i class="bi bi-device-hdd"> 128GB</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-display"> 6.6", 1080 x 2340 pixels</i>
-                </div>
+          <div>
+              <i class="bi bi-display"> 6.6", 1080 x 2340 pixels</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-cpu"> Exynos 1380 2.7GHz</i>
-                </div>
+          <div>
+              <i class="bi bi-cpu"> Exynos 1380 2.7GHz</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-battery-full"> 5000 mAh</i>
-                </div>
+          <div>
+              <i class="bi bi-battery-full"> 5000 mAh</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-camera"> Triple, 50MP+12MP+5MP</i>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="270">
-                    Versión 1 - $270
-                  </option>
-                  <option value="version2" data-price="299">
-                    Versión 2 - $299
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
-            </div>
+          <div>
+              <i class="bi bi-camera"> Triple, 50MP+12MP+5MP</i>
+          </div>
+      </div>
+      <div class="text-center">
+          <select class="version-select">
+              <option value="version1" data-price="270">Versión 1 - $270</option>
+              <option value="version2" data-price="299">Versión 2 - $299</option>
+          </select>
+          <button class="add-to-cart btn btn-success btn-lg">Agregar al - $270</button>
+      </div>
+  </div>
           </div>
 
           <!--producto 3-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Xiaomi Redmi note 13 pro"
-              data-price="200/230"
-              data-image="../../img/equipos/redmi-note-13-pro-big.png"
-            >
-              <img src="../../img/equipos/redmi-note-13-pro-big.png"
-              class="card-img-top mt-5 alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Xiaomi Redmi note 13 pro</h5>
-                <!--Caracteristicas-->
-                <div>
-                  <i class="bi bi-memory"> 8GB/12GB</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-device-hdd"> 256GB/512GB</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-display"> 6.67", 1080 x 2400 pixels</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-cpu"> Mediatek Helio G99-Ultra 2.2GHz</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-battery-full"> 5000 mAh</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-camera"> Triple, 200MP+8MP+2MP</i>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="200">
-                    Versión 1 - $200
-                  </option>
-                  <option value="version2" data-price="230">
-                    Versión 2 - $230
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
-            </div>
+  <div class="product" data-name="Xiaomi Redmi note 13 pro">
+      <img src="../../img/equipos/redmi-note-13-pro-big.png" class="card-img-top mt-5" alt="Xiaomi Redmi note 13 pro" />
+      <div class="card-body">
+          <h5 class="card-title">Xiaomi Redmi note 13 pro</h5>
+          <!--Características-->
+          <div>
+              <i class="bi bi-memory"> 8GB</i>
           </div>
+
+          <div>
+              <i class="bi bi-device-hdd"> 256GB</i>
+          </div>
+
+          <div>
+              <i class="bi bi-display"> 6.67", 1080 x 2400 pixels</i>
+          </div>
+
+          <div>
+              <i class="bi bi-cpu"> Mediatek Helio G99-Ultra 2.2GHz</i>
+          </div>
+
+          <div>
+              <i class="bi bi-battery-full"> 5000 mAh</i>
+          </div>
+
+          <div>
+              <i class="bi bi-camera"> Triple, 200MP+8MP+2MP</i>
+          </div>
+      </div>
+      <div class="text-center">
+          <select class="version-select">
+              <option value="version1" data-price="200">Versión 1 - $200</option>
+              <option value="version2" data-price="230">Versión 2 - $230</option>
+          </select>
+          <button class="add-to-cart btn btn-success btn-lg">Agregar al - $200</button>
+      </div>
+  </div>
+          </div>
+
         </div>
       </div>
 
@@ -537,195 +455,136 @@
         <div class="card-group">
           <!--producto 1-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Xiaomi Redmi 12"
-              data-price="115/130"
-              data-image="../../img/equipos/xiaomi-redmi-12.png"
-            >
-              <img
-                src="../../img/equipos/xiaomi-redmi-12.png"
-                class="card-img-top mt-5"
-                alt="Xiaomi Redmi 12"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Xiaomi Redmi 12</h5>
-                <!--Caracteristicas-->
-                <div>
-                  <i class="bi bi-memory"> 4GB/8GB</i>
-                </div>
+  <div class="product" data-name="Xiaomi Redmi 12">
+      <img src="../../img/equipos/xiaomi-redmi-12.png" class="card-img-top mt-5" alt="Xiaomi Redmi 12" />
+      <div class="card-body">
+          <h5 class="card-title">Xiaomi Redmi 12</h5>
+          <!--Características-->
+          <div>
+              <i class="bi bi-memory"> 4GB</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-device-hdd"> 128GB/256GB</i>
-                </div>
+          <div>
+              <i class="bi bi-device-hdd"> 128GB</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-display"> 6.79", 1080 x 2460 pixels</i>
-                </div>
+          <div>
+              <i class="bi bi-display"> 6.79", 1080 x 2460 pixels</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-cpu"> Mediatek Helio G88 2GHz</i>
-                </div>
+          <div>
+              <i class="bi bi-cpu"> Mediatek Helio G88 2GHz</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-battery-full"> 5000 mAh</i>
-                </div>
+          <div>
+              <i class="bi bi-battery-full"> 5000 mAh</i>
+          </div>
 
-                <div>
-                  <i class="bi bi-camera"> Triple, 50MP+8MP+2MP</i>
-                </div>
-              </div>
+          <div>
+              <i class="bi bi-camera"> Triple, 50MP+8MP+2MP</i>
+          </div>
+      </div>
 
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="115">
-                    Versión 1 - $115
-                  </option>
-                  <option value="version2" data-price="130">
-                    Versión 2 - $130
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
-            </div>
+      <div class="text-center">
+          <select class="version-select">
+              <option value="version1" data-price="115">Versión 1 - $115</option>
+              <option value="version2" data-price="130">Versión 2 - $130</option>
+          </select>
+          <button class="add-to-cart btn btn-success btn-lg">Agregar al - $115</button>
+      </div>
+  </div>
           </div>
 
           <!--producto 2-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Tecno Spark 20C"
-              data-price="100/115"
-              data-image="../../img/equipos/tecno-spark-20c.png"
-            >
-              <img
-                src="../../img/equipos/tecno-spark-20c.png"
-                class="card-img-top mt-5"
-                alt="Tecno Spark 20C"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Tecno Spark 20C</h5>
-                <!--Caracteristicas-->
-
-                <div>
-                  <i class="bi bi-memory"> 4GB/8GB</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-device-hdd"> 128GB/256GB</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-display"> 6.6", 720 x 1612 pixels</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-cpu"> Octa-core 2.2GHz</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-battery-full"> 5000 mAh</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-camera"> Dual, 50MP+0.08MP</i>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="100">
-                    Versión 1 - $100
-                  </option>
-                  <option value="version2" data-price="115">
-                    Versión 2 - $115
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al <i class="bi bi-cart4"></i>
-                </button>
-              </div>
+    <div class="product" data-name="Tecno Spark 20C">
+        <img src="../../img/equipos/tecno-spark-20c.png" class="card-img-top mt-5" alt="Tecno Spark 20C" />
+        <div class="card-body">
+            <h5 class="card-title">Tecno Spark 20C</h5>
+            <!--Características-->
+            <div>
+                <i class="bi bi-memory"> 4GB</i>
             </div>
+
+            <div>
+                <i class="bi bi-device-hdd"> 128GB</i>
+            </div>
+
+            <div>
+                <i class="bi bi-display"> 6.6", 720 x 1612 pixels</i>
+            </div>
+
+            <div>
+                <i class="bi bi-cpu"> Octa-core 2.2GHz</i>
+            </div>
+
+            <div>
+                <i class="bi bi-battery-full"> 5000 mAh</i>
+            </div>
+
+            <div>
+                <i class="bi bi-camera"> Dual, 50MP+0.08MP</i>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <select class="version-select">
+                <option value="version1" data-price="100">Versión 1 - $100</option>
+                <option value="version2" data-price="115">Versión 2 - $115</option>
+            </select>
+            <button class="add-to-cart btn btn-success btn-lg">Agregar al - $100</button>
+        </div>
+    </div>
           </div>
 
           <!--producto 3-->
           <div class="card px-5">
-            <div
-              class="product"
-              data-name="Samsung Galaxy A16"
-              data-price="160/175"
-              data-image="../../img/equipos/samsung a16gb.png"
-            >
-              <img
-                src="../../img/equipos/samsung a16gb.png"
-                class="card-img-top mt-5"
-                alt="Samsung Galaxy A16"
-              />
-
-              <div class="card-body">
-                <h5 class="card-title">Samsung Galaxy A16</h5>
-                <!--Caracteristicas-->
-                <div>
-                  <i class="bi bi-memory"> 4GB/6GB</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-device-hdd"> 128/256GB</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-display"> 6.7", 1080 x 2340 pixels</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-cpu"> Mediatek Helio G99 2.2GHz</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-battery-full"> 5000 mAh</i>
-                </div>
-
-                <div>
-                  <i class="bi bi-camera"> Triple, 50MP+5MP +2MP</i>
-                </div>
-              </div>
-
-              <div class="d-flex flex-row">
-                <h6 class="me-2">Disponibles:</h6>
-                <b>3</b>
-              </div>
-
-              <div class="text-center">
-                <select class="version-select">
-                  <option value="version1" data-price="160">
-                    Versión 1 - $160
-                  </option>
-                  <option value="version2" data-price="175">
-                    Versión 2 - $175
-                  </option>
-                </select>
-                <button class="add-to-cart btn btn-success btn-lg">
-                  Agregar al
-                  <i class="bi bi-cart4"></i>
-                </button>
-              </div>
-            </div>
+  <div class="product" data-name="Samsung Galaxy A16">
+      <img src="../../img/equipos/samsung a16gb.png" class="card-img-top mt-5" alt="Samsung Galaxy A16" />
+      <div class="card-body">
+          <h5 class="card-title">Samsung Galaxy A16</h5>
+          <!--Características-->
+          <div>
+              <i class="bi bi-memory"> 4GB</i>
           </div>
+
+          <div>
+              <i class="bi bi-device-hdd"> 128</i>
+          </div>
+
+          <div>
+              <i class="bi bi-display"> 6.7", 1080 x 2340 pixels</i>
+          </div>
+
+          <div>
+              <i class="bi bi-cpu"> Mediatek Helio G99 2.2GHz</i>
+          </div>
+
+          <div>
+              <i class="bi bi-battery-full"> 5000 mAh</i>
+          </div>
+
+          <div>
+              <i class="bi bi-camera"> Triple, 50MP+5MP +2MP</i>
+          </div>
+      </div>
+
+      <div class="text-center">
+          <select class="version-select">
+              <option value="version1" data-price="160">Versión 1 - $160</option>
+              <option value="version2" data-price="175">Versión 2 - $175</option>
+          </select>
+          <button class="add-to-cart btn btn-success btn-lg">Agregar al - $160</button>
+      </div>
+  </div>
+          </div>
+
         </div>
       </div>
-    </div>
+      </div>
+   
+    </main>
+
 
     <!--pie-->
     <footer>
