@@ -21,18 +21,16 @@ export async function crearTablaProductosSqlite(conectar) {
             procesador VARCHAR(100),
             bateria INTEGER NOT NULL,
             camara VARCHAR(20),
-            gamma VARCHAR(5),
-            cantidad INTEGER NOT NULL,
-            id_usuario INTEGER NOT NULL,
-            fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            id_categoria INTEGER NOT NULL,
+            fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (id_categoria) REFERENCES categorias(id)
           )
         `);
         console.log("Tabla de productos creada.");
       } else {
-        //console.log("La tabla de productos ya existe.");
+        console.log("La tabla de productos ya existe.");
       }
     } catch (error) {
       console.error("Error al crear la tabla de productos:", error);
     }
   }
-  
