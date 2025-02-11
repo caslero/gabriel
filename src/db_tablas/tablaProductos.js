@@ -14,7 +14,7 @@ export async function crearTablaProductosSqlite(conectar) {
                   producto VARCHAR(100) NOT NULL,
                   imagen VARCHAR(150) NOT NULL,
                   id_categoria INTEGER NOT NULL,
-                  existencia_actual INTEGER NOT NULL DEFAULT 0,  -- Cambiado a INTEGER para representar true/false
+                  existencia_actual BOOLEAN NOT NULL,
                   precio REAL NOT NULL,
                   fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                   FOREIGN KEY (id_categoria) REFERENCES categorias(id)
