@@ -29,6 +29,9 @@ export async function consultarUsuarioActivo() {
 
 consultarUsuarioActivo();
 
+todosProductosDisponibles();
+
+
 //Perfil usuario activo
 
 document.addEventListener('DOMContentLoaded', () => {
