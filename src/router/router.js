@@ -49,7 +49,7 @@ rutas.get('/comprar', (req, res) => {
 
 
 /** esta ruta se encarga de rfilalizar la compra de los articulos agg al carrito */
-rutas.get('/Fcompras', (req, res) => {
+rutas.get('/finalizar-compras', (req, res) => {
   res.sendFile(__dirname + '/view/Fcompras.html'); 
 });
 

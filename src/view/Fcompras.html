@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="/css/productos.css" />
     <!--
     <script src="https://cdn.tailwindcss.com"></script>-->
-    <script src="js/comprar.js" type="module" defer></script>
+    <!-- <script src="js/comprar.js" type="module" defer></script> -->
+    <script src="js/finalizarCompra.js" type="module" defer></script>
   </head>
   <body>
      <!--Barra-->
@@ -71,14 +72,20 @@
         </p>
       </div>
 
-  <div class="container mb-5 mt-5">
+      <div>
+  <div id="carrito-vista" class="container mb-5 mt-5">
+
+<!-- 
       <h1>Resumen de la Compra</h1>
     <div class=" mt-2 mb-2" id="cart-items"></div>
-    <div class="total mt-2 mb-2">
-        <strong>Total: $<span id="total-price">0.00</span></strong>
-    </div>
-    <button class="add-to-cart btn btn-success btn-lg" id="confirm-purchase">Comprar Todos los Artículos</button>
+    
+    <button class="add-to-cart btn btn-success btn-lg" id="confirm-purchase">Comprar Todos los Artículos</button> -->
+  
   </div>
+  <div class="total mt-2 mb-2">
+    <span id="total-price"></span>
+</div>
+</div>
 
     
 

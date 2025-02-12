@@ -12,11 +12,12 @@ function comprar(productos) {
     });
 }
 
-// Evento para el botón de compra
-document.getElementById('checkout-button').addEventListener('click', () => {
-    // Obtener el carrito desde localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+// // Evento para el botón de compra
+// document.getElementById('checkout-button').addEventListener('click', () => {
+//     // Obtener el carrito desde localStorage
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Llamar a la función comprar con los datos del carrito
-    comprar(cart);
-});
+//     // Llamar a la función comprar con los datos del carrito
+//     comprar(cart);
+// });
+
