@@ -1,6 +1,5 @@
 import { direccionLocal } from "./constantes.js";
 
-
 export function gestionar() {
   try {
     fetch(`${direccionLocal}/api/productos-disponibles`, {
@@ -32,28 +31,109 @@ export function gestionar() {
                             <td>${element.codigo}</td>
                             <td>${element.precio}</td>
                             <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Eliminar</button>
+                             <button class="btn btn-primary edit-btn m1-5 mt-1 t" 
+                               data-id="${element.id}">
+                               Editar
+                             </button>
+
+                             <button class="btn btn-danger delete-btn mb-1 mt-1"
+                               data-id="${element.id}">
+                               Eliminar
+                              </button>
                             </td>
                         </tr>
                     `;
             productosContent += rowContent; // Acumula el contenido de cada producto
-
-          
           });
 
-          document.getElementById(
-            "productos-detalles"
-          ).innerHTML = `${productosContent}`;
+          // Inserta el contenido acumulado en el contenedor
+          document.getElementById("productos-container").innerHTML = productosContent;
+
+          // Agregar eventos a los botones de editar
+          document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+              const productId = this.getAttribute('data-id');
+              
+              // Lógica para obtener los datos del producto
+              const product = data.productosDisponibles.find(p => p.id == productId);
+              
+              if (product) {
+                // Cargar los datos del producto en el modal
+                document.getElementById('productName').value = product.producto;
+                document.getElementById('productCode').value = product.codigo;
+                document.getElementById('productPrice').value = product.precio;
+                document.getElementById('productId').value = product.id;
+
+                // Mostrar el modal
+                $('#editModal').modal('show');
+              }
+            });
+          });
+          
+          // Guardar cambios
+          document.getElementById('saveChanges').addEventListener('click', function() {
+            const id = document.getElementById('productId').value;
+            const updatedProduct = {
+              producto: document.getElementById('productName').value,
+              codigo: document.getElementById('productCode').value,
+              precio: document.getElementById('productPrice').value,
+            };
+          
+            // Lógica para enviar los datos actualizados a la API
+            fetch(`${direccionLocal}/api/productos/${id}`, {
+              method: "PUT",
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(updatedProduct),
+              credentials: "include",
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error("Error al actualizar el producto: " + response.statusText);
+              }
+              // Cerrar el modal
+              $('#editModal').modal('hide');
+              // Volver a cargar la lista de productos
+              gestionar();
+            })
+            .catch(error => {
+              console.error("Error:", error);
+            });
+          });
+
+          // Agregar eventos a los botones de eliminar
+          document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function() {
+              const productId = this.getAttribute('data-id');
+              // Lógica para eliminar el producto
+              console.log(`Eliminar producto con ID: ${productId}`);
+              // Aquí puedes mostrar un mensaje de confirmación y luego eliminar el producto
+              if (confirm(`¿Estás seguro de que deseas eliminar el producto con ID: ${productId}?`)) {
+                // Lógica para eliminar el producto
+                fetch(`${direccionLocal}/api/productos/${productId}`, {
+                  method: "DELETE",
+                  credentials: "include",
+                })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error("Error al eliminar el producto: " + response.statusText);
+                  }
+                  // Si la eliminación fue exitosa, puedes volver a llamar a gestionar() // para actualizar la lista
+                  gestionar();
+                })
+                .catch(error => {
+                  console.error("Error:", error);
+                });
+              }
+            });
+          });
+
         } else {
           console.error(
             "La respuesta no contiene un array de productos disponibles."
           );
         }
-
-        // Inserta el contenido acumulado en el contenedor
-        document.getElementById("productos-container").innerHTML =
-          productosContent;
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -64,116 +144,3 @@ export function gestionar() {
 }
 
 gestionar();
-
-/*
-
-
-export function todosProductosDisponibles() {
-    try{
-        fetch(`${direccionLocal}/api/productos-disponibles`, {
-            method: 'GET',
-            credentials: 'include' // Esto incluye las cookies con la solicitud
-        })
-        .then(response => response.json())   
-        .then(data => { 
-            let productoIdContent = '';
-            let productoNombreContent = '';
-            let productoCodigoContent = '';
-            let productoPrecioContent = '';
-            data.productosDisponibles.forEach(element => {
-                 let tableContent = `
-                 <div class="table"
-                   <div class="product"
-                      data-id="${element.id}"
-                      data-name="${element.producto}"
-                      data-codigo="${element.codigo}"
-                      data-price="${element.precio}"
-                    >
-                    <thead>
-                       <tr>
-                         <th>${element.id}</th>
-                         <th>${element.producto}</th>
-                         <th>${element.codigo}</th>
-                         <th>${element.precio}</th>
-                         <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    </div> 
-                   </div> 
-                   `;
-
-                document.getElementById('gamma-alta').innerHTML = gammaAltaContent; 
-                document.getElementById('gamma-media').innerHTML = gammaMediaContent;
-                document.getElementById('gamma-baja').innerHTML = gammaBajaContent;
-
-            
-
-
-
-const express = require('express');
-const app = express();
-const port = 3000;
-
-// Simulación de una base de datos
-const productos = [
-    { id: 1, nombre: 'Producto 1', codigo: 'P001', precio: 100 },
-    { id: 2, nombre: 'Producto 2', codigo: 'P002', precio: 200 },
-    { id: 3, nombre: 'Producto 3', codigo: 'P003', precio: 300 },
-];
-
-// Endpoint para obtener todos los productos
-app.get('/api/productos', (req, res) => {
-    res.json(productos);
-});
-
-app.listen(port, () => {
-    console.log(`API escuchando en http://localhost:${port}`);
-});
-
-
-async function cargarProductos() {
-    try {
-        const response = await fetch('http://localhost:3000/api/productos');
-        if (!response.ok) {
-            throw new Error('Error al cargar los productos');
-        }
-        const productos = await response.json();
-        const tbody = document.getElementById('product-table-body');
-
-        // Limpiar la tabla antes de agregar nuevos productos
-        tbody.innerHTML = '';
-
-        // Agregar cada producto a la tabla
-        productos.forEach(producto => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${producto.id}</td>
-                <td>${producto.nombre}</td>
-                <td>${producto.codigo}</td>
-                <td>${producto.precio}</td>
-                <td>
-                    <button onclick="editarProducto(${producto.id})">Editar</button>
-                    <button onclick="eliminarProducto(${producto.id})">Eliminar</button>
-                </td>
-            `;
-            tbody.appendChild(row);
-        });
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-// Funciones de acción (puedes implementar la lógica según tus necesidades)
-function editarProducto(id) {
-    alert(`Editar producto con ID: ${id}`);
-    // Aquí puedes agregar la lógica para editar el producto
-}
-
-function eliminarProducto(id) {
-    alert(`Eliminar producto con ID: ${id}`);
-    // Aquí puedes agregar la lógica para eliminar el producto
-}
-
-// Cargar los productos al cargar la página
-window.onload = cargarProductos;
-*/
