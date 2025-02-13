@@ -1,26 +1,31 @@
-import { direccionLocal } from "./constantes.js"; 
+import { direccionLocal } from "./constantes.js";
+
 
 export function gestionar() {
-    try {
-        fetch(`${direccionLocal}/api/productos-disponibles`, {
-            method: 'GET',
-            credentials: 'include'
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta de la API: ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data); // Verifica la estructura de los datos
-            let productosContent = ''; // Variable para acumular el contenido de productos
+  try {
+    fetch(`${direccionLocal}/api/productos-disponibles`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Error en la respuesta de la API: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data); // Verifica la estructura de los datos
+        let productosContent = ""; // Variable para acumular el contenido de productos
 
-            // Asegúrate de que data.productosDisponibles sea un array
-            if (Array.isArray(data.productosDisponibles)) {
-                data.productosDisponibles.forEach(element => {
-                    // Agrega solo una fila a la tabla
-                    let rowContent = `
+        // Asegúrate de que data.productosDisponibles sea un array
+        if (Array.isArray(data.productosDisponibles)) {
+          data.productosDisponibles.forEach((element) => {
+            console.log('azfkajdgfigh');
+            
+            // Agrega solo una fila a la tabla
+            let rowContent = `
                         <tr>
                             <td>${element.id}</td>
                             <td>${element.producto}</td>
@@ -32,30 +37,33 @@ export function gestionar() {
                             </td>
                         </tr>
                     `;
-                    productosContent += rowContent; // Acumula el contenido de cada producto
-                });
-            } else {
-                console.error('La respuesta no contiene un array de productos disponibles.');
-            }
+            productosContent += rowContent; // Acumula el contenido de cada producto
 
-            // Inserta el contenido acumulado en el contenedor
-            document.getElementById('productos-container').innerHTML = productosContent;
+          
+          });
 
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+          document.getElementById(
+            "productos-detalles"
+          ).innerHTML = `${productosContent}`;
+        } else {
+          console.error(
+            "La respuesta no contiene un array de productos disponibles."
+          );
+        }
 
-    } catch (error) {
-        console.log('Error al consultar los productos: ' + error);        
-    }
+        // Inserta el contenido acumulado en el contenedor
+        document.getElementById("productos-container").innerHTML =
+          productosContent;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } catch (error) {
+    console.log("Error al consultar los productos: " + error);
+  }
 }
 
-
-
-
-
-
+gestionar();
 
 /*
 
