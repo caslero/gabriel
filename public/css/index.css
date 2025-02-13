@@ -78,3 +78,27 @@ img {
   align-items: center;
   justify-self: center;
 }
+
+/*gestion*/
+ 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+.action-buttons button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}

@@ -28,6 +28,11 @@ rutas.get('/registro-cliente', (req, res) => {
   res.sendFile(__dirname + '/view/usuarios.html');
 });
 
+rutas.get('/gestion', (req, res) => {
+  res.sendFile(__dirname + '/view/gestionProductos.html');
+});
+
+
 /** /login se encarga de mostrar la vista para hacer login */
 rutas.get('/login', (req, res) => {
   res.sendFile(__dirname + '/view/login.html'); 
@@ -70,12 +75,6 @@ rutas.get('/registrar-productos', (req, res) => {
 
 
 
-
-
-
-
-
-
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
 rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValidarlo);
@@ -88,7 +87,10 @@ rutas.post('/api/login', LoginControlador.iniciarSesion);
 
 rutas.post('/api/registrar-productos', ProductosControlador.guardarProducto);
 
+
+
 rutas.get('/api/productos-disponibles', ProductosControlador.productosDisponibles);
+
 
 
 
