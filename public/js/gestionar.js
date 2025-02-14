@@ -21,8 +21,6 @@ export function gestionar() {
         // Asegúrate de que data.productosDisponibles sea un array
         if (Array.isArray(data.productosDisponibles)) {
           data.productosDisponibles.forEach((element) => {
-            console.log('azfkajdgfigh');
-            
             // Agrega solo una fila a la tabla
             let rowContent = `
                         <tr>
@@ -53,9 +51,11 @@ export function gestionar() {
           document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
               const productId = this.getAttribute('data-id');
+              console.log(`Editar producto con ID: ${productId}`); // Depuración
               
               // Lógica para obtener los datos del producto
               const product = data.productosDisponibles.find(p => p.id == productId);
+              console.log(product); // Depuración
               
               if (product) {
                 // Cargar los datos del producto en el modal
@@ -78,7 +78,9 @@ export function gestionar() {
               codigo: document.getElementById('productCode').value,
               precio: document.getElementById('productPrice').value,
             };
-          
+            console.log(`Guardar cambios para el producto con ID: ${id}`); // Depuración
+            console.log(updatedProduct); // Depuración
+    
             // Lógica para enviar los datos actualizados a la API
             fetch(`${direccionLocal}/api/productos/${id}`, {
               method: "PUT",
