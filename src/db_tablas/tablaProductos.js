@@ -16,8 +16,9 @@ export async function crearTablaProductosSqlite(conectar) {
                   id_categoria INTEGER NOT NULL,
                   existencia_actual BOOLEAN NOT NULL,
                   precio REAL NOT NULL,
+                  id_usuario INTEGER NOT NULL,
                   fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                  FOREIGN KEY (id_categoria) REFERENCES categorias(id)
+                  FOREIGN KEY (id_categoria, id_usuario) REFERENCES categorias(id), usuarios(id)
               )
           `);
           console.log("Tabla de productos creada.");

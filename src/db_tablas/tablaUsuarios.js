@@ -19,6 +19,7 @@ export async function crearTablaUsuariosSqlite(conectar) {
           token VARCHAR(16),
           clave VARCHAR(100),
           validar BOOLEAN,
+          tipo_usuario VARCHAR(50),
           fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
       `);

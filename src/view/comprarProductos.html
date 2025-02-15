@@ -58,20 +58,46 @@
             <ul
               class="navbar-nav flex-column flex-md-row justify-content-between align-items-center w-100"
             >
-             
-            <li class="nav-item d-none d-md-flex">
-              <a class="dropdown-item" href="/gestion">Gestion</a>
-            </li>
-            <li class="nav-item d-md-none">
-              <a class="dropdown-item" href="/gestion">Gestion</a>
-            </li>
+
+            <div class="">
+              <li class="nav-item d-none d-md-flex">
+                <a class="dropdown-item" href="/comprar-productos">Inicio</a>
+              </li>
+
+              <li class="nav-item d-md-none">
+                <a class="dropdown-item" href="/comprar-productos">Inicio</a>
+              </li>
+            </div>
+
+            
+            <div id="gestion" class="">
+              <!-- <li class="nav-item d-none d-md-flex">
+                <a class="dropdown-item" href="/gestion">Gestion</a>
+              </li>
+
+              <li class="nav-item d-md-none">
+                <a class="dropdown-item" href="/gestion">Gestion</a>
+              </li> -->
+            </div>
+
+            <div id="registrar-productos">
+              <!-- <li class="nav-item d-none d-md-flex">
+                <a class="dropdown-item" href="/registrar-productos">Registrar producto</a>
+              </li>
+
+              <li class="nav-item d-md-none">
+                <a class="dropdown-item" href="/registrar-productos">Registrar producto</a>
+              </li> -->
+            </div>
+
+
+
+
+
+
               <!--codigo carrito-->
               <li class="nav-item">
                 <div class="cart">
-
-
-
-
                   <div class="contenedor-carrito">
                     <button class="logo" id="cart-button">
                       <i class="bi bi-cart4" alt="Carrito"></i>
@@ -79,10 +105,8 @@
                     </button>
                   </div>
 
-                  
                   <div id="cart" class="cart-dropdown text-center">
                     <h5>Carrito de Compras</h5>
-
 
                     <div id="carrito-vista"></div>
 
@@ -92,21 +116,13 @@
                       >
                     </div>
 
-
-
-
                     <button
                       class="add-to-cart btn btn-success btn-lg"
                       id="checkout-button"
                     >
                       Finalizar Compra
                     </button>
-
-
                   </div>
-
-
-
                 </div>
               </li>
             </ul>
@@ -123,7 +139,6 @@
               </button>
             </form>
           </div>
-
 
           <!--nombre del usuario activo -->
           <div class="profile">
@@ -171,17 +186,6 @@
         </p>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-      
       <!--Productos del tu catalogo-->
       <div id="contenedor">
         <!--categoria G-Alta-->
@@ -191,21 +195,16 @@
             En esta categorias encotraras equipos que te ofrecen lo ultimo en
             tecnologia, caracteristicas y rendimientos.
           </p>
-          <div id="gamma-alta" class="card-group">
-           
-          </div>
+          <div id="gamma-alta" class="card-group"></div>
         </div>
 
-        
         <div id="G-Media" class="container mb-5 mt-5">
           <h4>Gama Media</h4>
           <p>
             En esta categoria encotraras equipos que ofrecen un equilibrio entre
             rendimiento, caracteristicas y precio.
           </p>
-          <div id="gamma-media" class="card-group">
-           
-          </div>
+          <div id="gamma-media" class="card-group"></div>
         </div>
 
         <!--categoria G-Baja-->
@@ -217,9 +216,7 @@
             batante accesible.
           </p>
 
-          <div id="gamma-baja" class="card-group">
-           
-          </div>
+          <div id="gamma-baja" class="card-group"></div>
         </div>
       </div>
     </main>

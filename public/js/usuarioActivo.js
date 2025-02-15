@@ -10,6 +10,28 @@ export async function consultarUsuarioActivo() {
   .then(data => {
     document.getElementById('nombre-usuario-activo').innerHTML = `<span><i class="bi bi-person"></i>${data.usuarioActivo.nombre}</span>`;
       //console.log(data.usuarioActivo.nombre);
+      if (data.usuarioActivo.tipo_usuario === 'administrador') {
+        document.getElementById('gestion').innerHTML = `
+          <li class="nav-item d-none d-md-flex">
+                <a class="dropdown-item" href="/gestion">Gestion</a>
+              </li>
+
+              <li class="nav-item d-md-none">
+                <a class="dropdown-item" href="/gestion">Gestion</a>
+              </li>
+        `;
+
+        document.getElementById('registrar-productos').innerHTML = `
+          <li class="nav-item d-none d-md-flex">
+                <a class="dropdown-item" href="/registrar-productos">Registrar producto</a>
+              </li>
+
+              <li class="nav-item d-md-none">
+                <a class="dropdown-item" href="/registrar-productos">Registrar producto</a>
+              </li>
+        `;
+      }
+      
   })
   .catch(error => {
       console.error('Error:', error);

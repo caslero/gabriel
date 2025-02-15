@@ -48,7 +48,7 @@ export function inicioSesionDatos(correo) {
 
 /** datosUsuarioActivo es la sentencia sql para consultar datos del user activo*/
 export function datosUsuarioActivo(correo) {
-  const usuarioActivo = `SELECT id, nombre, correo FROM usuarios WHERE correo = '${correo}'`;
+  const usuarioActivo = `SELECT id, nombre, tipo_usuario, correo FROM usuarios WHERE correo = '${correo}'`;
   return usuarioActivo;
 }
 
