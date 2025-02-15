@@ -18,6 +18,7 @@ export function todosProductosDisponibles() {
           <div
             id="${element.id}" 
             class="product"
+            data-codigo="${element.codigo}"
             data-name="${element.producto}"
             data-price="${element.precio}"
             data-image="${element.imagen}"
@@ -94,6 +95,7 @@ let carrito = [];
 function addToCart(event) {
   const productElement = event.target.closest(".product");
   const productId = productElement.id; // Obtener el id directamente
+  const productCodigo = productElement.getAttribute("data-codigo");
   const productName = productElement.getAttribute("data-name");
   const productPrice = parseFloat(productElement.getAttribute("data-price"));
   const productImage = productElement.getAttribute("data-image");
@@ -101,6 +103,7 @@ function addToCart(event) {
 
   const producto = {
     id: productId,
+    codigo:productCodigo,
     nombre: productName,
     precio: productPrice,
     imagen: productImage,

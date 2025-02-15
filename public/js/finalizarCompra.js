@@ -22,11 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   actualizarVistaCarrito();
-});
 
-function finalizarCompra() {
-  alert('Compra confirmada!');
-  // Aquí puedes añadir la lógica para finalizar la compra, como enviar los datos al servidor.
-  localStorage.removeItem('carrito'); // Limpia el carrito después de la compra
-  window.location.href = 'index.html'; // Redirige a la página principal o a otra vista
-}
+  document.querySelector('#compra-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    finalizarCompra();
+  });
+
+  function finalizarCompra() {
+    // Obtener la referencia bancaria
+    const referenciaBancaria = document.querySelector('#referencia').value;
+    
+    // Mostrar la referencia bancaria en la consola
+    console.log('Referencia bancaria:', referenciaBancaria);
+
+    // Obtener los datos de los productos en el carrito
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    console.log('Carrito:', carrito); // Verificar el contenido del carrito
+
+    const productosComprados = carrito.map(producto => ({
+      id: producto.id,
+      codigo: producto.codigo,
+      nombre: producto.nombre,
+      imagen: producto.imagen,
+      precio: producto.precio
+    }));
+
+    // Mostrar los productos comprados en la consola con más detalles
+    productosComprados.forEach(producto => {
+      console.log(`Producto comprado - ID: ${producto.id}, Código: ${producto.codigo}, Nombre: ${producto.nombre}, Imagen: ${producto.imagen}, Precio: ${producto.precio}`);
+    });
+
+    // Confirmar la compra
+    alert('Compra confirmada!');
+    
+    // Limpiar el carrito después de la compra
+    localStorage.removeItem('carrito'); 
+    // Redirigir a la página principal o a otra vista
+    window.location.href = 'index.html'; 
+  }
+});
