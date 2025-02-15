@@ -38,7 +38,7 @@ body {
     height: 70px;
     width: 100%;
     color: #d05151;
-    border: 2px solid #8f7ad7;
+    border: 2px solid #07ffac;
     background-color: #fffafd;
     font-size: 15px;
     font-weight: 700;
@@ -65,7 +65,7 @@ body {
     height: 40px;
     border-radius: 20px;
     background: #ebd6de;
-    background: linear-gradient(to left, #e79c87 0%, #c691c2 40%, #8f7ad7 100%);
+    background: rgba(13, 253, 193, 0.897);
     font-weight: 400;
     transition: all;
     transition-duration: 400ms;
@@ -73,7 +73,7 @@ body {
   .btn-login:hover {
     background-color: white;
     color: #493b27;
-    border: 2px solid #8f7ad7;
+    border: 2px solid rgba(13, 253, 193, 0.897);
     font-weight: 400;
     width: 170px;
     height: 40px;
@@ -106,7 +106,7 @@ body {
     height: 70px;
     width: 100%;
     color: #d05151;
-    border: 2px solid #8f7ad7;
+    border: 2px solid rgba(13, 253, 193, 0.897);
     background-color: #fffafd;
     font-size: 20px;
     font-weight: 700;
@@ -126,14 +126,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #edd4f6;
+    color: #ebd6de;
     font-size: 20px;
     border: 1px solid #493b27;
     width: 170px;
     height: 40px;
     border-radius: 20px;
     background: #ebd6de;
-    background: linear-gradient(to left, #e79c87 0%, #c691c2 40%, #8f7ad7 100%);
+    background: rgba(13, 253, 193, 0.897);
     font-weight: 400;
     transition: all;
     transition-duration: 400ms;
@@ -141,7 +141,7 @@ body {
   .btn-login:hover {
     background-color: white;
     color: #493b27;
-    border: 2px solid #8f7ad7;
+    border: 2px solid rgba(13, 253, 193, 0.897);
     font-weight: 400;
     width: 170px;
     height: 40px;
@@ -155,12 +155,7 @@ body {
     padding: 20px;
     box-shadow: 0px 0px 40px 5px #e28ba8;
     background: #ebd6de;
-    background: linear-gradient(
-      to bottom,
-      #e79c87 0%,
-      #c691c2 40%,
-      #8f7ad7 100%
-    );
+    background: rgba(13, 253, 193, 0.897);
   }
   .circulo-login1 {
     box-shadow: 0px 0px 40px 5px #e28ba8;
