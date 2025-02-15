@@ -1,24 +1,16 @@
 export function registrarProductoVersionUno(req, id_usuario) {
   const {
+    codigo,
     nombre,
     imagen,
-    ramVersionUno,
-    romVersionUno,
-    precioVersionUno,
-    sizePantallaUno,
-    resolucionVersionUno,
-    procesadorVersionUno,
-    bateriaVersionUno,
-    camaraVersionUno,
-    gammaVersionUno,
-    cantidadVersionUno,
+    precio,
+    categoria,
   } = req.body;
 
   
     const guardarProducto = `INSERT INTO productos 
-          (nombre, imagen, version, ram, rom, precio, size, resolucion, procesador, bateria, camara, gamma, cantidad, id_usuario, fecha_creado) VALUES
-          ('${nombre}', '${imagen}', '1', '${ramVersionUno}', '${romVersionUno}', '${precioVersionUno}', '${sizePantallaUno}',
-           '${resolucionVersionUno}', '${procesadorVersionUno}', '${bateriaVersionUno}', '${camaraVersionUno}', '${gammaVersionUno}', '${cantidadVersionUno}', '${id_usuario}', CURRENT_TIMESTAMP)`;
+          (codigo, producto, imagen, id_categoria, existencia_actual, precio, fecha_creado) VALUES
+          ('${codigo}', '${nombre}', '${imagen}', '${categoria}', '1', '${precio}', CURRENT_TIMESTAMP)`;
     return guardarProducto;
 }
 

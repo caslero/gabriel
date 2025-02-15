@@ -43,17 +43,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
   checkboxes.forEach((checkbox) => {
     checkbox.onclick = () => {
       marcarExclusivo(checkbox);
-      imprimirLog(checkbox);
     };
   });
 
-  // Marcar una casilla inicial, por ejemplo, la primera
-  document.getElementById("versionUno").checked = true;
+  // // Marcar una casilla inicial, por ejemplo, la primera
+  // document.getElementById("versionUno").checked = true;
 
-  // Si ninguna casilla está marcada, marcar la primera por defecto
-  if (!document.querySelector(".form-check-input:checked")) {
-    document.getElementById("versionUno").checked = true;
-  }
+  // // Si ninguna casilla está marcada, marcar la primera por defecto
+  // if (!document.querySelector(".form-check-input:checked")) {
+  //   document.getElementById("versionUno").checked = true;
+  // }
 });
 
 function marcarExclusivo(checkbox) {
@@ -193,118 +192,152 @@ agregarNuevoProducto.addEventListener("submit", guardarProducto);
 async function guardarProducto(e) {
   try {
     e.preventDefault();
-    const versionSeleccionada = document.querySelector(
-      ".form-check-input:checked"
-    );
+   
 
+    const codigo = e.target.codigo.value;
     const nombre = e.target.nombre.value;
     const imagenProducto = e.target.imagenProducto.value;
+    const gammaVersionUno = e.target.gammaVersionUno.value;
+    const precio = e.target.precio.value;
+
+/** 
     const version = versionSeleccionada.value === 'versionUno' ? 1 : 2;    
     const ramVersionUno = e.target.ramVersionUno.value;
     const romVersionUno = e.target.romVersionUno.value;
-    const precioVersionUno = e.target.precioVersionUno.value;
+    
     const sizePantallaUno = e.target.sizePantallaVersionUno.value;
     const resolucionVersionUno = e.target.resolucionVersionUno.value;
     const procesadorVersionUno = e.target.procesadorVersionUno.value;
     const bateriaVersionUno = e.target.bateriaVersionUno.value;
     const camaraVersionUno = e.target.camaraVersionUno.value;
-    const gammaVersionUno = e.target.gammaVersionUno.value;
+    
     const cantidadVersionUno = e.target.cantidadVersionUno.value;
+*/
 
-    if (versionSeleccionada.value === "versionUno") {
-      const respuesta = await fetch(
-        `${direccionLocal}/api/registrar-productos`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nombre: nombre,
-            imagen: imagenProducto,
-            version: version,
-            ramVersionUno: ramVersionUno,
-            romVersionUno: romVersionUno,
-            precioVersionUno: precioVersionUno,
-            sizePantallaUno: sizePantallaUno,
-            resolucionVersionUno: resolucionVersionUno,
-            procesadorVersionUno: procesadorVersionUno,
-            bateriaVersionUno: bateriaVersionUno,
-            camaraVersionUno: camaraVersionUno,
-            gammaVersionUno: gammaVersionUno,
-            cantidadVersionUno: cantidadVersionUno
-          }),
-        }
-      );
 
-      const respuestaJson = await respuesta.json();
-      const statusError = respuestaJson.status;
-      const mensaje = respuestaJson.message;
-
-      if (statusError == "error") {
-        mensajesValidacion(mensaje);
-      } else {
-        mensajesValidacion(mensaje);
+    const respuesta = await fetch(
+      `${direccionLocal}/api/registrar-productos`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          codigo: codigo,
+          nombre: nombre,
+          imagen: imagenProducto,
+          precio: precio,
+          categoria: gammaVersionUno,
+        }),
       }
+    );
 
+    const respuestaJson = await respuesta.json();
+    const statusError = respuestaJson.status;
+    const mensaje = respuestaJson.message;
+
+    if (statusError == "error") {
+      mensajesValidacion(mensaje);
     } else {
-      const ramVersionDos = e.target.ramVersionDos.value;
-      const romVersionDos = e.target.romVersionDos.value;
-      const precioVersionDos = e.target.precioVersionDos.value;
-      const sizePantallaDos = e.target.sizePantallaVersionDos.value;
-      const resolucionVersionDos = e.target.resolucionVersionDos.value;
-      const procesadorVersionDos = e.target.procesadorVersionDos.value;
-      const bateriaVersionDos = e.target.bateriaVersionDos.value;
-      const camaraVersionDos = e.target.camaraVersionDos.value;
-      const gammaVersionDos = e.target.gammaVersionDos.value;
-      const cantidadVersionDos = e.target.cantidadVersionDos.value;
-
-
-      const respuesta = await fetch(
-        `${direccionLocal}/api/registrar-productos`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nombre: nombre,
-            imagen: imagenProducto,
-            version: version,
-            ramVersionUno: ramVersionUno,
-            romVersionUno: romVersionUno,
-            ramVersionDos: ramVersionDos,
-            romVersionDos: romVersionDos,
-            precioVersionUno: precioVersionUno,
-            precioVersionDos: precioVersionDos,
-            sizePantallaUno: sizePantallaUno,
-            sizePantallaDos: sizePantallaDos,
-            resolucionVersionUno: resolucionVersionUno,
-            resolucionVersionDos: resolucionVersionDos,
-            procesadorVersionUno: procesadorVersionUno,
-            procesadorVersionDos: procesadorVersionDos,
-            bateriaVersionUno: bateriaVersionUno,
-            bateriaVersionDos: bateriaVersionDos,
-            camaraVersionUno: camaraVersionUno,
-            camaraVersionDos: camaraVersionDos,
-            gammaVersionUno: gammaVersionUno,
-            gammaVersionDos: gammaVersionDos,
-            cantidadVersionUno: cantidadVersionUno,
-            cantidadVersionDos: cantidadVersionDos
-          }),
-        }
-      );
-
-      const respuestaJson = await respuesta.json();
-      const statusError = respuestaJson.status;
-      const mensaje = respuestaJson.message;
-
-      if (statusError == "error") {
-        mensajesValidacion(mensaje);
-      } else {
-        mensajesValidacion(mensaje);
-      }
+      mensajesValidacion(mensaje);
     }
+
+    /**
+      if (versionSeleccionada.value === "versionUno") {
+        const respuesta = await fetch(
+          `${direccionLocal}/api/registrar-productos`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              nombre: nombre,
+              imagen: imagenProducto,
+              version: version,
+              ramVersionUno: ramVersionUno,
+              romVersionUno: romVersionUno,
+              precioVersionUno: precioVersionUno,
+              sizePantallaUno: sizePantallaUno,
+              resolucionVersionUno: resolucionVersionUno,
+              procesadorVersionUno: procesadorVersionUno,
+              bateriaVersionUno: bateriaVersionUno,
+              camaraVersionUno: camaraVersionUno,
+              gammaVersionUno: gammaVersionUno,
+              cantidadVersionUno: cantidadVersionUno
+            }),
+          }
+        );
+
+        const respuestaJson = await respuesta.json();
+        const statusError = respuestaJson.status;
+        const mensaje = respuestaJson.message;
+
+        if (statusError == "error") {
+          mensajesValidacion(mensaje);
+        } else {
+          mensajesValidacion(mensaje);
+        }
+
+      } else {
+        const ramVersionDos = e.target.ramVersionDos.value;
+        const romVersionDos = e.target.romVersionDos.value;
+        const precioVersionDos = e.target.precioVersionDos.value;
+        const sizePantallaDos = e.target.sizePantallaVersionDos.value;
+        const resolucionVersionDos = e.target.resolucionVersionDos.value;
+        const procesadorVersionDos = e.target.procesadorVersionDos.value;
+        const bateriaVersionDos = e.target.bateriaVersionDos.value;
+        const camaraVersionDos = e.target.camaraVersionDos.value;
+        const gammaVersionDos = e.target.gammaVersionDos.value;
+        const cantidadVersionDos = e.target.cantidadVersionDos.value;
+
+
+        const respuesta = await fetch(
+          `${direccionLocal}/api/registrar-productos`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              nombre: nombre,
+              imagen: imagenProducto,
+              version: version,
+              ramVersionUno: ramVersionUno,
+              romVersionUno: romVersionUno,
+              ramVersionDos: ramVersionDos,
+              romVersionDos: romVersionDos,
+              precioVersionUno: precioVersionUno,
+              precioVersionDos: precioVersionDos,
+              sizePantallaUno: sizePantallaUno,
+              sizePantallaDos: sizePantallaDos,
+              resolucionVersionUno: resolucionVersionUno,
+              resolucionVersionDos: resolucionVersionDos,
+              procesadorVersionUno: procesadorVersionUno,
+              procesadorVersionDos: procesadorVersionDos,
+              bateriaVersionUno: bateriaVersionUno,
+              bateriaVersionDos: bateriaVersionDos,
+              camaraVersionUno: camaraVersionUno,
+              camaraVersionDos: camaraVersionDos,
+              gammaVersionUno: gammaVersionUno,
+              gammaVersionDos: gammaVersionDos,
+              cantidadVersionUno: cantidadVersionUno,
+              cantidadVersionDos: cantidadVersionDos
+            }),
+          }
+        );
+
+        const respuestaJson = await respuesta.json();
+        const statusError = respuestaJson.status;
+        const mensaje = respuestaJson.message;
+
+        if (statusError == "error") {
+          mensajesValidacion(mensaje);
+        } else {
+          mensajesValidacion(mensaje);
+        }
+      } 
+    */
 
   } catch (error) {
     console.log("Error al guardar un nuevo producto: " + error);

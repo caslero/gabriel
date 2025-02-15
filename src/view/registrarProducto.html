@@ -98,6 +98,12 @@
     <main class="py-5 bg-light">
       <section class="container mx-auto">
         <form class="" method="post" id="form-registrar-nuevo-producto">
+          
+          <div class="form-group mb-3">
+            <label for="codigo-producto">Codigo del producto</label>
+            <input type="text" class="form-control" id="codigo" />
+          </div>
+
           <div class="form-group mb-3">
             <label for="nombre-producto">Nombre del producto</label>
             <input type="text" class="form-control" id="nombre" />
@@ -108,164 +114,9 @@
             <input type="text" class="form-control" id="imagenProducto" />
           </div>
 
-          <div class="form-group mb-3 d-flex flex-column">
-            <label for="nombre-producto">Cuantas versiones tiene?</label>
-            <div class="d-flex flex-row">
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="versionUno"
-                  value="versionUno"
-                />
-                <label class="form-check-label" for="versionUno">1</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="versionDos"
-                  value="versionDos"
-                />
-                <label class="form-check-label" for="versionDos">2</label>
-              </div>
-            </div>
-          </div>
-
           <div class="row mb-3">
             <div class="col">
-              <label for="nombre-producto">Memoria Ram</label>
-              <input id="ramVersionUno" type="number" class="form-control" />
-              <label for="nombre-producto">Memoria Rom</label>
-              <input id="romVersionUno" type="number" class="form-control" />
-            </div>
-
-            <div id="segundaVersion" class="col">
-              <!-- <label for="nombre-producto">Memoria Ram</label>
-              <input
-                id="ram-version-dos"
-                type="number"
-                class="form-control"
-                placeholder="8gb"
-              />
-              <label for="nombre-producto">Memoria Rom</label>
-              <input
-                id="rmm-version-dos"
-                type="number"
-                class="form-control"
-                placeholder="8gb"
-              /> -->
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label for="precioVersionUno">Precio version uno ($)</label>
-              <input id="precioVersionUno" type="number" class="form-control" />
-            </div>
-            <div id="precioDos" class="col">
-              <!-- <label for="precio-producto-uno">Precio version dos ($)</label>
-              <input
-                id="precio-version-dos"
-                type="number"
-                class="form-control"
-                placeholder="0.00"
-              /> -->
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label for="sizePantallaVersionUno"
-                >Tamaño pantalla version 1</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="sizePantallaVersionUno"
-              />
-            </div>
-            <div id="pantallaVersionDos" class="col">
-              <!-- <label for="sizePantallaVersionDos">Tamaño pantalla version 2</label>
-              <input
-                type="text"
-                class="form-control"
-                id="sizePantallaVersionDos"
-              /> -->
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label for="resolucionVersionUno">Resolucion</label>
-              <input
-                type="text"
-                class="form-control"
-                id="resolucionVersionUno"
-              />
-            </div>
-            <div id="resolucionDos" class="col">
-              <!-- <label for="resolucionVersionDos">Resolucion</label>
-              <input
-                type="text"
-                class="form-control"
-                id="resolucionVersionDos"
-              /> -->
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label for="procesadorVersionUno">Procesador</label>
-              <input
-                type="text"
-                class="form-control"
-                id="procesadorVersionUno"
-              />
-            </div>
-            <div id="procesadorDos" class="col">
-              <!-- <label for="procesadorVersionDos">Procesador</label>
-              <input
-                type="text"
-                class="form-control"
-                id="procesadorVersionDos"
-              /> -->
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label for="bateriaVersionUno">Bateria</label>
-              <input type="number" class="form-control" id="bateriaVersionUno" />
-            </div>
-            <div id="bateriaDos" class="col">
-              <!-- <label for="bateriaVersionDos">Bateria</label>
-              <input
-                type="number"
-                class="form-control"
-                id="bateriaVersionDos"
-              /> -->
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label for="camaraVersionUno">Camara</label>
-              <input type="text" class="form-control" id="camaraVersionUno" />
-            </div>
-            <div id="camaraDos" class="col">
-              <!-- <label for="camaraVersionDos">Camara</label>
-              <input
-                type="text"
-                class="form-control"
-                id="camaraVersionDos"
-              /> -->
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col">
-              <label class="" for="gammaVersion1">Gamma version 1</label>
+              <label class="" for="gammaVersion1">Categoria</label>
               <div class="d-flex flex-row">
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="gammaVersionUno"
@@ -274,47 +125,21 @@
                 </div>
                 <select class="custom-select" id="gammaVersionUno">
                   <option selected>seleccionar</option>
-                  <option value="alta">Alta</option>
-                  <option value="media">Media</option>
-                  <option value="baja">Baja</option>
-                </select>
-              </div>
-            </div>
-
-            <div id="gammaDos" class="col">
-              <!-- <label class="" for="gammaVersion2">Escoja la gamma</label>
-              <div class="d-flex flex-row">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="gammaVersionDos">Options</label>
-                </div>
-                <select class="custom-select" id="gammaVersionDos">
-                  <option selected>seleccionar</option>
                   <option value="1">Alta</option>
                   <option value="2">Media</option>
                   <option value="3">Baja</option>
                 </select>
-              </div> -->
+              </div>
             </div>
           </div>
 
-          <div class="row mb-3">
-            <div class="col">
-              <label for="cantidadVersionUno">Cantidad version 1</label>
-              <input
-                type="number"
-                class="form-control"
-                id="cantidadVersionUno"
-              />
-            </div>
-            <div id="cantidadDos" class="col">
-              <!-- <label for="cantidadVersionDos">Cantidad version 2</label>
-              <input
-                type="number"
-                class="form-control"
-                id="cantidadVersionDos"
-              /> -->
-            </div>
+          <div class="form-group mb-3">
+            <label for="codigo-producto">Precio</label>
+            <input type="text" class="form-control" id="precio" />
           </div>
+
+
+
 
           <!-- Inicio. Aqui se muestran los msj de error o advertencia al momento de iniciar sesion-->
           <div id="validar" class="d-none flex-column align-items-center mt-2 border p-2 rounded-2 bg-primary bg-opacity-25 text-danger">

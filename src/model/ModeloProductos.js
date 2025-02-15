@@ -14,29 +14,12 @@ export class ModeloProductos {
         registrarProductoVersionUno(req, idUsuario)
       );
 
-      guardarProductoUno
-        .then((datos) => {
-          
-          if (version === 2) {
-            const guardarProductoDos = conexionSqlite.run(
-              registrarProductoVersionDos(req, idUsuario)
-            );
-            guardarProductoDos
-              .then((datosDos) => {
-                resolve([datos, datosDos]);
-              })
-              .catch((error) => {
-                console.log(error);
-                resolve(false);
-              });
-          } else {
-            resolve(datos);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          resolve(false);
-        });
+      guardarProductoUno.then((data) => {
+        resolve(data)
+      }).catch((error) => {
+        console.log(error);          
+        resolve(false)
+      });
     });
   }
 
