@@ -17,6 +17,7 @@ export async function crearTablaProductosSqlite(conectar) {
                   existencia_actual BOOLEAN NOT NULL,
                   precio REAL NOT NULL,
                   id_usuario INTEGER NOT NULL,
+                  borrado BOOLEAN NOT NULL,
                   fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                   FOREIGN KEY (id_categoria, id_usuario) REFERENCES categorias(id), usuarios(id)
               )

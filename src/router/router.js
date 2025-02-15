@@ -87,6 +87,8 @@ rutas.post('/api/login', LoginControlador.iniciarSesion);
 
 rutas.post('/api/registrar-productos', ProductosControlador.guardarProducto);
 
+rutas.put('/api/update-producto/:id', ProductosControlador.actualizarProducto);
+rutas.put('/api/delete-producto/:id', ProductosControlador.eliminarProducto);
 
 
 rutas.get('/api/productos-disponibles', ProductosControlador.productosDisponibles);

@@ -70,6 +70,11 @@ export function gestionar() {
             });
           });
           
+
+
+
+
+
           // Guardar cambios
           document.getElementById('saveChanges').addEventListener('click', function() {
             const id = document.getElementById('productId').value;
@@ -78,8 +83,6 @@ export function gestionar() {
               codigo: document.getElementById('productCode').value,
               precio: document.getElementById('productPrice').value,
             };
-            console.log(`Guardar cambios para el producto con ID: ${id}`); // Depuración
-            console.log(updatedProduct); // Depuración
     
             // Lógica para enviar los datos actualizados a la API
             fetch(`${direccionLocal}/api/productos/${id}`, {
@@ -104,17 +107,21 @@ export function gestionar() {
             });
           });
 
+
+
+
+
           // Agregar eventos a los botones de eliminar
           document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', function() {
               const productId = this.getAttribute('data-id');
               // Lógica para eliminar el producto
-              console.log(`Eliminar producto con ID: ${productId}`);
+              //console.log(`Eliminar producto con ID: ${productId}`);
               // Aquí puedes mostrar un mensaje de confirmación y luego eliminar el producto
               if (confirm(`¿Estás seguro de que deseas eliminar el producto con ID: ${productId}?`)) {
                 // Lógica para eliminar el producto
-                fetch(`${direccionLocal}/api/productos/${productId}`, {
-                  method: "DELETE",
+                fetch(`${direccionLocal}/api/delete-producto/${productId}`, {
+                  method: "PUT",
                   credentials: "include",
                 })
                 .then(response => {

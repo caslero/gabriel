@@ -45,6 +45,21 @@ export function disponiblesProductos() {
 }
 
 
+export function productoActualizado(id, id_usuario, producto, codigo, precio) {
+  const updateProducto = `
+    UPDATE productos
+    SET
+      producto = '${producto}',
+      codigo = '${codigo}',
+      precio = ${precio},
+      id_usuario = ${id_usuario}
+    WHERE id = ${id};
+  `;
+  return updateProducto;
+}
+
+
+
 
 /** 
   export function registrarProductoVersionUno(req, id_usuario) {

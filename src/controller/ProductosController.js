@@ -113,4 +113,103 @@ export class ProductosControlador {
       });
     }
   }
+
+  static async actualizarProducto(req, res) {
+    try {
+
+      const { id } = req.params;
+      const { producto, codigo, precio } = req.body;
+      const token = req.cookies.programacioniii;
+
+      const descifrarToken = Tokens.descifrarToken(token);
+
+
+      if (descifrarToken.status === "error") {
+        return res.status(400).json({
+          status: descifrarToken.status,
+          numero: descifrarToken.numero,
+          message: descifrarToken.message,
+        });  
+      }
+
+      const id_usuario = ModeloUsuarios.idUsuarioRegistra(descifrarToken.correo);
+
+      id_usuario.then(async (datos) => {
+        const productoActualizado = await ModeloProductos.actualizarUnProducto(id, datos.id, producto, codigo, precio);
+        
+        if (!productoActualizado) {
+          return res.status(400).json({
+            status: "error",
+            numero: 0,
+            message: "Error al actualizar producto...",
+          });
+        } else {
+          return res.status(201).json({
+            status: "ok",
+            numero: 1,
+            message: "Producto actualizado...",
+          });
+        }
+        
+      }).catch((error) => {
+      console.log(error);
+      
+      });
+      
+      
+
+      // return res.status(201).json({
+      //   status: "ok",
+      //   numero: 1,
+      //   message: "Producto actualizado...",
+      // });
+      
+    } catch (error) {
+      console.log("Error, al actualizar producto: " + error);
+      return res.status(500).json({
+        status: "error",
+        numero: 0,
+        message: "Error, al actualizar producto...",
+      });
+    }
+  }
+
+
+
+  static async eliminarProducto(req, res) {
+    try {
+      const token = req.cookies.programacioniii;
+      const { id } = req.params;
+
+      const descifrarToken = Tokens.descifrarToken(token);
+
+
+      if (descifrarToken.status === "error") {
+        return res.status(400).json({
+          status: descifrarToken.status,
+          numero: descifrarToken.numero,
+          message: descifrarToken.message,
+        });  
+      }
+
+      console.log(id, descifrarToken.correo);
+      
+
+
+      return res.status(201).json({
+        status: "ok",
+        numero: 1,
+        message: "Producto eliminado...",
+      });
+
+      
+    } catch (error) {
+      console.log("Error, al eliminar un producto: " + error);
+      return res.status(500).json({
+        status: "error",
+        numero: 0,
+        message: "Error, al eliminar un producto...",
+      });
+    }
+  }
 }
