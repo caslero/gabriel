@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       carrito.forEach(producto => {
           totalPagar += producto.precio;
           carritoContent += `
-              <div class="cart-item">
+              <div id="${producto.id}" class="cart-item">
                   <img src="${producto.imagen}" alt="${producto.nombre}">
                   <div class="cart-details">
                       <h5>${producto.nombre}</h5>
