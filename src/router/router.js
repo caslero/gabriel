@@ -37,6 +37,10 @@ rutas.get('/comfirmarC', (req, res) => {
   res.sendFile(__dirname + '/view/confirmarCompra.html');
 });
 
+rutas.get('/cambiar-clave', (req, res) => {
+  res.sendFile(__dirname + '/view/cambiarClave.html');
+});
+
 rutas.get('/clave', (req, res) => {
   res.sendFile(__dirname + '/view/recuperarClave.html'); 
 });
