@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="image/x-icon" href="/img/favicon.ico" rel="shortcut icon" />
-    <title>Recuperar clave</title>
+    <title>Cambiar clave</title>
     <link rel="stylesheet" href="/css/login.css" />
     <link rel="stylesheet" href="/css/index.css" />
     <link
@@ -59,27 +59,20 @@
     <section class="container mx-auto my-10 w-full h-screen max-w-[600px] flex flex-col items-center justify-center">
         <div class="container text-center">
             <h2 class="text-[#07ffac] text-center text-2xl mb-10 font-[600]">
-                Recuperar Clave
+                Recuperar Contraseña
             </h2>
             <form id="recoverForm">
-              <div class="w-full h-10 sm:h-20 mb-10 sm:mb-0 flex flex-col items-center justify-center">
-                 <label for="email">Ingresa tu correo electrónico:</label>
-                <div
-                  class="w-full border-2 border-[#493b27] flex items-center justify-center bg-white rounded-[5px] hover:border-2 hover:border-[#07ffac] transition-all ease-in duration-[300ms]"
-                >
-                  <input
-                    name="correo"
-                    id="correo"
-                    type="email"
-                    class="w-[95%] outline-none h-[40px] text-[15px] md:text-[20px] placeholder:text-[15px] placeholder:text-[#493b27] hover:placeholder:text-[#07ffac] lowercase"
-                    placeholder="ejemplo@ejemplo.com"
-                    required
-                    autofocus
-                  />
-                </div>
-              </div>
-
-             <div class="w-full flex justify-center mb-4 mt-4">
+                <label for="email">Ingresa tu correo electrónico:</label>
+                <input
+                name="correo"
+                id="correo"
+                type="email"
+                class="w-[95%] outline-none border-2 border-[#493b27] h-[40px] text-[15px] md:text-[20px] placeholder:text-[15px] placeholder:text-[#493b27] hover:placeholder:text-[#07ffac] lowercase"
+                placeholder="ejemplo@ejemplo.com"
+                required
+                autofocus
+              />
+              <div class="w-full flex justify-center mb-4 mt-4">
                 <button type="submit" class="btn-login w-full hover:w-full">
                   Ingresar
                 </button>

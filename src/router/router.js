@@ -41,10 +41,6 @@ rutas.get('/clave', (req, res) => {
   res.sendFile(__dirname + '/view/recuperarClave.html'); 
 });
 
-rutas.get('/cambiarClave', (req, res) => {
-  res.sendFile(__dirname + '/view/cambiarClave.html'); 
-});
-
 
 /** /login se encarga de mostrar la vista para hacer login */
 rutas.get('/login', (req, res) => {
@@ -96,6 +92,7 @@ rutas.get('/api/usuario-activo', UsuarioControlador.usuarioActivo);
 
 
 rutas.post('/api/login', LoginControlador.iniciarSesion);
+rutas.get("/api/cerrar-sesion", LoginControlador.cerrarSesion);
 
 
 rutas.post('/api/registrar-productos', ProductosControlador.guardarProducto);
