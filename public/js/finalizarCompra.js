@@ -42,6 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     //console.log('Carrito:', carrito); // Verificar el contenido del carrito
 
+    const total_pagar = document.getElementById('total-price').innerText;
+
+    console.log(total_pagar);
+    
+
     const productosComprados = carrito.map(producto => ({
       id: producto.id,
       codigo: producto.codigo,
@@ -57,7 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(productosComprados),
+      body: JSON.stringify({
+        productosComprados: productosComprados, total_pagar: total_pagar
+      }),
       credentials: "include",
     }).then((response) => {
         if (!response.ok) {
@@ -65,12 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
             "Error al realizar la compra: " + response.statusText
           );
         }
-
-        console.log(response);
-        
-
-        //localStorage.removeItem('carrito'); 
-        //window.location.href = '/comfirmarC'; 
+        return response.json();
+      })
+      .then((data) => {
+         
+        if (data.status == 'ok') {
+          console.log('Compra exitosa...');
+          
+          setTimeout(() => {
+            localStorage.removeItem('carrito'); 
+            window.location.href = '/comfirmarC'; 
+          }, 3000);
+        } else {
+          console.log('Error al comprar...');          
+        }
 
     }).catch((error) => {
       console.error("Error:", error);
