@@ -1,6 +1,6 @@
 /** guardarUsuario es la sentencia sql para registrar un usuario */
 export function guardarUsuario(cedula, nombre, apellido, correo, clave, token) {
-  const registrarEmpleado = `INSERT INTO usuarios(cedula, nombre, apellido, correo, token, clave, validar, tipo_usuario, fecha_creado) VALUES ('${cedula}', '${nombre}', '${apellido}', '${correo}', '${token}', '${clave}', 'false', 'cliente' CURRENT_TIMESTAMP)`;
+  const registrarEmpleado = `INSERT INTO usuarios(cedula, nombre, apellido, correo, token, clave, validar, tipo_usuario, fecha_creado) VALUES ('${cedula}', '${nombre}', '${apellido}', '${correo}', '${token}', '${clave}', 'false', 'cliente', CURRENT_TIMESTAMP)`;
   return registrarEmpleado;
 }
 

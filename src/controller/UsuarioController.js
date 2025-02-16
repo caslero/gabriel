@@ -47,7 +47,7 @@ export class UsuarioControlador {
         return res.status(400).json({
           status: "error",
           numero: 0,
-          message: "Error, al crear usuario...",
+          message: "Error, usuario ya existe...",
         });
       } else {
         EnviarCorreo.sendMailCrearClave(
