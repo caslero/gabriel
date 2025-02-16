@@ -84,10 +84,11 @@ export class ProductosControlador {
           status: descifrarToken.status,
           numero: descifrarToken.numero,
           message: descifrarToken.message,
-        });  
+        });
       }
 
-      const todosProductosDisponibles = await ModeloProductos.productosDisponibles();
+      const todosProductosDisponibles =
+        await ModeloProductos.productosDisponibles();
 
       if (!todosProductosDisponibles) {
         return res.status(400).json({
@@ -103,7 +104,6 @@ export class ProductosControlador {
           productosDisponibles: todosProductosDisponibles,
         });
       }
-
     } catch (error) {
       console.log("Error, al consultar productos disponibles: " + error);
       return res.status(500).json({
@@ -116,54 +116,58 @@ export class ProductosControlador {
 
   static async actualizarProducto(req, res) {
     try {
-
       const { id } = req.params;
       const { producto, codigo, precio } = req.body;
       const token = req.cookies.programacioniii;
 
       const descifrarToken = Tokens.descifrarToken(token);
 
-
       if (descifrarToken.status === "error") {
         return res.status(400).json({
           status: descifrarToken.status,
           numero: descifrarToken.numero,
           message: descifrarToken.message,
-        });  
+        });
       }
 
-      const id_usuario = ModeloUsuarios.idUsuarioRegistra(descifrarToken.correo);
+      const id_usuario = ModeloUsuarios.idUsuarioRegistra(
+        descifrarToken.correo
+      );
 
-      id_usuario.then(async (datos) => {
-        const productoActualizado = await ModeloProductos.actualizarUnProducto(id, datos.id, producto, codigo, precio);
-        
-        if (!productoActualizado) {
-          return res.status(400).json({
-            status: "error",
-            numero: 0,
-            message: "Error al actualizar producto...",
-          });
-        } else {
-          return res.status(201).json({
-            status: "ok",
-            numero: 1,
-            message: "Producto actualizado...",
-          });
-        }
-        
-      }).catch((error) => {
-      console.log(error);
-      
-      });
-      
-      
+      id_usuario
+        .then(async (datos) => {
+          const productoActualizado =
+            await ModeloProductos.actualizarUnProducto(
+              id,
+              datos.id,
+              producto,
+              codigo,
+              precio
+            );
+
+          if (!productoActualizado) {
+            return res.status(400).json({
+              status: "error",
+              numero: 0,
+              message: "Error al actualizar producto...",
+            });
+          } else {
+            return res.status(201).json({
+              status: "ok",
+              numero: 1,
+              message: "Producto actualizado...",
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       // return res.status(201).json({
       //   status: "ok",
       //   numero: 1,
       //   message: "Producto actualizado...",
       // });
-      
     } catch (error) {
       console.log("Error, al actualizar producto: " + error);
       return res.status(500).json({
@@ -174,8 +178,6 @@ export class ProductosControlador {
     }
   }
 
-
-
   static async eliminarProducto(req, res) {
     try {
       const token = req.cookies.programacioniii;
@@ -183,26 +185,29 @@ export class ProductosControlador {
 
       const descifrarToken = Tokens.descifrarToken(token);
 
-
       if (descifrarToken.status === "error") {
         return res.status(400).json({
           status: descifrarToken.status,
           numero: descifrarToken.numero,
           message: descifrarToken.message,
-        });  
+        });
       }
 
-      console.log(id, descifrarToken.correo);
-      
+      const productoEliminado = await ModeloProductos.eliminarUnProducto(id);
 
-
-      return res.status(201).json({
-        status: "ok",
-        numero: 1,
-        message: "Producto eliminado...",
-      });
-
-      
+      if (!productoEliminado) {
+        return res.status(400).json({
+          status: "error",
+          numero: 0,
+          message: "Error, no se elimino el producto...",
+        });
+      } else {
+        return res.status(201).json({
+          status: "ok",
+          numero: 1,
+          message: "Producto eliminado...",
+        });
+      }
     } catch (error) {
       console.log("Error, al eliminar un producto: " + error);
       return res.status(500).json({

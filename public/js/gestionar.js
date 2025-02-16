@@ -15,7 +15,7 @@ export function gestionar() {
         return response.json();
       })
       .then((data) => {
-        console.log(data); // Verifica la estructura de los datos
+        //console.log(data); // Verifica la estructura de los datos
         let productosContent = ""; // Variable para acumular el contenido de productos
 
         // Asegúrate de que data.productosDisponibles sea un array
@@ -45,102 +45,102 @@ export function gestionar() {
           });
 
           // Inserta el contenido acumulado en el contenedor
-          document.getElementById("productos-container").innerHTML = productosContent;
+          document.getElementById("productos-container").innerHTML =
+            productosContent;
 
           // Agregar eventos a los botones de editar
-          document.querySelectorAll('.edit-btn').forEach(button => {
-            button.addEventListener('click', function() {
-              const productId = this.getAttribute('data-id');
-              console.log(`Editar producto con ID: ${productId}`); // Depuración
-              
+          document.querySelectorAll(".edit-btn").forEach((button) => {
+            button.addEventListener("click", function () {
+              const productId = this.getAttribute("data-id");
+              //console.log(`Editar producto con ID: ${productId}`); // Depuración
+
               // Lógica para obtener los datos del producto
-              const product = data.productosDisponibles.find(p => p.id == productId);
-              console.log(product); // Depuración
-              
+              const product = data.productosDisponibles.find(
+                (p) => p.id == productId
+              );
+              //console.log(product); // Depuración
+
               if (product) {
                 // Cargar los datos del producto en el modal
-                document.getElementById('productName').value = product.producto;
-                document.getElementById('productCode').value = product.codigo;
-                document.getElementById('productPrice').value = product.precio;
-                document.getElementById('productId').value = product.id;
+                document.getElementById("productName").value = product.producto;
+                document.getElementById("productCode").value = product.codigo;
+                document.getElementById("productPrice").value = product.precio;
+                document.getElementById("productId").value = product.id;
 
                 // Mostrar el modal
-                $('#editModal').modal('show');
+                $("#editModal").modal("show");
               }
             });
           });
-          
-
-
-
-
 
           // Guardar cambios
-          document.getElementById('saveChanges').addEventListener('click', function() {
-            const id = document.getElementById('productId').value;
-            const updatedProduct = {
-              producto: document.getElementById('productName').value,
-              codigo: document.getElementById('productCode').value,
-              precio: document.getElementById('productPrice').value,
-            };
-    
-            // Lógica para enviar los datos actualizados a la API
-            fetch(`${direccionLocal}/api/update-producto/${id}`, {
-              method: "PUT",
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(updatedProduct),
-              credentials: "include",
-            })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error("Error al actualizar el producto: " + response.statusText);
-              }
-              // Cerrar el modal
-              $('#editModal').modal('hide');
-              // Volver a cargar la lista de productos
-              gestionar();
-            })
-            .catch(error => {
-              console.error("Error:", error);
+          document
+            .getElementById("saveChanges")
+            .addEventListener("click", function () {
+              const id = document.getElementById("productId").value;
+              const updatedProduct = {
+                producto: document.getElementById("productName").value,
+                codigo: document.getElementById("productCode").value,
+                precio: document.getElementById("productPrice").value,
+              };
+
+              // Lógica para enviar los datos actualizados a la API
+              fetch(`${direccionLocal}/api/update-producto/${id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedProduct),
+                credentials: "include",
+              })
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error(
+                      "Error al actualizar el producto: " + response.statusText
+                    );
+                  }
+                  // Cerrar el modal
+                  $("#editModal").modal("hide");
+                  // Volver a cargar la lista de productos
+                  gestionar();
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                });
             });
-          });
-
-
-
-
 
           // Agregar eventos a los botones de eliminar
-          document.querySelectorAll('.delete-btn').forEach(button => {
-            button.addEventListener('click', function() {
-              const productId = this.getAttribute('data-id');
+          document.querySelectorAll(".delete-btn").forEach((button) => {
+            button.addEventListener("click", function () {
+              const productId = this.getAttribute("data-id");
 
-              console.log(`Eliminar producto con ID: ${productId}`);  
-              
+              //console.log(`Eliminar producto con ID: ${productId}`);
+
               // Mostrar el modal de confirmación
-              $('#deleteModal').modal('show');
+              $("#deleteModal").modal("show");
 
-               // Configurar el botón de confirmación para eliminar el producto
-               document.getElementById('confirmDelete').onclick = function() {
+              // Configurar el botón de confirmación para eliminar el producto
+              document.getElementById("confirmDelete").onclick = function () {
                 fetch(`${direccionLocal}/api/delete-producto/${productId}`, {
                   method: "PUT",
                   credentials: "include",
                 })
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error("Error al eliminar el producto: " + response.statusText);
-                  }
-                  // Si la eliminación fue exitosa, puedes volver a llamar a gestionar() // para actualizar la lista
-                  gestionar();
-                })
-                .catch(error => {
-                  console.error("Error:", error);
-                });
-              }
+                  .then((response) => {
+                    if (!response.ok) {
+                      throw new Error(
+                        "Error al eliminar el producto: " + response.statusText
+                      );
+                    }
+                    $("#deleteModal").modal("hide");
+                    // Si la eliminación fue exitosa, puedes volver a llamar a gestionar() // para actualizar la lista
+                    gestionar();
+                  })
+                  .catch((error) => {
+                    console.error("Error:", error);
+                  });
+              };
             });
           });
-
         } else {
           console.error(
             "La respuesta no contiene un array de productos disponibles."

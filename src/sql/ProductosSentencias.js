@@ -1,17 +1,10 @@
 export function registrarProductoVersionUno(req, id_usuario) {
-  const {
-    codigo,
-    nombre,
-    imagen,
-    precio,
-    categoria,
-  } = req.body;
+  const { codigo, nombre, imagen, precio, categoria } = req.body;
 
-  
-    const guardarProducto = `INSERT INTO productos 
+  const guardarProducto = `INSERT INTO productos 
           (codigo, producto, imagen, id_categoria, existencia_actual, precio, fecha_creado) VALUES
           ('${codigo}', '${nombre}', '${imagen}', '${categoria}', '1', '${precio}', CURRENT_TIMESTAMP)`;
-    return guardarProducto;
+  return guardarProducto;
 }
 
 export function registrarProductoVersionDos(req, id_usuario) {
@@ -38,12 +31,10 @@ export function registrarProductoVersionDos(req, id_usuario) {
   return guardarProducto2;
 }
 
-
 export function disponiblesProductos() {
-  const productosDisponibles = `SELECT * FROM productos `;
+  const productosDisponibles = `SELECT * FROM productos WHERE borrado = 'false'`;
   return productosDisponibles;
 }
-
 
 export function productoActualizado(id, id_usuario, producto, codigo, precio) {
   const updateProducto = `
@@ -57,6 +48,24 @@ export function productoActualizado(id, id_usuario, producto, codigo, precio) {
   `;
   return updateProducto;
 }
+
+export function productoEliminado(id) {
+  const deleteProducto = `
+    UPDATE productos
+    SET
+      borrado = 'true'
+    WHERE id = ${id};
+  `;
+  return deleteProducto;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -110,5 +119,3 @@ export function productoActualizado(id, id_usuario, producto, codigo, precio) {
     }
   }
 */
-
-
