@@ -4,27 +4,7 @@ import { consultarUsuarioActivo } from "./usuarioActivo.js";
 import { todosProductosDisponibles } from "./todosLosProductosComprar.js";
 
 
-/** 
-export async function consultarUsuarioActivo() {
-  try {
-    fetch(`${direccionLocal}/api/usuario-activo`, {
-      method: 'GET',
-      credentials: 'include' // Esto incluye las cookies con la solicitud
-  })
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('nombre-usuario-activo').innerHTML = `<span><i class="bi bi-person"></i>${data.usuarioActivo.nombre}</span>`;
-      console.log(data.usuarioActivo.nombre);
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  });
-  
-  } catch (error) {
-    console.log("Error, al consultar usuario activo");
-  }
-}
-*/
+
 
 
 consultarUsuarioActivo();
@@ -62,4 +42,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+//boton de cambiar clave
 
+// Redirigir al hacer clic en el botón "Cambiar Clave"
+document.getElementById('change-password-button').addEventListener('click', function() {
+  window.location.href = '/cambiarClave'; // Ruta a la página de cambio de clave
+});
+
+// Manejar el envío del formulario de cambio de contraseña
+document.getElementById('changePasswordForm')?.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const currentPassword = document.getElementById('currentPassword').value;
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const messageDiv = document.getElementById('message');
+
+  if (newPassword !== confirmPassword) {
+      messageDiv.textContent = 'Las contraseñas no coinciden.';
+      messageDiv.style.color = 'red';
+      return;
+  }
+
+  // Aquí puedes agregar la lógica para cambiar la contraseña, como una llamada a una API.
+
+  messageDiv.textContent = 'Contraseña cambiada con éxito.';
+  messageDiv.style.color = 'green';
+
+  // Limpiar el formulario
+  document.getElementById('changePasswordForm').reset();
+});

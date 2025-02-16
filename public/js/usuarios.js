@@ -43,7 +43,7 @@ async function registrar(e) {
 
   console.log(statusError);
  
-  if (statusError == 'error') {
+  if (statusError == 'error') {    
     mensajesValidacion(mensaje)
   } else {
     mensajesValidacion(mensaje)
