@@ -14,6 +14,7 @@ export async function crearTablaComprasSqlite(conectar) {
         fecha_compra DATETIME DEFAULT CURRENT_TIMESTAMP,
         estado VARCHAR(50) NOT NULL,
         productos JSON NOT NULL,
+        ref_bancaria VARCHAR(50) NOT NULL,
         fecha_creada DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
       )`);

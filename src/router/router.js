@@ -113,7 +113,9 @@ rutas.put('/api/delete-producto/:id', ProductosControlador.eliminarProducto);
 rutas.get('/api/productos-disponibles', ProductosControlador.productosDisponibles);
 
 
-rutas.post('/api/realizar-compra', ComprasControlador.realizarCompra)
+rutas.post('/api/realizar-compra', ComprasControlador.realizarCompra);
+
+rutas.get('/api/compras-usuario', ComprasControlador.comprasUsuario);
 
 
 

@@ -41,7 +41,7 @@ export function existeUsuario(campo) {
 /** inicioSesionDatos es la sentencia sql para traer los datos para el 
   inicio de sesion */
 export function inicioSesionDatos(correo) {
-  const usuarioActivo = `SELECT id, correo, clave, tipo_usuario FROM usuarios WHERE correo = '${correo}'`;
+  const usuarioActivo = `SELECT id, nombre, correo, clave, tipo_usuario FROM usuarios WHERE correo = '${correo}'`;
   return usuarioActivo;
 }
 

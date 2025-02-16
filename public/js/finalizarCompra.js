@@ -1,48 +1,52 @@
 import { direccionLocal } from "./constantes.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+document.addEventListener("DOMContentLoaded", () => {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   function actualizarVistaCarrito() {
-      let carritoContent = '';
-      let totalPagar = 0;
+    let carritoContent = "";
+    let totalPagar = 0;
 
-      carrito.forEach(producto => {
-          totalPagar += producto.precio; // Asegúrate de que producto.precio sea un número
-          carritoContent += `
+    carrito.forEach((producto) => {
+      totalPagar += producto.precio; // Asegúrate de que producto.precio sea un número
+      carritoContent += `
               <div id="${producto.id}" class="cart-item">
                   <img src="${producto.imagen}" alt="${producto.nombre}">
                   <div class="cart-details">
                       <h5>${producto.nombre}</h5>
-                      <p>${producto.precio.toFixed(2)}</p> <!-- Formato de precio -->
+                      <p>${producto.precio.toFixed(
+                        2
+                      )}</p> <!-- Formato de precio -->
                   </div>
               </div>`;
-      });
+    });
 
-      document.getElementById('carrito-vista').innerHTML = carritoContent;
-      document.getElementById('total-price').innerHTML = `${totalPagar.toFixed(2)}`;
+    document.getElementById("carrito-vista").innerHTML = carritoContent;
+    document.getElementById("total-price").innerHTML = `${totalPagar.toFixed(
+      2
+    )}`;
   }
 
   actualizarVistaCarrito();
 
-  document.querySelector('#compra-form').addEventListener('submit', (event) => {
+  document.querySelector("#compra-form").addEventListener("submit", (event) => {
     event.preventDefault();
     finalizarCompra();
   });
 
   function finalizarCompra() {
-    const referenciaBancaria = document.querySelector('#referencia').value;
-    console.log('Referencia bancaria:', referenciaBancaria);
+    const referenciaBancaria = document.querySelector("#referencia").value;
+    console.log("Referencia bancaria:", referenciaBancaria);
 
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const total_pagar = document.getElementById('total-price').innerText;
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const total_pagar = document.getElementById("total-price").innerText;
 
-    const productosComprados = carrito.map(producto => ({
+    const productosComprados = carrito.map((producto) => ({
       id: producto.id,
       codigo: producto.codigo,
       nombre: producto.nombre,
       imagen: producto.imagen,
-      precio: producto.precio
+      precio: producto.precio,
     }));
 
     fetch(`${direccionLocal}/api/realizar-compra`, {
@@ -52,71 +56,119 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify({
         productosComprados: productosComprados,
-        total_pagar: total_pagar
+        total_pagar: total_pagar,
+        referenciaBancaria: referenciaBancaria,
       }),
       credentials: "include",
     })
-    .then((response) => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error("Error al realizar la compra: " + response.statusText);
+          throw new Error(
+            "Error al realizar la compra: " + response.statusText
+          );
         }
         return response.json();
       })
       .then((data) => {
-        if (data.status === 'ok') {
-          console.log('Compra exitosa...');
-          
+        if (data.status === "ok") {
+          console.log("Compra exitosa...");
+
           const detallesCompra = {
             productosComprados: productosComprados,
             total_pagar: total_pagar,
             referenciaBancaria: referenciaBancaria,
-            estado: 'Aprobada'
+            estado: "Aprobada",
           };
-          localStorage.setItem('detallesCompra', JSON.stringify(detallesCompra));
-          
+          localStorage.setItem(
+            "detallesCompra",
+            JSON.stringify(detallesCompra)
+          );
+
           setTimeout(() => {
-            localStorage.removeItem('carrito'); 
-            window.location.href = '/confirmarCompra'; 
+            localStorage.removeItem("carrito");
+            window.location.href = "/confirmarCompra";
           }, 3000);
         } else {
-          console.log('Error al comprar...');
+          console.log("Error al comprar...");
           const detallesCompra = {
             productosComprados: productosComprados,
             total_pagar: total_pagar,
             referenciaBancaria: referenciaBancaria,
-            estado: 'Rechazada'
+            estado: "Rechazada",
           };
-          localStorage.setItem('detallesCompra', JSON.stringify(detallesCompra));
-        } 
+          localStorage.setItem(
+            "detallesCompra",
+            JSON.stringify(detallesCompra)
+          );
+        }
       })
       .catch((error) => {
-        console.error('Error en la solicitud:', error);
+        console.error("Error en la solicitud:", error);
       });
   }
 });
 
 // confirmar compra
 
-document.addEventListener('DOMContentLoaded', () => {
-  const detallesCompra = JSON.parse(localStorage.getItem('detallesCompra'));
-  if (detallesCompra) {
-    const detallesDiv = document.getElementById('detalles-compra');
-    let detallesHTML = `
-      <h3>Estado de la compra: ${detallesCompra.estado}</h3>
-      <p>Referencia bancaria: ${detallesCompra.referenciaBancaria}</p>
-      <p>Total pagado: $${detallesCompra.total_pagar}</p>
-      <h4>Productos comprados:</h4>
-      <ul>
-    `;
-    detallesCompra.productosComprados.forEach(producto => {
-      detallesHTML += `
-        <li>
-          <img class="w-20 h-30 mt-2 mb-2" src="${producto.imagen}" alt="${producto.nombre}"  >
-          <span>${producto.nombre} - $${producto.precio}</span>
-        </li>
-      `;
+document.addEventListener("DOMContentLoaded", () => {
+  let comprasTodas = "";
+  let counter = 1;
+
+  fetch(`${direccionLocal}/api/compras-usuario`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error al consultar compras: " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((datos) => {
+      datos.comprasRealizadas.forEach((element) => {
+        // Agrega solo una fila a la tabla
+        let rowContent = `
+                        <div>
+                            <td>Compra nº: ${counter}</td>
+                            <td>Total a pagar: ${element.precio_total}</td>
+                            <td>Estado compra: ${element.estado}</td>
+                        </div>
+                    `;
+
+        comprasTodas += rowContent;
+        counter++;
+      });
+
+      // Inserta el contenido acumulado en el contenedor
+      document.getElementById("detalles-compra").innerHTML = comprasTodas;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
-    detallesHTML += '</ul>';
-    detallesDiv.innerHTML = detallesHTML;
-  }
+
+  // const detallesCompra = JSON.parse(localStorage.getItem('detallesCompra'));
+  // if (detallesCompra) {
+  //   const detallesDiv = document.getElementById('detalles-compra');
+  //   let detallesHTML = `
+  //     <h3>Estado de la compra: ${detallesCompra.estado}</h3>
+  //     <p>Referencia bancaria: ${detallesCompra.referenciaBancaria}</p>
+  //     <p>Total pagado: $${detallesCompra.total_pagar}</p>
+  //     <h4>Productos comprados:</h4>
+  //     <ul>
+  //   `;
+
+  //   detallesCompra.productosComprados.forEach(producto => {
+  //     detallesHTML += `
+  //       <li>
+  //         <img class="w-20 h-30 mt-2 mb-2" src="${producto.imagen}" alt="${producto.nombre}"  >
+  //         <span>${producto.nombre} - $${producto.precio}</span>
+  //       </li>
+  //     `;
+  //   });
+  //   detallesHTML += '</ul>';
+  //   detallesDiv.innerHTML = detallesHTML;
+  // }
 });
