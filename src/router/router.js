@@ -32,6 +32,14 @@ rutas.get('/gestion', (req, res) => {
   res.sendFile(__dirname + '/view/gestionProductos.html');
 });
 
+rutas.get('/comfirmarC', (req, res) => {
+  res.sendFile(__dirname + '/view/confirmarCompra.html');
+});
+
+rutas.get('/clave', (req, res) => {
+  res.sendFile(__dirname + '/view/recuperarClave.html'); 
+});
+
 
 /** /login se encarga de mostrar la vista para hacer login */
 rutas.get('/login', (req, res) => {

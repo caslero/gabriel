@@ -58,6 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Limpiar el carrito después de la compra
     localStorage.removeItem('carrito'); 
     // Redirigir a la página principal o a otra vista
-    window.location.href = 'index.html'; 
+    window.location.href = '/comfirmarC'; 
   }
 });

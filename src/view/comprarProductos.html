@@ -58,55 +58,31 @@
             <ul
               class="navbar-nav flex-column flex-md-row justify-content-between align-items-center w-100"
             >
-
-            <div class="">
-              <li class="nav-item d-none d-md-flex">
-                <a class="dropdown-item" href="/comprar-productos">Inicio</a>
-              </li>
-
-              <li class="nav-item d-md-none">
-                <a class="dropdown-item" href="/comprar-productos">Inicio</a>
-              </li>
-            </div>
-
-            
-            <div id="gestion" class="">
-              <!-- <li class="nav-item d-none d-md-flex">
-                <a class="dropdown-item" href="/gestion">Gestion</a>
-              </li>
-
-              <li class="nav-item d-md-none">
-                <a class="dropdown-item" href="/gestion">Gestion</a>
-              </li> -->
-            </div>
-
-            <div id="registrar-productos">
-              <!-- <li class="nav-item d-none d-md-flex">
-                <a class="dropdown-item" href="/registrar-productos">Registrar producto</a>
-              </li>
-
-              <li class="nav-item d-md-none">
-                <a class="dropdown-item" href="/registrar-productos">Registrar producto</a>
-              </li> -->
-            </div>
-
-
-
-
-
-
+             
+            <li class="nav-item d-none d-md-flex">
+              <a class="dropdown-item" href="/gestion">Gestion</a>
+            </li>
+            <li class="nav-item d-md-none">
+              <a class="dropdown-item" href="/gestion">Gestion</a>
+            </li>
               <!--codigo carrito-->
               <li class="nav-item">
                 <div class="cart">
-                  <div class="contenedor-carrito">
+
+
+
+
+                  <div class="contenedor-carrito text-center">
                     <button class="logo" id="cart-button">
                       <i class="bi bi-cart4" alt="Carrito"></i>
-                      <span id="item-count">0</span>
+                      
                     </button>
                   </div>
 
+                  
                   <div id="cart" class="cart-dropdown text-center">
                     <h5>Carrito de Compras</h5>
+
 
                     <div id="carrito-vista"></div>
 
@@ -116,29 +92,34 @@
                       >
                     </div>
 
+
+
+
                     <button
                       class="add-to-cart btn btn-success btn-lg"
                       id="checkout-button"
                     >
                       Finalizar Compra
                     </button>
+
+
                   </div>
+
+
+
                 </div>
+              </li> 
+              <li class="nav-item d-none d-md-flex">
+                <a class="dropdown-item" href="/registrar-productos">Registrar Producto</a>
+              </li>
+              <li class="nav-item d-md-none">
+                <a class="dropdown-item" href="/registrar-productos">Registrar Producto</a>
               </li>
             </ul>
 
-            <form class="d-flex ms-3 mt-2" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Buscar equipos"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Buscar
-              </button>
-            </form>
+            
           </div>
+
 
           <!--nombre del usuario activo -->
           <div class="profile">
@@ -186,6 +167,17 @@
         </p>
       </div>
 
+
+
+
+
+
+
+
+
+
+
+      
       <!--Productos del tu catalogo-->
       <div id="contenedor">
         <!--categoria G-Alta-->
@@ -195,16 +187,21 @@
             En esta categorias encotraras equipos que te ofrecen lo ultimo en
             tecnologia, caracteristicas y rendimientos.
           </p>
-          <div id="gamma-alta" class="card-group"></div>
+          <div id="gamma-alta" class="card-group">
+           
+          </div>
         </div>
 
+        
         <div id="G-Media" class="container mb-5 mt-5">
           <h4>Gama Media</h4>
           <p>
             En esta categoria encotraras equipos que ofrecen un equilibrio entre
             rendimiento, caracteristicas y precio.
           </p>
-          <div id="gamma-media" class="card-group"></div>
+          <div id="gamma-media" class="card-group">
+           
+          </div>
         </div>
 
         <!--categoria G-Baja-->
@@ -216,7 +213,9 @@
             batante accesible.
           </p>
 
-          <div id="gamma-baja" class="card-group"></div>
+          <div id="gamma-baja" class="card-group">
+           
+          </div>
         </div>
       </div>
     </main>

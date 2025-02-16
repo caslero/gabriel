@@ -115,12 +115,15 @@ export function gestionar() {
           document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', function() {
               const productId = this.getAttribute('data-id');
-              // Lógica para eliminar el producto
-              //console.log(`Eliminar producto con ID: ${productId}`);
-              // Aquí puedes mostrar un mensaje de confirmación y luego eliminar el producto
-              if (confirm(`¿Estás seguro de que deseas eliminar el producto con ID: ${productId}?`)) {
-                // Lógica para eliminar el producto
-                fetch(`${direccionLocal}/api/delete-producto/${productId}`, {
+
+              console.log(`Eliminar producto con ID: ${productId}`);  
+              
+              // Mostrar el modal de confirmación
+              $('#deleteModal').modal('show');
+
+               // Configurar el botón de confirmación para eliminar el producto
+               document.getElementById('confirmDelete').onclick = function() {
+                fetch(`${direccionLocal}/api/productos/${productId}`, {
                   method: "PUT",
                   credentials: "include",
                 })

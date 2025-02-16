@@ -55,19 +55,6 @@
             <ul
               class="navbar-nav flex-column flex-md-row justify-content-between align-items-center w-100"
             >
-
-
-            <div class="">
-              <li class="nav-item d-none d-md-flex">
-                <a class="dropdown-item" href="/comprar-productos">Inicio</a>
-              </li>
-
-              <li class="nav-item d-md-none">
-                <a class="dropdown-item" href="/comprar-productos">Inicio</a>
-              </li>
-            </div>
-
-
               <li class="nav-item d-none d-md-flex">
                 <a class="dropdown-item" href="/comprar-productos">Catalogo</a>
               </li>
@@ -75,19 +62,16 @@
               <li class="nav-item d-md-none">
                 <a class="dropdown-item" href="/comprar-productos">Catalogo</a>
               </li>
+            </li> 
+            
+            <li class="nav-item d-none d-md-flex">
+              <a class="dropdown-item" href="/registrar-productos">Registrar Producto</a>
+            </li>
+            <li class="nav-item d-md-none">
+              <a class="dropdown-item" href="/registrar-productos">Registrar Producto</a>
+            </li>
             </ul> 
 
-            <form class="d-flex ms-3 mt-2" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Buscar equipos"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Buscar
-              </button>
-            </form>
           </div>
 
           <!-- <i class="bi bi-person-circle" alt="Perfil"></i>
@@ -154,7 +138,7 @@
 
 
     <!-- Modal para editar producto -->
-    <div id="editModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="editModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -188,6 +172,24 @@
   </div>
     </div>
 
+    <!-- Modal de Eliminación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar este producto?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <!--pie-->

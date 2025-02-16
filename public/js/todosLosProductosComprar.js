@@ -1,3 +1,4 @@
+
 import { direccionLocal } from "./constantes.js";
 
 export function todosProductosDisponibles() {
@@ -33,17 +34,17 @@ export function todosProductosDisponibles() {
               <!--Caracteristicas-->
 
               <div>
-                <i class="bi bi-memory">${element.codigo}</i>
+                <i class="bi bi-upc-scan">  ${element.codigo}</i>
               </div>
 
               <div>
-                <i class="bi bi-device-hdd">${
+                <i class="bi bi-check2-square">  ${
                   element.existencia_actual == 1 ? "Disponible" : "Agotado"
                 }</i>
               </div>
 
               <div>
-                <i class="bi bi-camera">${element.precio}</i>
+                <i class="bi bi-currency-dollar">  ${element.precio}</i>
               </div>
             </div>
 
@@ -86,10 +87,6 @@ export function todosProductosDisponibles() {
 
 
 
-
-
-
-
 let carrito = [];
 
 function addToCart(event) {
@@ -100,10 +97,9 @@ function addToCart(event) {
   const productPrice = parseFloat(productElement.getAttribute("data-price"));
   const productImage = productElement.getAttribute("data-image");
 
-
   const producto = {
     id: productId,
-    codigo:productCodigo,
+    codigo: productCodigo,
     nombre: productName,
     precio: productPrice,
     imagen: productImage,
@@ -113,9 +109,10 @@ function addToCart(event) {
   actualizarVistaCarrito();
 }
 
-
-
-
+function eliminarDelCarrito(productId) {
+  carrito = carrito.filter(producto => producto.id !== productId);
+  actualizarVistaCarrito();
+}
 
 
 
@@ -128,6 +125,8 @@ function addToCart(event) {
 let totalPagar = 0;
 function actualizarVistaCarrito() {
   let carritoContent = "";
+  totalPagar = 0; // Reiniciar el total a pagar antes de recalcular
+
   carrito.forEach((producto) => {
     totalPagar += producto.precio;
     carritoContent += `
@@ -136,12 +135,20 @@ function actualizarVistaCarrito() {
                 <div class="cart-details">
                     <h5>${producto.nombre}</h5>
                     <p>${producto.precio}</p>
+                    <button class="remove-from-cart btn btn-danger" data-id="${producto.id}">Eliminar</button>
                 </div>
             </div>`;
   });
 
   document.getElementById("carrito-vista").innerHTML = carritoContent;
   document.getElementById("total-price").innerHTML = `${totalPagar.toFixed(2)}`;
+
+  document.querySelectorAll(".remove-from-cart").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const productId = event.target.getAttribute("data-id");
+      eliminarDelCarrito(productId);
+    });
+  });
 
   document.getElementById("checkout-button").addEventListener("click", () => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
