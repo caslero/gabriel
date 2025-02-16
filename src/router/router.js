@@ -95,6 +95,7 @@ rutas.get('/cambiar-clave', (req, res) => {
 /** /api/registro se encarga de guardar los nuevos usuarios */
 rutas.post('/api/registro', UsuarioControlador.guardarNuevoUsuario);
 rutas.post('/api/comprobar-token', UsuarioControlador.comprobarTokenParaValidarlo);
+rutas.post('/api/cambiar-clave-loggueado', UsuarioControlador.cambiarClaveLoggueado);
 
 rutas.get('/api/usuario-activo', UsuarioControlador.usuarioActivo);
 

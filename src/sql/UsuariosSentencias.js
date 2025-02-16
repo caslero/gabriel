@@ -58,7 +58,10 @@ export function usuarioId(correo) {
 }
 
 
-
+export function claveCambiarLoggueado(clave, id_usuario) {
+  const cambiarClaveLoggueado = `UPDATE usuarios SET clave = '${clave}' WHERE id = '${id_usuario}'`;
+  return cambiarClaveLoggueado;
+}
 
 
 

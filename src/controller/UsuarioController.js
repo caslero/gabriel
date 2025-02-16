@@ -155,6 +155,76 @@ export class UsuarioControlador {
       });
     }
   }
+
+  static async cambiarClaveLoggueado(req, res) {
+    try {
+      const token = req.cookies.programacioniii;
+      const { claveVieja, claveNuevaUno, clavNuevaDos } = req.body;
+
+      const descifrarToken = Tokens.descifrarToken(token);
+
+      if (descifrarToken.status === "error") {
+        return res.status(400).json({
+          status: descifrarToken.status,
+          numero: descifrarToken.numero,
+          message: descifrarToken.message,
+        });
+      }
+
+      if (claveNuevaUno !== clavNuevaDos) {
+        return res.status(400).json({
+          status: "error",
+          numero: 0,
+          message: "Error, claves no coinciden...",
+        });
+      }
+
+      const claveViejaGuardada = await ModeloUsuarios.datosInicioSesion(descifrarToken.correo);
+      
+      const comparada = await bcryptjs.compare(claveVieja, claveViejaGuardada.clave);
+
+     
+      if (!comparada) {
+        return res.status(400).json({
+          status: "error",
+          numero: 0,
+          message: "Error, clave vieja no coincide...",
+        });
+      } else {
+        const encriptado = await bcryptjs.genSalt(5);
+        const claveEncriptada = await bcryptjs.hash(claveNuevaUno, encriptado);
+
+        const cambioClave = await ModeloUsuarios.cambiarClaveLoggueado(claveEncriptada, claveViejaGuardada.id);
+
+        if (!cambioClave) {
+          return res.status(400).json({
+            status: "error",
+            numero: 0,
+            message: "Error, no se cambio la clave...",
+          });
+        } else {
+          return res.status(201).json({
+          status: "ok",
+          numero: 1,
+          message: "Clave cambiada con exito...",
+        });
+        }
+
+        
+      }
+      
+      
+    } catch (error) {
+      console.log("Error, al cambiar clave: " + error);
+      return res.status(500).json({
+        status: "error",
+        numero: 0,
+        message: "Error, al cambiar clave...",
+      });
+    }
+  }
+
+
 }
 
 /** 

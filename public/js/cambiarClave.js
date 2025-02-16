@@ -14,9 +14,12 @@ cambiarClave.addEventListener('submit', cambiandoClave);
 /** cambiandoClave envia los datos correspondientes para iniciar sesion */
 async function cambiandoClave(e) {
   e.preventDefault();
-  const claveVieja = e.target.correo.value;
-  const claveNueva = e.target.clave.value;
-  const claveNuevaConfirmar = e.target.clave.value;
+  const claveVieja = e.target.claveVieja.value;
+  const claveNueva = e.target.newClave.value;
+  const claveNuevaConfirmar = e.target.confirmClave.value;
+
+  console.log(claveVieja, claveNueva, claveNuevaConfirmar);
+  
   
   const respuesta = await fetch(`${direccionLocal}/api/cambiar-clave-loggueado`, {
     method: 'POST',
@@ -26,7 +29,7 @@ async function cambiandoClave(e) {
     body: JSON.stringify({
       claveVieja: claveVieja,
       claveNuevaUno: claveNueva,
-      clavDos: claveNuevaConfirmar,
+      clavNuevaDos: claveNuevaConfirmar,
     })
   })
 
@@ -40,7 +43,10 @@ async function cambiandoClave(e) {
   if (statusError == 'error') {    
     mensajesValidacion(mensaje)
   } else {
-    window.location.href = respuestaJson.redirect;
+    mensajesValidacion(mensaje)
+    setTimeout(() => {
+      window.location.href = '/comprar-productos';
+    }, 3000);
   }
 
 }

@@ -7,7 +7,8 @@ import {
   existeUsuario,
   tokenComprobar,
   obtenerClaveParaCambiarla, claveCambiadaUsuarioLogueado, userAutorizado,
-  tokenValidar, tokenValidando, autenticoUsuario, usuarioId
+  tokenValidar, tokenValidando, autenticoUsuario, usuarioId,
+  claveCambiarLoggueado
 } from "../sql/UsuariosSentencias.js";
 
 
@@ -124,6 +125,21 @@ static async idUsuarioRegistra(correo) {
 }
   
 
+
+
+
+
+static async cambiarClaveLoggueado(clave, id_usuario) {
+  return new Promise((resolve) => {
+      const cambiandoClave = conexionSqlite.run(claveCambiarLoggueado(clave, id_usuario));
+      cambiandoClave.then((data) => {
+        resolve(data)
+      }).catch((error) => {
+        console.log(error);          
+        resolve(false)
+      });
+  });
+}
 
 
 
