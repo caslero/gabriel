@@ -33,7 +33,7 @@ rutas.get('/gestion', (req, res) => {
   res.sendFile(__dirname + '/view/gestionProductos.html');
 });
 
-rutas.get('/comfirmarC', (req, res) => {
+rutas.get('/confirmarCompra', (req, res) => {
   res.sendFile(__dirname + '/view/confirmarCompra.html');
 });
 

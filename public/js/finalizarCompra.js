@@ -1,6 +1,5 @@
 import { direccionLocal } from "./constantes.js";
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -9,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
       let totalPagar = 0;
 
       carrito.forEach(producto => {
-          totalPagar += producto.precio;
+          totalPagar += producto.precio; // Asegúrate de que producto.precio sea un número
           carritoContent += `
               <div id="${producto.id}" class="cart-item">
                   <img src="${producto.imagen}" alt="${producto.nombre}">
                   <div class="cart-details">
                       <h5>${producto.nombre}</h5>
-                      <p>${producto.precio}</p>
+                      <p>${producto.precio.toFixed(2)}</p> <!-- Formato de precio -->
                   </div>
               </div>`;
       });
@@ -32,20 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function finalizarCompra() {
-    // Obtener la referencia bancaria
     const referenciaBancaria = document.querySelector('#referencia').value;
-    
-    // Mostrar la referencia bancaria en la consola
     console.log('Referencia bancaria:', referenciaBancaria);
 
-    // Obtener los datos de los productos en el carrito
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    //console.log('Carrito:', carrito); // Verificar el contenido del carrito
-
     const total_pagar = document.getElementById('total-price').innerText;
-
-    console.log(total_pagar);
-    
 
     const productosComprados = carrito.map(producto => ({
       id: producto.id,
@@ -55,54 +45,78 @@ document.addEventListener('DOMContentLoaded', () => {
       precio: producto.precio
     }));
 
-    //console.log(productosComprados);
-
     fetch(`${direccionLocal}/api/realizar-compra`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        productosComprados: productosComprados, total_pagar: total_pagar
+        productosComprados: productosComprados,
+        total_pagar: total_pagar
       }),
       credentials: "include",
-    }).then((response) => {
+    })
+    .then((response) => {
         if (!response.ok) {
-          throw new Error(
-            "Error al realizar la compra: " + response.statusText
-          );
+          throw new Error("Error al realizar la compra: " + response.statusText);
         }
         return response.json();
       })
       .then((data) => {
-         
-        if (data.status == 'ok') {
+        if (data.status === 'ok') {
           console.log('Compra exitosa...');
+          
+          const detallesCompra = {
+            productosComprados: productosComprados,
+            total_pagar: total_pagar,
+            referenciaBancaria: referenciaBancaria,
+            estado: 'Aprobada'
+          };
+          localStorage.setItem('detallesCompra', JSON.stringify(detallesCompra));
           
           setTimeout(() => {
             localStorage.removeItem('carrito'); 
-            window.location.href = '/comfirmarC'; 
+            window.location.href = '/confirmarCompra'; 
           }, 3000);
         } else {
-          console.log('Error al comprar...');          
-        }
+          console.log('Error al comprar...');
+          const detallesCompra = {
+            productosComprados: productosComprados,
+            total_pagar: total_pagar,
+            referenciaBancaria: referenciaBancaria,
+            estado: 'Rechazada'
+          };
+          localStorage.setItem('detallesCompra', JSON.stringify(detallesCompra));
+        } 
+      })
+      .catch((error) => {
+        console.error('Error en la solicitud:', error);
+      });
+  }
+});
 
-    }).catch((error) => {
-      console.error("Error:", error);
+// confirmar compra
+
+document.addEventListener('DOMContentLoaded', () => {
+  const detallesCompra = JSON.parse(localStorage.getItem('detallesCompra'));
+  if (detallesCompra) {
+    const detallesDiv = document.getElementById('detalles-compra');
+    let detallesHTML = `
+      <h3>Estado de la compra: ${detallesCompra.estado}</h3>
+      <p>Referencia bancaria: ${detallesCompra.referenciaBancaria}</p>
+      <p>Total pagado: $${detallesCompra.total_pagar}</p>
+      <h4>Productos comprados:</h4>
+      <ul>
+    `;
+    detallesCompra.productosComprados.forEach(producto => {
+      detallesHTML += `
+        <li>
+          <img class="w-20 h-30 mt-2 mb-2" src="${producto.imagen}" alt="${producto.nombre}"  >
+          <span>${producto.nombre} - $${producto.precio}</span>
+        </li>
+      `;
     });
-    
-
-    // Mostrar los productos comprados en la consola con más detalles
-    // productosComprados.forEach(producto => {
-    //   console.log(`Producto comprado - ID: ${producto.id}, Código: ${producto.codigo}, Nombre: ${producto.nombre}, Imagen: ${producto.imagen}, Precio: ${producto.precio}`);
-    // });
-
-    // // Confirmar la compra
-    // alert('Compra confirmada!');
-    
-    // // Limpiar el carrito después de la compra
-    // localStorage.removeItem('carrito'); 
-    // // Redirigir a la página principal o a otra vista
-    // window.location.href = '/comfirmarC'; 
+    detallesHTML += '</ul>';
+    detallesDiv.innerHTML = detallesHTML;
   }
 });
