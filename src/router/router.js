@@ -86,6 +86,10 @@ rutas.get('/registrar-productos', (req, res) => {
   res.sendFile(__dirname + '/view/registrarProducto.html'); 
 });
 
+rutas.get('/cambiar-clave', (req, res) => {
+  res.sendFile(__dirname + '/view/cambiarClave.html'); 
+});
+
 
 
 /** /api/registro se encarga de guardar los nuevos usuarios */

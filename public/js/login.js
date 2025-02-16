@@ -1,8 +1,5 @@
 import { direccionLocal } from "./constantes.js";
 
-console.log(direccionLocal);
-
-
 /** entrarAlSistema recibe los datos del formulario para hacer login */
 const entrarAlSistema = document.getElementById('login');
 //const msjUsuario = document.getElementById("registroExitosoUsuario");
