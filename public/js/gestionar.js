@@ -85,7 +85,7 @@ export function gestionar() {
             };
     
             // Lógica para enviar los datos actualizados a la API
-            fetch(`${direccionLocal}/api/productos/${id}`, {
+            fetch(`${direccionLocal}/api/update-producto/${id}`, {
               method: "PUT",
               headers: {
                 'Content-Type': 'application/json'
@@ -123,7 +123,7 @@ export function gestionar() {
 
                // Configurar el botón de confirmación para eliminar el producto
                document.getElementById('confirmDelete').onclick = function() {
-                fetch(`${direccionLocal}/api/productos/${productId}`, {
+                fetch(`${direccionLocal}/api/delete-producto/${productId}`, {
                   method: "PUT",
                   credentials: "include",
                 })
