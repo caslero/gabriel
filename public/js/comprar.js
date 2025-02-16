@@ -45,8 +45,35 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("change-password-button")
     .addEventListener("click", () => {
-      // Lógica para cambiar la clave
-      alert("Cambiar clave");
+      // Redirigir al hacer clic en el botón "Cambiar Clave"
+      document.getElementById('change-password-button').addEventListener('click', function() {
+  window.location.href = '/cambiar-clave'; // Ruta a la página de cambio de clave
+      });
+
+      // Manejar el envío del formulario de cambio de contraseña
+      document.getElementById('changePasswordForm')?.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const currentPassword = document.getElementById('currentPassword').value;
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const messageDiv = document.getElementById('message');
+
+  if (newPassword !== confirmPassword) {
+      messageDiv.textContent = 'Las contraseñas no coinciden.';
+      messageDiv.style.color = 'red';
+      return;
+  }
+
+  // Aquí puedes agregar la lógica para cambiar la contraseña, como una llamada a una API.
+
+  messageDiv.textContent = 'Contraseña cambiada con éxito.';
+  messageDiv.style.color = 'green';
+
+  // Limpiar el formulario
+  document.getElementById('changePasswordForm').reset();
+      });
+
     });
 
   document.getElementById("logout-button").addEventListener("click", () => {
