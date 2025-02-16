@@ -45,6 +45,9 @@ rutas.get('/clave', (req, res) => {
   res.sendFile(__dirname + '/view/recuperarClave.html'); 
 });
 
+rutas.get('/confirmar', (req, res) => {
+  res.sendFile(__dirname + '/view/confirmar.html'); 
+});
 
 /** /login se encarga de mostrar la vista para hacer login */
 rutas.get('/login', (req, res) => {
