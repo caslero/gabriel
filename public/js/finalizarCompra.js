@@ -1,3 +1,6 @@
+import { direccionLocal } from "./constantes.js";
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -37,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Obtener los datos de los productos en el carrito
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    console.log('Carrito:', carrito); // Verificar el contenido del carrito
+    //console.log('Carrito:', carrito); // Verificar el contenido del carrito
 
     const productosComprados = carrito.map(producto => ({
       id: producto.id,
@@ -47,17 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
       precio: producto.precio
     }));
 
-    // Mostrar los productos comprados en la consola con más detalles
-    productosComprados.forEach(producto => {
-      console.log(`Producto comprado - ID: ${producto.id}, Código: ${producto.codigo}, Nombre: ${producto.nombre}, Imagen: ${producto.imagen}, Precio: ${producto.precio}`);
-    });
+    //console.log(productosComprados);
 
-    // Confirmar la compra
-    alert('Compra confirmada!');
+    fetch(`${direccionLocal}/api/realizar-compra`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productosComprados),
+      credentials: "include",
+    }).then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Error al realizar la compra: " + response.statusText
+          );
+        }
+
+        console.log(response);
+        
+
+        //localStorage.removeItem('carrito'); 
+        //window.location.href = '/comfirmarC'; 
+
+    }).catch((error) => {
+      console.error("Error:", error);
+    });
     
-    // Limpiar el carrito después de la compra
-    localStorage.removeItem('carrito'); 
-    // Redirigir a la página principal o a otra vista
-    window.location.href = '/comfirmarC'; 
+
+    // Mostrar los productos comprados en la consola con más detalles
+    // productosComprados.forEach(producto => {
+    //   console.log(`Producto comprado - ID: ${producto.id}, Código: ${producto.codigo}, Nombre: ${producto.nombre}, Imagen: ${producto.imagen}, Precio: ${producto.precio}`);
+    // });
+
+    // // Confirmar la compra
+    // alert('Compra confirmada!');
+    
+    // // Limpiar el carrito después de la compra
+    // localStorage.removeItem('carrito'); 
+    // // Redirigir a la página principal o a otra vista
+    // window.location.href = '/comfirmarC'; 
   }
 });

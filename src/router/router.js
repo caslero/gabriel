@@ -4,6 +4,7 @@ import { dirname, resolve } from 'path';
 import { UsuarioControlador } from "../controller/UsuarioController.js";
 import { LoginControlador } from "../controller/LoginController.js";
 import { ProductosControlador } from "../controller/ProductosController.js";
+import { ComprasControlador } from "../controller/ComprasController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const rootDir  = dirname(__filename);
@@ -102,6 +103,8 @@ rutas.put('/api/delete-producto/:id', ProductosControlador.eliminarProducto);
 
 rutas.get('/api/productos-disponibles', ProductosControlador.productosDisponibles);
 
+
+rutas.post('/api/realizar-compra', ComprasControlador.realizarCompra)
 
 
 
